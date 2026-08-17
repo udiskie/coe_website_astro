@@ -1,0 +1,34 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer id="footer">
+	<div style="color:white !important" class="container">
+		<div class="row">
+			<div class="col-md-4 d-flex flex-column flex-md-row justify-content-start align-items-center">
+				<p class="text-center text-lg-start">&copy; {year} COE. {t.footer.rights}</p>
+			</div>
+			<div class="col-md-3 d-flex flex-column flex-md-row justify-content-center align-items-center">
+				<p class="text-center">
+					<a style="color:white !important" id="mail" href="mailto:info@coe.cl">info@coe.cl</a>
+				</p>
+			</div>
+			<div class="col-md-4 d-flex flex-column flex-lg-row justify-content-center align-items-center gap-lg-4">
+				<p id="fono" style="margin:0 !important;" class="text-center text-md-end mt-0">+56 9 9918 5049</p>
+				<p id="fono2" style="margin:0 !important;" class="text-center text-md-end mt-0">+56 9 6575 3281</p>
+			</div>
+			<div class="col-md-1 d-flex flex-column flex-md-row justify-content-end align-items-center p-4">
+				<img style="width:64px; height:auto;" alt="COE" src="/images/marca_chile.png" />
+			</div>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,189 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div id="intro" class="cielo">
+	<section
+		id="home-hero-loading"
+		class="fade-0 page-hero container-fluid vh-100 d-flex justify-content-center flex-column m-0 p-0 cielo-img"
+	>
+		<div class="intro-texto">
+			<h1 class="yellow-text fw-bold text-center">{t.hero.headline}</h1>
+		</div>
+
+		<div class="montanas">
+			<div class="montana montana-1">
+				<img
+					src="/images/home_montanas.png"
+					srcset="/images/home_montanas.png 1920w,/images/home_montanas_mobile.png 768w"
+					sizes="(max-width: 768px) 768w, (min-width: 992px) 1920w"
+				/>
+			</div>
+		</div>
+	</section>
+</div>
+
+<script is:inline>
+	const heroLoading = document.querySelector('#home-hero-loading');
+	setTimeout(() => {
+		heroLoading?.classList.add('fadein');
+	}, 800);
+</script>
+
+<section
+	id="presentacion"
+	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid"
+>
+	<div class="container mt-5 pt-5">
+		<div><h2 class="text-center fw-bold mb-5 reveal">{t.presentacion.heading}</h2></div>
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
+				<div class="d-flex justify-content-center align-items-center">
+					<img class="w-50" src="/images/educativos.svg" alt={t.presentacion.educativos.alt} />
+				</div>
+				<div><h3 class="text-center my-3">{t.presentacion.educativos.title}</h3></div>
+				<div><p class="text-center">{t.presentacion.educativos.description}</p></div>
+			</div>
+
+			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
+				<div class="d-flex justify-content-center align-items-center">
+					<img class="w-50" src="/images/organizacional.svg" alt={t.presentacion.organizacional.alt} />
+				</div>
+				<div><h3 class="text-center my-3">{t.presentacion.organizacional.title}</h3></div>
+				<div><p class="text-center">{t.presentacion.organizacional.description}</p></div>
+			</div>
+
+			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
+				<div class="d-flex justify-content-center align-items-center">
+					<img class="w-50" src="/images/aventura.svg" alt={t.presentacion.aventura.alt} />
+				</div>
+				<div><h3 class="text-center my-3">{t.presentacion.aventura.title}</h3></div>
+				<div><p class="text-center">{t.presentacion.aventura.description}</p></div>
+			</div>
+		</div>
+		<div class="mb-5 d-flex justify-content-center reveal">
+			<a class="btn btn-outline-primary my-3 brown-button me-2 text-center" href="#">
+				{t.presentacion.cta}
+			</a>
+		</div>
+	</div>
+</section>
+
+<section
+	id="programas"
+	class="container-fluid vh-lg-50 d-flex p-0 flex-column align-items-center justify-content-start programas"
+>
+	<div class="container-fluid reveal">
+		<div class="row p-0 h-100 d-flex flex-column-reverse flex-lg-row">
+			<div class="col-lg-6 p-0 d-flex flex-column align-items-center justify-content-center">
+				<div class="py-5 px-0 px-sm-5 d-flex flex-column align-items-center align-items-lg-start justify-content-center w-75">
+					<h2 class="text-center text-lg-start mb-3">{t.servicios.heading}</h2>
+					<p class="text-center text-lg-start mb-0 mb-lg-3">{t.servicios.subheading}</p>
+					<a
+						class="btn btn-primary mt-5 my-lg-3 black-button me-2 text-center text-sm-start d-block"
+						href="#"
+					>
+						{t.servicios.cta}
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-6 p-0 h-100">
+				<div id="carousel-servicios" class="carousel slide h-100" data-bs-ride="false">
+					<div class="carousel-indicators">
+						{
+							t.servicios.slides.map((_, i) => (
+								<button
+									type="button"
+									data-bs-target="#carousel-servicios"
+									data-bs-slide-to={i}
+									class:list={[{ active: i === 0 }]}
+									aria-current={i === 0 ? 'true' : undefined}
+									aria-label={`Slide ${i + 1}`}
+								/>
+							))
+						}
+					</div>
+					<div class="carousel-inner h-100">
+						{
+							t.servicios.slides.map((slide, i) => (
+								<div class:list={['carousel-item', { active: i === 0 }]} data-bs-interval="3000">
+									<div class="d-flex justify-content-center overflow-hidden">
+										<img src={slide.src} class="d-block w-100" alt={slide.alt} />
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="aventura" class="container-fluid d-flex p-0 flex-column align-items-center">
+	<div class="d-flex p-5 flex-column align-items-center yellow-bkgnd-light w-100">
+		<h2 class="text-center text-lg-start mt-5 mb-3">{t.aventura.heading}</h2>
+		<p class="text-center text-lg-start mb-5">{t.aventura.subheading}</p>
+	</div>
+	<div class="proximas-aventuras reveal">
+		<div>
+			<div
+				id="carousel-aventuras"
+				class="carousel slide h-100 home-slider fade-0"
+				data-bs-ride="carousel"
+				data-bs-touch="true"
+			>
+				<div class="carousel-indicators"></div>
+
+				<div class="carousel-inner w-100">
+					<div class="carousel-item active">
+						<div class="row px-0">
+							<div class="col-lg-6 p-0 d-flex justify-content-center overflow-hidden">
+								<img
+									width="1016"
+									height="844"
+									src={t.aventura.featured.image}
+									class="d-block w-100 h-auto"
+									alt=""
+									decoding="async"
+									fetchpriority="high"
+									srcset={t.aventura.featured.imageSrcset}
+									sizes="(max-width: 1016px) 100vw, 1016px"
+								/>
+							</div>
+
+							<div class="col-lg-6 p-0 d-flex flex-column align-items-center justify-content-center">
+								<div class="py-5 px-0 px-sm-5 d-flex flex-column align-items-center align-items-lg-start justify-content-center w-75">
+									<div>
+										<h3 class="text-center text-lg-start mb-3">{t.aventura.featured.title}</h3>
+										<p class="text-center text-lg-start mb-0 mb-lg-3">
+											{t.aventura.featured.description}
+										</p>
+									</div>
+									<div>
+										<a
+											class="btn btn-primary my-3 black-button me-2 text-center text-sm-start"
+											href={t.aventura.featured.href}
+										>
+											{t.aventura.featured.cta}
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script is:inline src="/assets/js/hero_home.js"></script>

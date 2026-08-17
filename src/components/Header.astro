@@ -1,0 +1,75 @@
+---
+import { languages, type Lang } from '../i18n/ui';
+import { useTranslations, localizedPath } from '../i18n/utils';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+
+const navItems = [
+	{ label: t.nav.home, es: '/', en: '/' },
+	{ label: t.nav.about, es: '/sobre-coe', en: '/about-coe' },
+	{ label: t.nav.programs, es: '/programas', en: '/programs' },
+	{ label: t.nav.gallery, es: '/galeria', en: '/gallery' },
+	{ label: t.nav.contact, es: '/contacto', en: '/contact' },
+];
+---
+
+<header class="position-fixed w-100 menu-fix">
+	<nav id="header" class="navbar navbar-expand-md navbar-light home">
+		<div class="container">
+			<a class="navbar-brand" href={localizedPath(lang, '/')} title="COE" rel="home">
+				<img class="coe-blanco" alt="COE" src="/images/coe-logo.svg" />
+				<img class="coe-color" alt="COE" src="/images/coe-logo-color.svg" />
+			</a>
+
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbar"
+				aria-controls="navbar"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navbar" class="d-lg-flex justify-content-end collapse navbar-collapse">
+				<ul class="navbar-nav">
+					{
+						navItems.map((item) => {
+							const href = localizedPath(lang, lang === 'es' ? item.es : item.en);
+							const isActive = item.es === '/' && Astro.url.pathname === href;
+							return (
+								<li class="menu-item nav-item">
+									<a
+										aria-current={isActive ? 'page' : undefined}
+										href={href}
+										class:list={['nav-link', { active: isActive }]}
+									>
+										{item.label}
+									</a>
+								</li>
+							);
+						})
+					}
+					<li class="lang-item menu-item nav-item">
+						<a
+							href={localizedPath(otherLang, '/')}
+							class="nav-link"
+							hreflang={otherLang === 'es' ? 'es-CL' : 'en-US'}
+							lang={otherLang === 'es' ? 'es-CL' : 'en-US'}
+						>
+							{languages[otherLang]}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
