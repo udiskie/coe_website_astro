@@ -74,6 +74,55 @@ export const ui = {
 		footer: {
 			rights: 'Todos los derechos reservados.',
 		},
+		sobreCoe: {
+			meta: {
+				description:
+					'Generamos oportunidades de desarrollo personal y social a través de experiencias al aire libre.',
+			},
+			heroTitle: 'Sobre COE',
+			heroImage: '/images/banner6.jpg',
+			metodologia: {
+				heading: 'El espiral, nuestra metodología de trabajo',
+				interior: {
+					alt: 'programas educativos',
+					description:
+						'El núcleo representa al sujeto, desde allí es donde se inicia el camino del autoconocimiento.',
+				},
+				medio: {
+					alt: 'programas organizacionales',
+					description:
+						'En el medio está la comunidad, el individuo se expande hacia el otro, donde el vínculo social se convierte en la semilla de cambio.',
+				},
+				exterior: {
+					alt: 'programas de aventura',
+					description:
+						'En el exterior está el entorno, utilizando la naturaleza y la aventura como vía de desarrollo personal y social.',
+				},
+			},
+			equipo: {
+				heading: 'Nuestro equipo',
+				readMore: 'Leer más',
+				close: 'Cerrar',
+			},
+		},
+		programas: {
+			meta: {
+				description:
+					'Nos enfocamos en el desarrollo de programas educativos, organizacionales y de aventura.',
+			},
+		},
+		contacto: {
+			meta: {
+				description: 'Santiago de Chile | info@coe.cl | +56 9 9918 5049',
+			},
+			form: {
+				name: 'Nombre',
+				email: 'Email',
+				message: 'Comentario o mensaje',
+				submit: 'Enviar',
+				sending: 'Enviando...',
+			},
+		},
 	},
 	en: {
 		html_lang: 'en',
@@ -141,6 +190,54 @@ export const ui = {
 		},
 		footer: {
 			rights: 'All rights reserved.',
+		},
+		sobreCoe: {
+			meta: {
+				description:
+					'We generate opportunities for personal and social development through outdoor experiences.',
+			},
+			heroTitle: 'About COE',
+			heroImage: '/images/banner6-1.jpg',
+			metodologia: {
+				heading: 'The spiral, our work methodology',
+				interior: {
+					alt: 'educational programs',
+					description:
+						'The core represents the individual, from where the journey of self-knowledge begins.',
+				},
+				medio: {
+					alt: 'corporate programs',
+					description:
+						'In the middle is the community; the individual expands toward the other, where the social bond becomes the seed of change.',
+				},
+				exterior: {
+					alt: 'adventure programs',
+					description:
+						'In the outer layer, there is the natural environment as a mean of both personal and social development.',
+				},
+			},
+			equipo: {
+				heading: 'Our team',
+				readMore: 'Read more',
+				close: 'Close',
+			},
+		},
+		programas: {
+			meta: {
+				description: 'We focus on developing educative, corporate and adventure programs.',
+			},
+		},
+		contacto: {
+			meta: {
+				description: 'Santiago de Chile | info@coe.cl | +56 9 9918 5049',
+			},
+			form: {
+				name: 'Name',
+				email: 'Email',
+				message: 'Message',
+				submit: 'Send',
+				sending: 'Sending...',
+			},
 		},
 	},
 } as const;

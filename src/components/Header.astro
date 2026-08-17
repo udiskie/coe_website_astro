@@ -4,9 +4,10 @@ import { useTranslations, localizedPath } from '../i18n/utils';
 
 interface Props {
 	lang: Lang;
+	isHome?: boolean;
 }
 
-const { lang } = Astro.props;
+const { lang, isHome = false } = Astro.props;
 const t = useTranslations(lang);
 const otherLang: Lang = lang === 'es' ? 'en' : 'es';
 
@@ -20,7 +21,7 @@ const navItems = [
 ---
 
 <header class="position-fixed w-100 menu-fix">
-	<nav id="header" class="navbar navbar-expand-md navbar-light home">
+	<nav id="header" class:list={['navbar navbar-expand-md navbar-light', { home: isHome }]}>
 		<div class="container">
 			<a class="navbar-brand" href={localizedPath(lang, '/')} title="COE" rel="home">
 				<img class="coe-blanco" alt="COE" src="/images/coe-logo.svg" />
@@ -44,7 +45,8 @@ const navItems = [
 					{
 						navItems.map((item) => {
 							const href = localizedPath(lang, lang === 'es' ? item.es : item.en);
-							const isActive = item.es === '/' && Astro.url.pathname === href;
+							const normalize = (p: string) => (p.length > 1 ? p.replace(/\/$/, '') : p);
+							const isActive = normalize(Astro.url.pathname) === normalize(href);
 							return (
 								<li class="menu-item nav-item">
 									<a

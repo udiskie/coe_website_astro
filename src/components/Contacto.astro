@@ -1,0 +1,53 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const f = t.contacto.form;
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgawnqzp';
+---
+
+<section class="container-fluid d-flex align-items-center min-height">
+	<div class="container">
+		<div class="contacto">
+			<form class="wp-forms" method="POST" action={FORMSPREE_ENDPOINT}>
+				<input type="hidden" name="_subject" value="COE — new contact form submission" />
+				<div class="mb-3">
+					<label for="contact-name">{f.name} <span aria-hidden="true">*</span></label>
+					<div class="form-control">
+						<input type="text" id="contact-name" name="name" required />
+					</div>
+				</div>
+				<div class="mb-3">
+					<label for="contact-email">{f.email} <span aria-hidden="true">*</span></label>
+					<div class="form-control">
+						<input type="email" id="contact-email" name="email" spellcheck="false" required />
+					</div>
+				</div>
+				<div class="mb-3">
+					<label for="contact-message">{f.message}</label>
+					<div class="form-control">
+						<textarea id="contact-message" name="message"></textarea>
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="black-button">{f.submit}</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<style>
+	.contacto label {
+		display: block;
+		margin-bottom: 0.4rem;
+		font-weight: 600;
+	}
+</style>

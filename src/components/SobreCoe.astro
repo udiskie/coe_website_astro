@@ -1,0 +1,163 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { team } from '../data/team';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const s = t.sobreCoe;
+
+function lines(text: string) {
+	return text.split('\n');
+}
+---
+
+<section
+	id="page-hero"
+	class="page-hero pg-template page-hero-interna position-relative overflow-hidden d-flex justify-content-center align-items-center"
+>
+	<img id="page-hero-img" class="position-absolute fade-0 pg-hero-fix-mobile" src={s.heroImage} />
+	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
+		<div><h1 class="fw-bolder page-hero-title">{s.heroTitle}</h1></div>
+	</div>
+</section>
+
+<section
+	id="presentacion"
+	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid vh-lg-100"
+>
+	<div class="container mt-5 pt-5 mt-lg-5 pt-lg-5 postion-relative">
+		<div class="reveal"><h2 class="text-center fw-bold mb-5 reveal">{s.metodologia.heading}</h2></div>
+		<div class="row d-flex justify-content-center align-items-start espirales">
+			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
+				<div class="d-flex justify-content-center align-items-center mb-4">
+					<img class="w-75" src="/images/logo-interior.svg" alt={s.metodologia.interior.alt} />
+				</div>
+				<div class="w-75"><p class="text-center">{s.metodologia.interior.description}</p></div>
+			</div>
+
+			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
+				<div class="d-flex justify-content-center align-items-center mb-4">
+					<img class="w-75" src="/images/logo-medio.svg" alt={s.metodologia.medio.alt} />
+				</div>
+				<div class="w-75"><p class="text-center">{s.metodologia.medio.description}</p></div>
+			</div>
+
+			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
+				<div class="d-flex justify-content-center align-items-center mb-4">
+					<img class="w-75" src="/images/logo-exterior.svg" alt={s.metodologia.exterior.alt} />
+				</div>
+				<div class="w-75"><p class="text-center">{s.metodologia.exterior.description}</p></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="container-fluid yellow-bkgnd">
+	<div class="container p-5 reveal">
+		<div class="row d-flex justify-content-center">
+			<h2 class="w-100 p-0 text-center m-0">{s.equipo.heading}</h2>
+		</div>
+	</div>
+</section>
+
+<section id="equipo" class="container-fluid">
+	<div class="container my-5 pt-5">
+		<div class="row d-flex justify-content-center">
+			{
+				team.map((member) => {
+					const modalId = `${member.id}-${lang}`;
+					return (
+						<div class="miembro col-lg-4 mb-5">
+							<div class="d-flex justify-content-center">
+								<img
+									width={member.imageWidth}
+									height={member.imageHeight}
+									src={member.image}
+									class="w-75 h-auto"
+									alt={member.name}
+									decoding="async"
+									srcset={member.imageSrcset}
+									sizes={`(max-width: ${member.imageWidth}px) 100vw, ${member.imageWidth}px`}
+								/>
+							</div>
+							<div><h3 class="text-center w-100 my-0">{member.name}</h3></div>
+							<div>
+								<h6 class="text-center w-100 mb-3">
+									{lines(member.role[lang]).map((line, i, arr) => (
+										<>
+											{line}
+											{i < arr.length - 1 && <br />}
+										</>
+									))}
+								</h6>
+							</div>
+
+							<div class="w-100">
+								<button type="button" class="w-100 detalle-miembro" data-bs-toggle="modal" data-bs-target={`#${modalId}`}>
+									{s.equipo.readMore}
+								</button>
+							</div>
+
+							<div class="modal fade" id={modalId} tabindex="-1" aria-labelledby={`${modalId}Label`} aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="w-100 d-flex justify-content-end p-3 pb-0">
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+										</div>
+										<div class="modal-body d-flex flex-column justify-content-center pt-0 px-5">
+											<div class="d-flex justify-content-center">
+												<img
+													width={member.imageWidth}
+													height={member.imageHeight}
+													src={member.image}
+													class="w-50 h-auto"
+													alt={member.name}
+													decoding="async"
+													srcset={member.imageSrcset}
+													sizes={`(max-width: ${member.imageWidth}px) 100vw, ${member.imageWidth}px`}
+												/>
+											</div>
+											<div><h3 class="text-center w-100 my-0">{member.name}</h3></div>
+											<div class="mb-5">
+												<h6 class="text-center w-100 mb-3">
+													{lines(member.role[lang]).map((line, i, arr) => (
+														<>
+															{line}
+															{i < arr.length - 1 && <br />}
+														</>
+													))}
+												</h6>
+											</div>
+											<div class="text-center">
+												{member.bio[lang].map((paragraph) => (
+													<p>
+														{lines(paragraph).map((line, i, arr) => (
+															<>
+																{line}
+																{i < arr.length - 1 && <br />}
+															</>
+														))}
+													</p>
+												))}
+											</div>
+										</div>
+										<div class="w-100 d-flex justify-content-center p-5 pt-2">
+											<button type="button" class="btn btn-outline-primary black-button" data-bs-dismiss="modal">
+												{s.equipo.close}
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					);
+				})
+			}
+		</div>
+	</div>
+</section>

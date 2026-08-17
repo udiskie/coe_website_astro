@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Programas from '../../components/Programas.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout
+	lang={lang}
+	description={t.programas.meta.description}
+	alternatePaths={{ es: '/programas', en: '/programs' }}
+>
+	<Programas lang={lang} />
+</Layout>

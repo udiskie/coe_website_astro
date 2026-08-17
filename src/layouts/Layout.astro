@@ -8,9 +8,12 @@ interface Props {
 	lang: Lang;
 	title?: string;
 	description?: string;
+	isHome?: boolean;
+	/** Path (no locale prefix) of the equivalent page in each language, for hreflang alternates. */
+	alternatePaths?: { es: string; en: string };
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, isHome = false, alternatePaths = { es: '/', en: '/' } } = Astro.props;
 const t = useTranslations(lang);
 const pageTitle = title ?? t.meta.title;
 const pageDescription = description ?? t.meta.description;
@@ -25,8 +28,8 @@ const pageDescription = description ?? t.meta.description;
 		<meta name="description" content={pageDescription} />
 		<meta name="robots" content="max-image-preview:large" />
 
-		<link rel="alternate" href={localizedPath('en', '/')} hreflang="en" />
-		<link rel="alternate" href={localizedPath('es', '/')} hreflang="es" />
+		<link rel="alternate" href={localizedPath('en', alternatePaths.en)} hreflang="en" />
+		<link rel="alternate" href={localizedPath('es', alternatePaths.es)} hreflang="es" />
 		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -45,9 +48,9 @@ const pageDescription = description ?? t.meta.description;
 			gtag('config', 'G-L884EG6TK5');
 		</script>
 	</head>
-	<body class="home">
+	<body class:list={{ home: isHome }}>
 		<div id="wrapper" class="min-height d-flex flex-column justify-content-between">
-			<Header lang={lang} />
+			<Header lang={lang} isHome={isHome} />
 			<main id="main" class="container-fluid m-0 p-0">
 				<slot />
 			</main>

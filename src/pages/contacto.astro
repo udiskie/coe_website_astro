@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Contacto from '../components/Contacto.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<Layout
+	lang={lang}
+	description={t.contacto.meta.description}
+	alternatePaths={{ es: '/contacto', en: '/contact' }}
+>
+	<Contacto lang={lang} />
+</Layout>

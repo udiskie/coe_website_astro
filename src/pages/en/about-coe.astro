@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SobreCoe from '../../components/SobreCoe.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout
+	lang={lang}
+	description={t.sobreCoe.meta.description}
+	alternatePaths={{ es: '/sobre-coe', en: '/about-coe' }}
+>
+	<SobreCoe lang={lang} />
+</Layout>
