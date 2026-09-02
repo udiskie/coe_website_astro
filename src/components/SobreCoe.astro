@@ -31,7 +31,10 @@ function lines(text: string) {
 	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid vh-lg-100"
 >
 	<div class="container mt-5 pt-5 mt-lg-5 pt-lg-5 postion-relative">
-		<div class="reveal"><h2 class="text-center fw-bold mb-5 reveal">{s.metodologia.heading}</h2></div>
+		<div class="reveal">
+			<h2 class="text-center fw-bold mb-3">{s.metodologia.heading}</h2>
+			<p class="text-center mb-5 mx-auto" style="max-width: 32rem;">{s.metodologia.subheading}</p>
+		</div>
 		<div class="row d-flex justify-content-center align-items-start espirales">
 			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
@@ -57,7 +60,7 @@ function lines(text: string) {
 	</div>
 </section>
 
-<section class="container-fluid yellow-bkgnd">
+<section class="container-fluid equipo-intro">
 	<div class="container p-5 reveal">
 		<div class="row d-flex justify-content-center">
 			<h2 class="w-100 p-0 text-center m-0">{s.equipo.heading}</h2>
@@ -97,8 +100,8 @@ function lines(text: string) {
 								</h6>
 							</div>
 
-							<div class="w-100">
-								<button type="button" class="w-100 detalle-miembro" data-bs-toggle="modal" data-bs-target={`#${modalId}`}>
+							<div class="w-100 d-flex justify-content-center mt-2">
+								<button type="button" class="detalle-miembro" data-bs-toggle="modal" data-bs-target={`#${modalId}`}>
 									{s.equipo.readMore}
 								</button>
 							</div>

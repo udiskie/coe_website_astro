@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { programasContent } from '../data/programas';
+import { localizedPath } from '../i18n/utils';
 
 interface Props {
 	lang: Lang;
@@ -8,6 +9,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = programasContent[lang];
+const basePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
 ---
 
 <section
@@ -20,86 +22,43 @@ const content = programasContent[lang];
 	</div>
 </section>
 
-<section id="to_tab" class="yellow-bkgnd">
-	<div class="container">
-		<div class="d-flex justify-content-center py-3 py-lg-5 align-items-center">
-			<ul
-				class="nav row nav-pills m-0 d-flex w-100 align-items-center justify-content-center justify-content-lg-between px-3 px-lg-0"
-				id="programas-tab"
-				role="tablist"
-			>
-				{
-					content.tabs.map((tab, i) => (
-						<li class="nav-item col-lg-4 d-flex justify-content-center" role="presentation">
-							<button
-								class:list={['nav-link p-0 programas-menu fs-4 my-2 m-lg-0', { active: i === 0 }]}
-								id={`${tab.id}-tab`}
-								data-bs-toggle="pill"
-								data-bs-target={`#${tab.id}`}
-								type="button"
-								role="tab"
-								aria-controls={tab.id}
-								aria-selected={i === 0 ? 'true' : 'false'}
-							>
-								{tab.label}
-							</button>
-						</li>
-					))
-				}
-			</ul>
+<section class="programas-overview">
+	<div class="container programas-container">
+		<div class="d-flex flex-column align-items-center text-center py-5">
+			<span class="chip-badge mb-4">{content.badge}</span>
+			<h4 class="fw-bold mb-3">{content.heading}</h4>
+			<p class="fst-italic w-75 mb-0">{content.subheading}</p>
 		</div>
-	</div>
-</section>
 
-<section>
-	<div class="tab-content programas-tab-container conatiner-fluid" id="programas-tabContent">
 		{
-			content.tabs.map((tab, i) => (
-				<div
-					class:list={['tab-pane fade show', { active: i === 0 }]}
-					id={tab.id}
-					role="tabpanel"
-					aria-labelledby={`${tab.id}-tab`}
-					tabindex="0"
-				>
-					<div class="yellow-bkgnd-light container-fluid">
-						<div class="container d-flex flex-column align-items-center py-5">
-							<div>
-								<h2 class="mb-5 fw-bold">{tab.heading}</h2>
-							</div>
-							<div class="text-center w-75">
-								{tab.description.map((paragraph) => (
-									<p>{paragraph}</p>
-								))}
-							</div>
-						</div>
+			content.tabs.map((tab) => (
+				<div class="programa-category mb-5" id={tab.id}>
+					<div class="mb-4">
+						<h5 class="text-center text-lg-start fw-bold">{tab.heading}</h5>
+						{tab.description.map((paragraph) => (
+							<p class="fst-italic text-center text-lg-start">{paragraph}</p>
+						))}
 					</div>
-					<div class="container">
-						<div class="row my-5 d-flex justify-content-center">
-							{tab.cards.map((card) => (
-								<div class="col-lg-4 mb-4">
-									<a href={card.href}>
-										<div class="position-relative fade-0">
-											<div class="postition-absolute programa-thumbnail-img">
-												<img
-													width={card.imageWidth}
-													height={card.imageHeight}
-													src={card.image}
-													class="w-100 h-auto"
-													alt=""
-													decoding="async"
-													srcset={card.imageSrcset}
-													sizes={`(max-width: ${card.imageWidth}px) 100vw, ${card.imageWidth}px`}
-												/>
-											</div>
-											<div class="position-absolute programa-caption p-4 fs-5 w-100">
-												<h3>{card.title}</h3>
-											</div>
-										</div>
-									</a>
-								</div>
-							))}
-						</div>
+					<div class="row g-4">
+						{tab.cards.map((card) => (
+							<div class="col-md-6 col-lg-3">
+								<a href={`${basePath}/${card.slug}`} class="programa-card text-decoration-none d-block">
+									<div class="programa-thumb fade-0">
+										<img
+											width={card.imageWidth}
+											height={card.imageHeight}
+											src={card.image}
+											class="programa-img"
+											alt=""
+											decoding="async"
+											srcset={card.imageSrcset}
+											sizes={`(max-width: ${card.imageWidth}px) 100vw, ${card.imageWidth}px`}
+										/>
+									</div>
+									<h6 class="programa-card-title p-3 mb-0">{card.title}</h6>
+								</a>
+							</div>
+						))}
 					</div>
 				</div>
 			))

@@ -1,6 +1,10 @@
-window.addEventListener('scroll',reveal); 
+window.addEventListener('scroll',reveal);
 
 function reveal(){
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', reveal, { once: true });
+        return;
+    }
     let reveals = document.querySelectorAll('.reveal');
     let window_height = window.innerHeight;
     
@@ -25,9 +29,11 @@ function reveal(){
         }else{
             element.classList.remove('revealed');
         }
-        
+
     });
 }
+
+reveal();
 
 
  setTimeout(() => {

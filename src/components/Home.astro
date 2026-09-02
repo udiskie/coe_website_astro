@@ -13,20 +13,12 @@ const t = useTranslations(lang);
 <div id="intro" class="cielo">
 	<section
 		id="home-hero-loading"
-		class="fade-0 page-hero container-fluid vh-100 d-flex justify-content-center flex-column m-0 p-0 cielo-img"
+		class="fade-0 page-hero container-fluid vh-100 d-flex justify-content-end flex-column m-0 p-0 cielo-img"
 	>
-		<div class="intro-texto">
-			<h1 class="yellow-text fw-bold text-center">{t.hero.headline}</h1>
-		</div>
+		<video id="hero-video" class="hero-video" autoplay muted loop playsinline preload="auto"></video>
 
-		<div class="montanas">
-			<div class="montana montana-1">
-				<img
-					src="/images/home_montanas.png"
-					srcset="/images/home_montanas.png 1920w,/images/home_montanas_mobile.png 768w"
-					sizes="(max-width: 768px) 768w, (min-width: 992px) 1920w"
-				/>
-			</div>
+		<div class="intro-texto text-center text-lg-start">
+			<h1 class="yellow-text fw-bold text-center text-lg-start">{t.hero.headline}</h1>
 		</div>
 	</section>
 </div>
@@ -36,6 +28,36 @@ const t = useTranslations(lang);
 	setTimeout(() => {
 		heroLoading?.classList.add('fadein');
 	}, 800);
+
+	const introTexto = document.querySelector('.intro-texto');
+	setTimeout(() => {
+		introTexto?.classList.add('intro-texto-slide');
+	}, 1000);
+
+	window.addEventListener('scroll', () => {
+		if (!introTexto) return;
+		if (window.scrollY > introTexto.getBoundingClientRect().top / 3) {
+			introTexto.classList.remove('intro-texto-slide');
+		} else if (window.scrollY === 0) {
+			introTexto.classList.add('intro-texto-slide');
+		}
+	});
+
+	const heroVideos = [
+		'/videos/hero/0_Durmitor_Montenegro_1280x720.mp4',
+		'/videos/hero/0_Hiking_Forest_1280x720.mp4',
+		'/videos/hero/1335373_Man_Boy_1280x720.mp4',
+		'/videos/hero/5069123_Hiker_Caucasian_1280x720.mp4',
+		'/videos/hero/5367223_Coll_wavebreak_Couple_1280x720.mp4',
+		'/videos/hero/613715_Drone_Landscape_Drone_Mountains_1280x720.mp4',
+		'/videos/hero/6506301_Hiking_Woman_1280x720.mp4',
+	];
+	const heroVideoEl = document.querySelector('#hero-video');
+	if (heroVideoEl) {
+		const chosen = heroVideos[Math.floor(Math.random() * heroVideos.length)];
+		heroVideoEl.src = chosen;
+		heroVideoEl.play().catch(() => {});
+	}
 </script>
 
 <section
@@ -44,7 +66,7 @@ const t = useTranslations(lang);
 >
 	<div class="container mt-5 pt-5">
 		<div><h2 class="text-center fw-bold mb-5 reveal">{t.presentacion.heading}</h2></div>
-		<div class="row d-flex justify-content-center align-items-center">
+		<div class="row d-flex justify-content-center align-items-start">
 			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
 				<div class="d-flex justify-content-center align-items-center">
 					<img class="w-50" src="/images/educativos.svg" alt={t.presentacion.educativos.alt} />
@@ -129,7 +151,7 @@ const t = useTranslations(lang);
 </section>
 
 <section id="aventura" class="container-fluid d-flex p-0 flex-column align-items-center">
-	<div class="d-flex p-5 flex-column align-items-center yellow-bkgnd-light w-100">
+	<div class="d-flex p-5 flex-column align-items-center aventura-intro w-100">
 		<h2 class="text-center text-lg-start mt-5 mb-3">{t.aventura.heading}</h2>
 		<p class="text-center text-lg-start mb-5">{t.aventura.subheading}</p>
 	</div>

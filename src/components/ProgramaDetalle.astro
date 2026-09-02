@@ -1,0 +1,78 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizedPath } from '../i18n/utils';
+import type { ProgramCard, ProgramTab } from '../data/programas';
+
+interface Props {
+	lang: Lang;
+	tab: ProgramTab;
+	card: ProgramCard;
+	prevCard: ProgramCard | null;
+	nextCard: ProgramCard | null;
+}
+
+const { lang, tab, card, prevCard, nextCard } = Astro.props;
+const t = useTranslations(lang);
+
+const programsBasePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
+const contactoPath = localizedPath(lang, lang === 'es' ? '/contacto' : '/contact');
+const overviewAnchor = `${programsBasePath}#${tab.id}`;
+---
+
+<section class="single-content container-fluid">
+	<div class="container programas-container py-5">
+		<a href={overviewAnchor} class="programa-back-link">{t.programas.back}</a>
+
+		<div class="d-flex flex-column align-items-center text-center mt-4 mb-4 mb-6 programa-detalle-single">
+			<span class="chip-badge mb-3">{tab.label}</span>
+			<h4 class="fw-bold mb-5">{card.title}</h4>
+
+			{tab.description.map((paragraph, index) => (
+				<p class={`programa-detalle-text mx-auto ${index > 0 ? 'mt-3' : ''}`}>{paragraph}</p>
+			))}
+
+			<div class="d-flex flex-row flex-wrap justify-content-center gap-3 mt-2">
+				<a href={overviewAnchor} class="btn btn-outline-primary black-button programa-detalle-cta text-center">
+					{t.programas.viewAll}
+				</a>
+				<a href={contactoPath} class="btn black-button programa-detalle-cta text-center">
+					{tab.ctaLabel}
+				</a>
+			</div>
+
+			<div class="programa-detalle-thumb w-100 mt-7">
+				<img
+					width={card.imageWidth}
+					height={card.imageHeight}
+					src={card.image}
+					srcset={card.imageSrcset}
+					sizes={`(max-width: ${card.imageWidth}px) 100vw, ${card.imageWidth}px`}
+					class="programa-img"
+					alt={card.title}
+					decoding="async"
+				/>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-between align-items-center programa-detalle-nav mt-5 pt-4">
+			{
+				prevCard ? (
+					<a href={`${programsBasePath}/${prevCard.slug}`} class="programa-nav-link text-start">
+						‹ {prevCard.title}
+					</a>
+				) : (
+					<span />
+				)
+			}
+			{
+				nextCard ? (
+					<a href={`${programsBasePath}/${nextCard.slug}`} class="programa-nav-link text-end">
+						{nextCard.title} ›
+					</a>
+				) : (
+					<span />
+				)
+			}
+		</div>
+	</div>
+</section>

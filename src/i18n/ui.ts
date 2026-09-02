@@ -83,6 +83,8 @@ export const ui = {
 			heroImage: '/images/banner6.jpg',
 			metodologia: {
 				heading: 'El espiral, nuestra metodología de trabajo',
+				subheading:
+					'Experiencias que complementan el aula, fortalecen vínculos y desarrollan habilidades reales',
 				interior: {
 					alt: 'programas educativos',
 					description:
@@ -100,8 +102,8 @@ export const ui = {
 				},
 			},
 			equipo: {
-				heading: 'Nuestro equipo',
-				readMore: 'Leer más',
+				heading: 'Nuestro equipo de trabajo',
+				readMore: 'Ver más',
 				close: 'Cerrar',
 			},
 		},
@@ -110,6 +112,8 @@ export const ui = {
 				description:
 					'Nos enfocamos en el desarrollo de programas educativos, organizacionales y de aventura.',
 			},
+			back: '‹ Volver',
+			viewAll: 'Ver todos los programas',
 		},
 		contacto: {
 			meta: {
@@ -200,6 +204,8 @@ export const ui = {
 			heroImage: '/images/banner6-1.jpg',
 			metodologia: {
 				heading: 'The spiral, our work methodology',
+				subheading:
+					'Experiences that complement the classroom, strengthen bonds, and build real-world skills',
 				interior: {
 					alt: 'educational programs',
 					description:
@@ -226,6 +232,8 @@ export const ui = {
 			meta: {
 				description: 'We focus on developing educative, corporate and adventure programs.',
 			},
+			back: '‹ Back',
+			viewAll: 'View all programs',
 		},
 		contacto: {
 			meta: {

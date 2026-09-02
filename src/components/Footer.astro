@@ -12,23 +12,61 @@ const year = new Date().getFullYear();
 ---
 
 <footer id="footer">
-	<div style="color:white !important" class="container">
-		<div class="row">
-			<div class="col-md-4 d-flex flex-column flex-md-row justify-content-start align-items-center">
-				<p class="text-center text-lg-start">&copy; {year} COE. {t.footer.rights}</p>
+	<div class="container">
+		<div class="footer-top d-flex flex-column flex-lg-row justify-content-between align-items-center gap-4 py-5">
+			<div class="footer-social d-flex align-items-center gap-3">
+				<a
+					aria-label="Facebook"
+					class="footer-social-link"
+					href="https://www.facebook.com/"
+					target="_blank"
+					rel="noopener"
+				>
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"
+							fill="currentColor"
+						></path>
+					</svg>
+				</a>
+				<a
+					aria-label="Instagram"
+					class="footer-social-link"
+					href="https://www.instagram.com/"
+					target="_blank"
+					rel="noopener"
+				>
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"></rect>
+						<circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"></circle>
+						<circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle>
+					</svg>
+				</a>
+				<a
+					aria-label="Youtube"
+					class="footer-social-link"
+					href="https://www.youtube.com/"
+					target="_blank"
+					rel="noopener"
+				>
+					<svg width="22" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect x="1.5" y="5" width="21" height="14" rx="4" stroke="currentColor" stroke-width="1.8"></rect>
+						<path d="M10 9.2 15.5 12 10 14.8V9.2Z" fill="currentColor"></path>
+					</svg>
+				</a>
 			</div>
-			<div class="col-md-3 d-flex flex-column flex-md-row justify-content-center align-items-center">
-				<p class="text-center">
-					<a style="color:white !important" id="mail" href="mailto:info@coe.cl">info@coe.cl</a>
-				</p>
+
+			<div class="footer-contact d-flex flex-column flex-sm-row align-items-center gap-2 gap-sm-4">
+				<a class="footer-link" href="mailto:info@coe.cl">info@coe.cl</a>
+				<span>+56 9 9918 5049</span>
+				<span>+56 9 6575 3281</span>
 			</div>
-			<div class="col-md-4 d-flex flex-column flex-lg-row justify-content-center align-items-center gap-lg-4">
-				<p id="fono" style="margin:0 !important;" class="text-center text-md-end mt-0">+56 9 9918 5049</p>
-				<p id="fono2" style="margin:0 !important;" class="text-center text-md-end mt-0">+56 9 6575 3281</p>
-			</div>
-			<div class="col-md-1 d-flex flex-column flex-md-row justify-content-end align-items-center p-4">
-				<img style="width:64px; height:auto;" alt="COE" src="/images/marca_chile.png" />
+
+			<div class="footer-badge">
+				<img style="width:48px; height:auto;" alt="COE" src="/images/marca_chile.png" />
 			</div>
 		</div>
+
+		<p class="footer-copy text-center mb-0 pb-4">&copy; COE® {year}, {t.footer.rights}</p>
 	</div>
 </footer>

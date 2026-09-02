@@ -5,9 +5,10 @@ import { useTranslations, localizedPath } from '../i18n/utils';
 interface Props {
 	lang: Lang;
 	isHome?: boolean;
+	single?: boolean;
 }
 
-const { lang, isHome = false } = Astro.props;
+const { lang, isHome = false, single = false } = Astro.props;
 const t = useTranslations(lang);
 const otherLang: Lang = lang === 'es' ? 'en' : 'es';
 
@@ -20,7 +21,7 @@ const navItems = [
 ];
 ---
 
-<header class="position-fixed w-100 menu-fix">
+<header class:list={['position-fixed w-100 menu-fix', { 'single-menu': single }]}>
 	<nav id="header" class:list={['navbar navbar-expand-md navbar-light', { home: isHome }]}>
 		<div class="container">
 			<a class="navbar-brand" href={localizedPath(lang, '/')} title="COE" rel="home">
