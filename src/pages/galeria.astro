@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Galeria from '../components/Galeria.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<Layout
+	lang={lang}
+	description={t.galeria.meta.description}
+	alternatePaths={{ es: '/galeria', en: '/gallery' }}
+>
+	<Galeria lang={lang} />
+</Layout>

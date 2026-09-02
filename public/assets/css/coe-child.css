@@ -21,7 +21,6 @@ Template: coe
   --coe-sky-blue: #c9d9f0;
   --coe-sky-blue-accent: #38708a;
   --coe-warm-cream: #fdeccb;
-  --coe-gold: #f7b100;
 
   /* Typography tokens */
   --coe-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -109,28 +108,28 @@ a:not([href]):not([class]):hover {
   align-items: center;
 }
 
-.metodologia.reveal {
-  transform: translateY(28px);
-  -webkit-transition: opacity 0.8s ease-out, -webkit-transform 0.8s ease-out;
-  -moz-transition: opacity 0.8s ease-out, -moz-transform 0.8s ease-out;
-  -o-transition: opacity 0.8s ease-out, -o-transform 0.8s ease-out;
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+@media only screen and (min-width: 1000px) {
+  .metodologia.reveal {
+    position: absolute;
+    -webkit-transition: opacity 1.2s ease-in, margin 0.7s ease-in-out;
+    -moz-transition: opacity 1.2s ease-in, margin 0.7s ease-in-out;
+    -o-transition: opacity 1.2s ease-in, margin 0.7s ease-in-out;
+    transition: opacity 1.2s ease-in, margin 0.7s ease-in-out;
+  }
 
-.metodologia.reveal.revealed {
-  transform: translateY(0);
+  .metodologia.reveal.revealed:first-child {
+    margin-left: -60%;
+  }
+
+  .metodologia.reveal.revealed:last-child {
+    margin-left: 60%;
+  }
 }
 
 .metodologia img {
   display: flex;
   align-self: center;
   width: 70%;
-}
-
-.metodologia p {
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: var(--coe-tracking-normal);
 }
 
 .cielo {
@@ -341,7 +340,6 @@ a:not([href]):not([class]):hover {
 
 .equipo-intro h2 {
   color: var(--coe-cream);
-  letter-spacing: var(--coe-tracking-tight);
 }
 
 .white-text {
@@ -615,6 +613,14 @@ footer {
   background-size: cover;
 }
 
+.programas-overview {
+  background-color: var(--coe-beige);
+}
+
+.galeria-overview {
+  background-color: var(--coe-sky-blue);
+}
+
 .programas-container {
   max-width: 1264px;
 }
@@ -700,36 +706,11 @@ footer {
 }
 
 .detalle-miembro {
-  display: inline-block;
   background-color: transparent;
-  border: 1.5px solid var(--coe-gold);
-  border-radius: 1.5rem;
-  padding: 0.35rem 1.25rem;
-  color: var(--coe-gold);
+  border: none;
+  color: var(--coe-dark);
   text-align: center;
   font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: var(--coe-tracking-normal);
-  -webkit-transition: background-color 0.2s ease, color 0.2s ease;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.detalle-miembro:hover {
-  background-color: var(--coe-gold);
-  color: var(--coe-dark);
-}
-
-.miembro img {
-  filter: drop-shadow(0 8px 20px var(--coe-dark-16));
-}
-
-.miembro h3 {
-  font-size: 1.15rem;
-}
-
-.miembro h6 {
-  color: var(--coe-dark-60);
-  font-weight: 500;
 }
 
 .gallery-thumbnail {
@@ -748,25 +729,28 @@ footer {
   background-color: var(--coe-beige);
 }
 
-.page-hero-interna::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(22, 35, 27, 0) 40%, rgba(22, 35, 27, 0.45) 100%);
-  pointer-events: none;
-  z-index: 1;
+.page-hero-parallax {
+  background-attachment: fixed;
 }
 
-.page-hero-interna > div {
-  position: relative;
-  z-index: 2;
+@media only screen and (max-width: 768px) {
+  /* iOS Safari doesn't support fixed backgrounds; scroll avoids inconsistent rendering elsewhere. */
+  .page-hero-parallax {
+    background-attachment: scroll;
+  }
 }
 
 .page-hero-title {
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 0px 7px var(--coe-dark);
   color: var(--coe-cream);
-  letter-spacing: var(--coe-tracking-tight);
-  font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+.hero-overlap {
+  position: relative;
+  margin-top: -64px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding-bottom: 64px;
 }
 
 .single-content {
@@ -774,6 +758,12 @@ footer {
   display: flex;
   justify-content: space-between;
   min-height: calc(100vh - 255px);
+}
+
+@media only screen and (min-width: 992px) {
+  .espirales {
+    height: 320px;
+  }
 }
 
 .social-media {

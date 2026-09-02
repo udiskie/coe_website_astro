@@ -14,15 +14,15 @@ const basePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs')
 
 <section
 	id="page-hero"
-	class="page-hero pg-template page-hero-interna position-relative overflow-hidden d-flex justify-content-center align-items-center"
+	class="page-hero pg-template page-hero-interna page-hero-parallax fade-0 position-relative overflow-hidden d-flex justify-content-center align-items-center"
+	style={`background-image: url('${content.heroImage}');`}
 >
-	<img id="page-hero-img" class="position-absolute fade-0 pg-hero-fix-mobile" src={content.heroImage} />
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
 		<div><h1 class="fw-bolder page-hero-title">{content.heroTitle}</h1></div>
 	</div>
 </section>
 
-<section class="programas-overview">
+<section class="programas-overview hero-overlap">
 	<div class="container programas-container">
 		<div class="d-flex flex-column align-items-center text-center py-5">
 			<span class="chip-badge mb-4">{content.badge}</span>

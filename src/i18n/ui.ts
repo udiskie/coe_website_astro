@@ -83,8 +83,6 @@ export const ui = {
 			heroImage: '/images/banner6.jpg',
 			metodologia: {
 				heading: 'El espiral, nuestra metodología de trabajo',
-				subheading:
-					'Experiencias que complementan el aula, fortalecen vínculos y desarrollan habilidades reales',
 				interior: {
 					alt: 'programas educativos',
 					description:
@@ -102,8 +100,8 @@ export const ui = {
 				},
 			},
 			equipo: {
-				heading: 'Nuestro equipo de trabajo',
-				readMore: 'Ver más',
+				heading: 'Nuestro equipo',
+				readMore: 'Leer más',
 				close: 'Cerrar',
 			},
 		},
@@ -114,6 +112,14 @@ export const ui = {
 			},
 			back: '‹ Volver',
 			viewAll: 'Ver todos los programas',
+		},
+		galeria: {
+			meta: {
+				description: 'Explora imágenes de nuestras experiencias y programas al aire libre.',
+			},
+			heroTitle: 'Galería',
+			heroImage: '/images/banner-galeria.jpg',
+			comingSoon: 'Pronto encontrarás aquí nuestra galería de fotos.',
 		},
 		contacto: {
 			meta: {
@@ -204,8 +210,6 @@ export const ui = {
 			heroImage: '/images/banner6-1.jpg',
 			metodologia: {
 				heading: 'The spiral, our work methodology',
-				subheading:
-					'Experiences that complement the classroom, strengthen bonds, and build real-world skills',
 				interior: {
 					alt: 'educational programs',
 					description:
@@ -234,6 +238,14 @@ export const ui = {
 			},
 			back: '‹ Back',
 			viewAll: 'View all programs',
+		},
+		galeria: {
+			meta: {
+				description: 'Explore images from our outdoor experiences and programs.',
+			},
+			heroTitle: 'Gallery',
+			heroImage: '/images/banner-galeria.jpg',
+			comingSoon: 'Our photo gallery is coming soon.',
 		},
 		contacto: {
 			meta: {
