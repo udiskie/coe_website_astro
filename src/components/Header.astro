@@ -6,9 +6,11 @@ interface Props {
 	lang: Lang;
 	isHome?: boolean;
 	single?: boolean;
+	/** Path (no locale prefix) of the current page in each language, used by the language switch. */
+	alternatePaths?: { es: string; en: string };
 }
 
-const { lang, isHome = false, single = false } = Astro.props;
+const { lang, isHome = false, single = false, alternatePaths = { es: '/', en: '/' } } = Astro.props;
 const t = useTranslations(lang);
 const otherLang: Lang = lang === 'es' ? 'en' : 'es';
 
@@ -63,7 +65,7 @@ const navItems = [
 					}
 					<li class="lang-item menu-item nav-item">
 						<a
-							href={localizedPath(otherLang, '/')}
+							href={localizedPath(otherLang, alternatePaths[otherLang])}
 							class="nav-link"
 							hreflang={otherLang === 'es' ? 'es-CL' : 'en-US'}
 							lang={otherLang === 'es' ? 'es-CL' : 'en-US'}

@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import ProgramaDetalle from '../../../components/ProgramaDetalle.astro';
-import { getProgramSlugs, getProgramBySlug } from '../../../data/programas';
+import { getProgramSlugs, getProgramBySlug, getProgramAlternatePaths } from '../../../data/programas';
 
 export function getStaticPaths() {
 	return getProgramSlugs('en').map((slug) => ({ params: { slug } }));
@@ -15,9 +15,9 @@ const { tab, card, prevCard, nextCard } = getProgramBySlug(lang, slug)!;
 <Layout
 	lang={lang}
 	title={`${card.title} | COE`}
-	description={tab.description[0]}
+	description={(card.description ?? tab.description)[0]}
 	single
-	alternatePaths={{ es: '/programas', en: `/programs/${slug}` }}
+	alternatePaths={getProgramAlternatePaths(lang, slug)}
 >
 	<ProgramaDetalle lang={lang} tab={tab} card={card} prevCard={prevCard} nextCard={nextCard} />
 </Layout>

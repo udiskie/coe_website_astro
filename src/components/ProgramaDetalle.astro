@@ -28,11 +28,20 @@ const overviewAnchor = `${programsBasePath}#${tab.id}`;
 			<span class="chip-badge mb-3">{tab.label}</span>
 			<h4 class="fw-bold mb-5">{card.title}</h4>
 
-			{tab.description.map((paragraph, index) => (
+			{(card.description ?? tab.description).map((paragraph, index) => (
 				<p class={`programa-detalle-text mx-auto ${index > 0 ? 'mt-3' : ''}`}>{paragraph}</p>
 			))}
 
-			<div class="d-flex flex-row flex-wrap justify-content-center gap-3 mt-2">
+			{card.details?.map((section) => (
+				<div class="programa-detalle-text mx-auto mt-4 text-start w-100">
+					<h6 class="fw-bold">{section.heading}</h6>
+					<ul class="mb-0">
+						{section.items.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+			))}
+
+			<div class="d-flex flex-row flex-wrap justify-content-center gap-3 mt-4">
 				<a href={overviewAnchor} class="btn btn-outline-primary black-button programa-detalle-cta text-center">
 					{t.programas.viewAll}
 				</a>

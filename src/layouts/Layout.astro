@@ -59,7 +59,7 @@ const pageDescription = description ?? t.meta.description;
 	</head>
 	<body class:list={{ home: isHome }}>
 		<div id="wrapper" class="min-height d-flex flex-column justify-content-between">
-			<Header lang={lang} isHome={isHome} single={single} />
+			<Header lang={lang} isHome={isHome} single={single} alternatePaths={alternatePaths} />
 			<main id="main" class="container-fluid m-0 p-0">
 				<slot />
 			</main>

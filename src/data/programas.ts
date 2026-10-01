@@ -9,6 +9,10 @@ export interface ProgramCard {
 	title: string;
 	/** Additional photos shown in the program detail gallery, alongside `image`. */
 	gallery?: string[];
+	/** Program-specific copy for the detail page; falls back to the category description. */
+	description?: string[];
+	/** Titled bullet lists shown under the description (itinerary, inclusions...). */
+	details?: { heading: string; items: string[] }[];
 }
 
 export interface ProgramTab {
@@ -52,6 +56,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 1016,
 						imageHeight: 844,
 						title: 'Travesía tres lagos',
+						description: ['Embárcate en un viaje de ensueño navegando por tres lagos de aguas cristalinas, rodeados de imponentes montañas y bosques nativos.'],
 						gallery: [
 							'/images/programas/Portada-tres-lagos.png',
 							'/images/programas/Portada-tres-lagos.png',
@@ -68,6 +73,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 1016,
 						imageHeight: 844,
 						title: 'Descubre la Patagonia',
+						description: ['Viajar a la patagonia es una forma de conectar con lo esencial: paisajes inmensos, aire puro y momentos simples, cada rincón invita a tomarse el tiempo y vivir la naturaleza a tu ritmo.', 'La patagonia te espera, tu decides como vivirla.'],
 					},
 					{
 						slug: 'maule-rio-abajo',
@@ -77,6 +83,11 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 1016,
 						imageHeight: 844,
 						title: 'Maule río abajo',
+						description: ['En esta travesía te ofrecemos la posibilidad de navegar el Río Maule y poder acampar en sus alrededores.'],
+						details: [
+							{ heading: 'Itinerario', items: ['Punto de encuentro Estación de tren Talca', 'Travesía Balsa y Kayak inflable (2 días)', 'Campamento (2 noches)'] },
+							{ heading: 'Este programa incluye', items: ['Navegación por el Río Maule', 'Ticket de Tren (buscarril)', 'Guías especializados en rafting y kayak', 'Balsas, kayak, chalecos de flotación', 'Equipamiento de campamento', 'Equipamiento de primeros auxilios', 'Alimentación completa'] },
+						],
 					},
 				],
 			},
@@ -95,6 +106,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Actividades de aventura',
+						description: ['Este tipo de actividades ofrece a los estudiantes la posibilidad de fortalecer el liderazgo, el trabajo en equipo, la sensibilidad humana, el logro de metas y límites personales. Los participantes deben desenvolverse en ambientes completamente naturales, realizando diferentes actividades guiadas por instructores certificados que facilitan el proceso de aprendizaje.'],
 					},
 					{
 						slug: 'sensibilizacion-ambiental',
@@ -104,6 +116,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Sensibilización Ambiental',
+						description: ['Estas actividades generan una conexión mágica entre los jóvenes y la naturaleza. Se los estimula a utilizar sus sentidos para explorar su ambiente y a expresar sus sentimientos, ideas y opiniones, haciendo que tomar conciencia de su ambiente y de sí mismos.'],
 					},
 					{
 						slug: 'servicio-comunitario',
@@ -113,6 +126,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Servicio comunitario',
+						description: ['Esta experiencia permite el conocimiento y contacto con la realidad social y económica de las comunidades, viviendo un proceso de sensibilización que estimula el desarrollo de los valores y actitudes de solidaridad, respeto, responsabilidad social y compromiso. Contribuyendo al desarrollo y mejoramiento de la calidad de vida de las comunidades'],
 					},
 					{
 						slug: 'liderazgo-y-trabajo-en-equipo',
@@ -121,6 +135,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Liderazgo y trabajo en equipo',
+						description: ['Estas actividades permiten a los estudiantes desarrollar y potenciar diferentes habilidades relacionadas con la comunicación, la resolución de conflictos y logro de desafíos grupales.'],
 					},
 					{
 						slug: 'exploracion-y-descubrimiento-del-entorno',
@@ -129,6 +144,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Exploración y descubrimiento del entorno',
+						description: ['Este tipo de actividades permite el aprendizaje experiencial en temas específicos como: flora, fauna, biodiversidad, impacto ambiental, manejo y protección de recursos naturales, además de otros propuestos por los colegios relacionados con la malla curricular. El objetivo de estas actividades es incrementar la comprensión de los conceptos trabajados en los programas de estudio.'],
 					},
 					{
 						slug: 'actividades-de-campamento',
@@ -356,4 +372,30 @@ export function getProgramBySlug(lang: Lang, slug: string): ResolvedProgram | nu
 		};
 	}
 	return null;
+}
+
+/** Spanish program slug -> English program slug (programs missing from the English site are omitted). */
+const esToEnSlug: Record<string, string> = {
+	'maule-rio-abajo': 'maule-river',
+	'actividades-de-aventura': 'adventure-activities',
+	'sensibilizacion-ambiental': 'awareness-activities',
+	'servicio-comunitario': 'community-service',
+	'liderazgo-y-trabajo-en-equipo': 'teamwork-and-leadership-workshops',
+	'exploracion-y-descubrimiento-del-entorno': 'exploration-workshops-and-activities',
+	'actividades-de-campamento': 'camping-workshops-and-activities',
+	'giras-de-estudio': 'study-tours',
+	'educacion-y-proteccion-del-medio-ambiente': 'environmental-education-and-protection',
+	'incentivo-laboral': 'workforce-motivation',
+	'actividades-corporativas': 'corporate-activities',
+	'desarrollo-organizacional': 'organizational-development',
+};
+
+/** Paths (no locale prefix) of a program's detail page in both languages; falls back to the list page. */
+export function getProgramAlternatePaths(lang: Lang, slug: string): { es: string; en: string } {
+	const esSlug = lang === 'es' ? slug : Object.keys(esToEnSlug).find((k) => esToEnSlug[k] === slug);
+	const enSlug = lang === 'en' ? slug : esToEnSlug[slug];
+	return {
+		es: esSlug ? `/programas/${esSlug}` : '/programas',
+		en: enSlug ? `/programs/${enSlug}` : '/programs',
+	};
 }
