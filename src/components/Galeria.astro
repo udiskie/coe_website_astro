@@ -1,6 +1,7 @@
 ---
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
+import { getGalleryAlbums } from '../data/galeria';
 
 interface Props {
 	lang: Lang;
@@ -9,6 +10,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const g = t.galeria;
+const albums = getGalleryAlbums();
+const basePath = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery').replace(/\/$/, '');
 ---
 
 <section
@@ -22,7 +25,39 @@ const g = t.galeria;
 </section>
 
 <section class="galeria-overview hero-overlap">
-	<div class="container d-flex justify-content-center py-5">
-		<p class="text-center fst-italic mb-0 py-5">{g.comingSoon}</p>
+	<div class="container programas-container">
+		<div class="d-flex flex-column align-items-center text-center py-5">
+			<span class="chip-badge mb-4">{g.badge}</span>
+			<h4 class="fw-bold mb-3">{g.heading}</h4>
+			<p class="fst-italic w-75 mb-0">{g.subheading}</p>
+		</div>
+
+		<div class="row g-4 pb-5">
+			{
+				albums.map((album) => (
+					<div class="col-md-6 col-lg-3">
+						<a href={`${basePath}/${album.slug}`} class="programa-card text-decoration-none d-block">
+							<div class="programa-thumb fade-0">
+								<img
+									src={album.images[0]}
+									class="programa-img"
+									alt={album.title}
+									width="1500"
+									height="1125"
+									decoding="async"
+									loading="lazy"
+								/>
+							</div>
+							<h6 class="programa-card-title p-3 mb-0">
+								{album.title}
+								<small class="d-block fw-normal">
+									{album.images.length} {g.photos}
+								</small>
+							</h6>
+						</a>
+					</div>
+				))
+			}
+		</div>
 	</div>
 </section>

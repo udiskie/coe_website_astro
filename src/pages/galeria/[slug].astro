@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GaleriaDetalle from '../../components/GaleriaDetalle.astro';
+import { getGalleryAlbums, getGalleryAlbumBySlug } from '../../data/galeria';
+
+export function getStaticPaths() {
+	return getGalleryAlbums().map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const lang = 'es';
+const { album, prevAlbum, nextAlbum } = getGalleryAlbumBySlug(slug)!;
+---
+
+<Layout
+	lang={lang}
+	title={`${album.title} | COE`}
+	single
+	alternatePaths={{ es: `/galeria/${slug}`, en: `/gallery/${slug}` }}
+>
+	<GaleriaDetalle lang={lang} album={album} prevAlbum={prevAlbum} nextAlbum={nextAlbum} />
+</Layout>

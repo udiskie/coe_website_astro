@@ -2,9 +2,9 @@
 interface Props {
 	title: string;
 	image: string;
-	imageSrcset: string;
-	imageWidth: number;
-	imageHeight: number;
+	imageSrcset?: string;
+	imageWidth?: number;
+	imageHeight?: number;
 	gallery?: string[];
 }
 
@@ -13,6 +13,7 @@ const slides = [image, ...gallery];
 const hasMultiple = slides.length > 1;
 ---
 
+<div class="container">
 <div class="programa-gallery" data-programa-gallery>
 	<div class="programa-detalle-thumb">
 		{
@@ -20,10 +21,14 @@ const hasMultiple = slides.length > 1;
 				<img
 					src={src}
 					srcset={i === 0 ? imageSrcset : undefined}
-					sizes={i === 0 ? `(max-width: ${imageWidth}px) 100vw, ${imageWidth}px` : undefined}
+					sizes={i === 0 && imageWidth ? `(max-width: ${imageWidth}px) 100vw, ${imageWidth}px` : undefined}
 					width={i === 0 ? imageWidth : undefined}
 					height={i === 0 ? imageHeight : undefined}
-					class:list={['programa-img', 'programa-gallery-slide', { active: i === 0 }]}
+					class:list={['programa-img', 'programa-gallery-slide', {
+						active: i === 0,
+						'is-next': i === 1,
+						'is-prev': i === slides.length - 1 && slides.length > 2,
+					}]}
 					alt={title}
 					decoding="async"
 					loading={i === 0 ? 'eager' : 'lazy'}
@@ -70,6 +75,7 @@ const hasMultiple = slides.length > 1;
 		)
 	}
 </div>
+</div>
 
 <script>
 	function initProgramaGalleries() {
@@ -87,14 +93,12 @@ const hasMultiple = slides.length > 1;
 
 			function goTo(index: number) {
 				current = (index + slides.length) % slides.length;
+				const n = slides.length;
 				slides.forEach((el, i) => {
-					const isActive = i === current;
-					el.classList.toggle('active', isActive);
-					if (isActive) {
-						el.style.animation = 'none';
-						void el.offsetWidth;
-						el.style.animation = '';
-					}
+					const diff = (i - current + n) % n;
+					el.classList.toggle('active', diff === 0);
+					el.classList.toggle('is-next', diff === 1);
+					el.classList.toggle('is-prev', diff === n - 1 && n > 2);
 				});
 				dots.forEach((el, i) => el.classList.toggle('active', i === current));
 				thumbs.forEach((el, i) => el.classList.toggle('active', i === current));
@@ -123,6 +127,13 @@ const hasMultiple = slides.length > 1;
 				next();
 				startAutoplay();
 			});
+			slides.forEach((slide, i) =>
+				slide.addEventListener('click', () => {
+					if (i === current) return;
+					goTo(i);
+					startAutoplay();
+				})
+			);
 			dots.forEach((dot, i) =>
 				dot.addEventListener('click', () => {
 					goTo(i);

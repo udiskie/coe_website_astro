@@ -121,7 +121,12 @@ export const ui = {
 			},
 			heroTitle: 'Galería',
 			heroImage: '/images/banner-galeria.jpg',
-			comingSoon: 'Pronto encontrarás aquí nuestra galería de fotos.',
+			back: '‹ Volver',
+			viewAll: 'Ver toda la galería',
+			photos: 'fotos',
+			badge: 'Galería',
+			heading: 'Revive nuestras experiencias',
+			subheading: 'Explora las fotos de los grupos que han salido con nosotros',
 		},
 		contacto: {
 			meta: {
@@ -249,7 +254,12 @@ export const ui = {
 			},
 			heroTitle: 'Gallery',
 			heroImage: '/images/banner-galeria.jpg',
-			comingSoon: 'Our photo gallery is coming soon.',
+			back: '‹ Back',
+			viewAll: 'View the whole gallery',
+			photos: 'photos',
+			badge: 'Gallery',
+			heading: 'Relive our experiences',
+			subheading: 'Browse photos from the groups that have gone out with us',
 		},
 		contacto: {
 			meta: {

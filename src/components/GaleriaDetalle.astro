@@ -1,0 +1,61 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations, localizedPath } from '../i18n/utils';
+import type { GalleryAlbum } from '../data/galeria';
+import ProgramaGallery from './ProgramaGallery.astro';
+
+interface Props {
+	lang: Lang;
+	album: GalleryAlbum;
+	prevAlbum: GalleryAlbum | null;
+	nextAlbum: GalleryAlbum | null;
+}
+
+const { lang, album, prevAlbum, nextAlbum } = Astro.props;
+const t = useTranslations(lang);
+
+const basePath = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery').replace(/\/$/, '');
+const [cover, ...rest] = album.images;
+---
+
+<section class="single-content container-fluid">
+	<div class="container programas-container py-5">
+		<a href={basePath} class="programa-back-link">{t.galeria.back}</a>
+
+		<div class="d-flex flex-column align-items-center text-center mt-4 mb-4 programa-detalle-single">
+			<span class="chip-badge mb-3">{t.galeria.badge}</span>
+			<h4 class="fw-bold mb-5">{album.title}</h4>
+
+			<div class="d-flex flex-row flex-wrap justify-content-center gap-3 mt-2">
+				<a href={basePath} class="btn btn-outline-primary black-button programa-detalle-cta text-center">
+					{t.galeria.viewAll}
+				</a>
+			</div>
+
+			<div class="w-100 mt-7">
+				<ProgramaGallery title={album.title} image={cover} gallery={rest} />
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-between align-items-center programa-detalle-nav mt-5 pt-4">
+			{
+				prevAlbum ? (
+					<a href={`${basePath}/${prevAlbum.slug}`} class="programa-nav-link text-start">
+						‹ {prevAlbum.title}
+					</a>
+				) : (
+					<span />
+				)
+			}
+			{
+				nextAlbum ? (
+					<a href={`${basePath}/${nextAlbum.slug}`} class="programa-nav-link text-end">
+						{nextAlbum.title} ›
+					</a>
+				) : (
+					<span />
+				)
+			}
+		</div>
+	</div>
+</section>
