@@ -7,6 +7,8 @@ export interface ProgramCard {
 	imageWidth: number;
 	imageHeight: number;
 	title: string;
+	/** Additional photos shown in the program detail gallery, alongside `image`. */
+	gallery?: string[];
 }
 
 export interface ProgramTab {
@@ -29,7 +31,7 @@ export interface ProgramasContent {
 
 export const programasContent: Record<Lang, ProgramasContent> = {
 	es: {
-		heroTitle: 'Programas',
+		heroTitle: 'Salgamos juntos',
 		heroImage: '/images/banner7.jpg',
 		badge: 'Programas',
 		heading: 'Elige tu próxima experiencia',
@@ -38,10 +40,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 			{
 				id: 'programas-de-aventura',
 				label: 'Programas de aventura',
-				heading: 'Programas de aventura',
-				description: [
-					'Este tipo de actividades ofrece la posibilidad de conectarse con la naturaleza y vivir una experiencia única que permite a los participantes conocer y valorar aspectos históricos, geográficos y culturales para adquirir una visión más completa de la realidad nacional o extranjera.',
-				],
+				heading: 'Aventura',
+				description: ['Te reconecta con la naturaleza y descubres de lo que eres capaz.'],
 				ctaLabel: 'Arma tu aventura',
 				cards: [
 					{
@@ -52,6 +52,13 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 1016,
 						imageHeight: 844,
 						title: 'Travesía tres lagos',
+						gallery: [
+							'/images/programas/Portada-tres-lagos.png',
+							'/images/programas/Portada-tres-lagos.png',
+							'/images/programas/Portada-tres-lagos.png',
+							'/images/programas/Portada-tres-lagos.png',
+							'/images/programas/Portada-tres-lagos.png',
+						],
 					},
 					{
 						slug: 'descubre-la-patagonia',
@@ -76,11 +83,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 			{
 				id: 'programas-educativos',
 				label: 'Programas educativos',
-				heading: 'Programas educativos',
-				description: [
-					'Estos buscan complementar los procesos curriculares, proporcionando experiencias que conecten a los estudiantes con la naturaleza generando instancias no solo de aprendizaje académico sino también de autoconocimiento y desarrollo personal.',
-					'Estos programas se organizan de acuerdo a las necesidades y propuestas de cada institución con una variada gama de actividades.',
-				],
+				heading: 'Educativos',
+				description: ['Complementan el aula, fortalecen vínculos y desarrollan habilidades reales.'],
 				ctaLabel: 'Solicita este programa',
 				cards: [
 					{
@@ -147,11 +151,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 			{
 				id: 'programas-organizacionales',
 				label: 'Programas organizacionales',
-				heading: 'Programas organizacionales',
-				description: [
-					'Estos programas buscan generar cambios tanto internos como externos en un ámbito de responsabilidad social, ya sea para mejorar las condiciones organizacionales o de clima laboral que pueden incidir en la productividad, la calidad de vida y el desarrollo personal de los individuos.',
-					'COE hace posible lo anterior con una metodología integradora, ágil y vivencial que permite a los participantes generar cambios que surgen desde su interior.',
-				],
+				heading: 'Organizacionales',
+				description: ['Desafía a los equipos afuera para que trabajen mejor adentro.'],
 				ctaLabel: 'Solicita este programa',
 				cards: [
 					{
@@ -193,7 +194,7 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 		],
 	},
 	en: {
-		heroTitle: 'Programs',
+		heroTitle: "Let's go together",
 		heroImage: '/images/banner7-1.jpg',
 		badge: 'Programs',
 		heading: 'Choose your next experience',
@@ -202,10 +203,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 			{
 				id: 'adventure-programs',
 				label: 'Adventure programs',
-				heading: 'Adventure programs',
-				description: [
-					'These types of activities offer the possibility of connecting with nature and living a unique experience that allows participants to learn about and value historical, geographical and cultural aspects to acquire a more complete vision of the national or foreign reality.',
-				],
+				heading: 'Adventure',
+				description: ['Reconnects you with nature and reveals what you are capable of.'],
 				ctaLabel: 'Build your adventure',
 				cards: [
 					{
@@ -222,11 +221,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 			{
 				id: 'educational-programs',
 				label: 'Educational programs',
-				heading: 'Educational programs',
-				description: [
-					'These programs seek to complement the curricular processes, providing experiences that connect students with nature, generating instances not only for academic learning but also for self-knowledge and personal development.',
-					'These programs are organized from a wide range of activities according to the needs and proposals of each institution.',
-				],
+				heading: 'Educational',
+				description: ['Complements the classroom, strengthens bonds and builds real skills.'],
 				ctaLabel: 'Request this program',
 				cards: [
 					{
@@ -293,11 +289,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 			{
 				id: 'organizational-programs',
 				label: 'Organizational programs',
-				heading: 'Organizational programs',
-				description: [
-					'These programs seek to generate both internal and external changes in an area of social responsibility, either to improve organizational conditions or the work environment that can affect the productivity, quality of life and personal development of individuals.',
-					'COE makes the above possible with an integrating, agile and experiential methodology that allows participants to generate changes that arise from within.',
-				],
+				heading: 'Organizational',
+				description: ['Challenges teams outdoors so they work better indoors.'],
 				ctaLabel: 'Request this program',
 				cards: [
 					{

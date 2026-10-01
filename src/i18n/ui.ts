@@ -21,35 +21,37 @@ export const ui = {
 			contact: 'Contacto',
 		},
 		hero: {
-			headline:
-				'Generamos oportunidades de desarrollo personal y social a través de experiencias al aire libre.',
+			headline: 'Atrévete a salir',
+			subheading:
+				'Diseñamos experiencias en la naturaleza que desafían y sacan lo mejor de personas, equipos y familias.',
+			cta: 'Ver nuestros programas',
 		},
 		presentacion: {
-			heading: 'Nos enfocamos en el desarrollo de programas',
+			heading: 'En COE diseñamos para cada grupo una experiencia distinta',
 			educativos: {
 				title: 'Educativos',
 				alt: 'programas educativos',
 				description:
-					'Buscamos complementar los procesos curriculares, proporcionando experiencias que conecten a los estudiantes con la naturaleza.',
+					'Experiencias que complementan el aula, fortalecen vínculos y desarrollan habilidades reales.',
 			},
 			organizacional: {
 				title: 'Organizacionales',
 				alt: 'programas organizacionales',
 				description:
-					'Con el objetivo de mejorar el clima laboral, incidir en la productividad, la calidad de vida y el desarrollo personal de los individuos.',
+					'Experiencias que desafían a los equipos, mejoran el clima y potencian el trabajo conjunto.',
 			},
 			aventura: {
 				title: 'Aventura',
 				alt: 'programas de aventura',
 				description:
-					'Buscan reconectar a los participantes con la naturaleza y así poder profundizar en su desarrollo personal',
+					'Experiencias en la naturaleza que reconectan, desafían y sacan lo mejor de cada uno.',
 			},
-			cta: 'Conoce nuestros programas',
+			cta: 'Conocer más',
 		},
 		servicios: {
-			heading: '¡Conoce las increíbles aventuras que hemos realizado!',
+			heading: 'Experiencias que ya han marcado la diferencia',
 			subheading: 'Revisa nuestra galería para conocer nuestro trabajo',
-			cta: 'Ver imágenes',
+			cta: 'Ver nuestra galería',
 			slides: [
 				{ src: '/images/slider_home/santiago_college_2014_1.jpg', alt: 'santiago college coe' },
 				{ src: '/images/slider_home/rio_maule.jpg', alt: 'rio maule coe' },
@@ -66,9 +68,9 @@ export const ui = {
 					'/images/maule_0_0.jpg 1016w, /images/maule_0_0-300x249.jpg 300w, /images/maule_0_0-768x638.jpg 768w',
 				title: 'Maule río abajo',
 				description:
-					'En esta travesía te ofrecemos la posibilidad de navegar el Río Maule y poder acampar en sus alrededores. Itinerario: – Punto de encuentro Estación de tren Talca – Travesía Balsa y Kayak inflable (2 días) – Campamento (2 noches) Este programa incluye: – Navegación por el Río Maule – Ticket de Tren (buscarril) – Guías …',
-				cta: 'Leer más',
-				href: 'https://coe.cl/2022/08/29/maule-rio-abajo/',
+					'Navega el Río Maule, acampa bajo las estrellas y descubre de lo que eres capaz. Una travesía diseñada para desafiarte y reconectarte con la naturaleza.',
+				cta: 'Ver más',
+				slug: 'maule-rio-abajo',
 			},
 		},
 		footer: {
@@ -79,7 +81,7 @@ export const ui = {
 				description:
 					'Generamos oportunidades de desarrollo personal y social a través de experiencias al aire libre.',
 			},
-			heroTitle: 'Sobre COE',
+			heroTitle: 'Conócenos',
 			heroImage: '/images/banner6.jpg',
 			metodologia: {
 				heading: 'El espiral, nuestra metodología de trabajo',
@@ -100,8 +102,8 @@ export const ui = {
 				},
 			},
 			equipo: {
-				heading: 'Nuestro equipo',
-				readMore: 'Leer más',
+				heading: 'Nuestro equipo de trabajo',
+				readMore: 'Ver más',
 				close: 'Cerrar',
 			},
 		},
@@ -149,35 +151,37 @@ export const ui = {
 			contact: 'Contact',
 		},
 		hero: {
-			headline:
-				'We generate opportunities for personal and social development through outdoor experiences.',
+			headline: 'Dare to get outside',
+			subheading:
+				'We design experiences in nature that challenge and bring out the best in people, teams and families.',
+			cta: 'See our programs',
 		},
 		presentacion: {
-			heading: 'We focus on developing programs',
+			heading: 'At COE we design a distinct experience for every group',
 			educativos: {
 				title: 'Educative',
 				alt: 'educational programs',
 				description:
-					'We aim to complement the curricular processes, providing experiences that connect students with nature.',
+					'Experiences that complement the classroom, strengthen bonds and build real skills.',
 			},
 			organizacional: {
 				title: 'Corporate',
 				alt: 'corporate programs',
 				description:
-					'With the goal of improving the work environment, influencing productivity, quality of life and personal development of individuals.',
+					'Experiences that challenge teams, improve the work environment and boost teamwork.',
 			},
 			aventura: {
 				title: 'Adventure',
 				alt: 'adventure programs',
 				description:
-					'Reconnect participants with nature and thus be able to enhance their personal development.',
+					'Experiences in nature that reconnect, challenge and bring out the best in everyone.',
 			},
-			cta: 'Know our programs',
+			cta: 'Learn more',
 		},
 		servicios: {
-			heading: 'Know the incredible adventures we have made!',
+			heading: 'Experiences that have already made a difference',
 			subheading: 'Browse our gallery to see our work.',
-			cta: 'See the images',
+			cta: 'See our gallery',
 			slides: [
 				{ src: '/images/slider_home/santiago_college_2014_1.jpg', alt: 'santiago college coe' },
 				{ src: '/images/slider_home/rio_maule.jpg', alt: 'rio maule coe' },
@@ -193,9 +197,9 @@ export const ui = {
 					'/images/maule_0_0.jpg 1016w, /images/maule_0_0-300x249.jpg 300w, /images/maule_0_0-768x638.jpg 768w',
 				title: 'Maule River',
 				description:
-					'On this journey we offer you the possibility of navigating the Maule River and being able to camp in its surroundings. This experience is designed to deepen a journey not only through nature but also inland to strengthen your personal development. Itinerary: – Meeting point Talca train station – Raft crossing and inflatable kayak (2 days) – …',
-				cta: 'Read more',
-				href: 'https://coe.cl/en/2022/09/07/maule-river-2/',
+					'Navigate the Maule River, camp under the stars and discover what you are capable of. A journey designed to challenge you and reconnect you with nature.',
+				cta: 'See more',
+				slug: 'maule-rio-abajo',
 			},
 		},
 		footer: {
@@ -206,7 +210,7 @@ export const ui = {
 				description:
 					'We generate opportunities for personal and social development through outdoor experiences.',
 			},
-			heroTitle: 'About COE',
+			heroTitle: 'Get to know us',
 			heroImage: '/images/banner6-1.jpg',
 			metodologia: {
 				heading: 'The spiral, our work methodology',
@@ -227,8 +231,8 @@ export const ui = {
 				},
 			},
 			equipo: {
-				heading: 'Our team',
-				readMore: 'Read more',
+				heading: 'Our work team',
+				readMore: 'See more',
 				close: 'Close',
 			},
 		},

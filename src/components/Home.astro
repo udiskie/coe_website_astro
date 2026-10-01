@@ -1,5 +1,5 @@
 ---
-import { useTranslations } from '../i18n/utils';
+import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 
 interface Props {
@@ -8,6 +8,10 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const programasHref = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
+const galeriaHref = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery');
+const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 ---
 
 <div id="intro" class="cielo">
@@ -19,6 +23,10 @@ const t = useTranslations(lang);
 
 		<div class="intro-texto text-center text-lg-start">
 			<h1 class="yellow-text fw-bold text-center text-lg-start">{t.hero.headline}</h1>
+			<p class="yellow-text text-center text-lg-start mt-3 mb-4">{t.hero.subheading}</p>
+			<a class="btn btn-primary black-button me-2 text-center text-sm-start d-inline-block" href={programasHref}>
+				{t.hero.cta}
+			</a>
 		</div>
 	</section>
 </div>
@@ -92,7 +100,7 @@ const t = useTranslations(lang);
 			</div>
 		</div>
 		<div class="mb-5 d-flex justify-content-center reveal">
-			<a class="btn btn-outline-primary my-3 brown-button me-2 text-center" href="#">
+			<a class="btn btn-outline-primary my-3 brown-button me-2 text-center" href={programasHref}>
 				{t.presentacion.cta}
 			</a>
 		</div>
@@ -111,7 +119,7 @@ const t = useTranslations(lang);
 					<p class="text-center text-lg-start mb-0 mb-lg-3">{t.servicios.subheading}</p>
 					<a
 						class="btn btn-primary mt-5 my-lg-3 black-button me-2 text-center text-sm-start d-block"
-						href="#"
+						href={galeriaHref}
 					>
 						{t.servicios.cta}
 					</a>
@@ -193,7 +201,7 @@ const t = useTranslations(lang);
 									<div>
 										<a
 											class="btn btn-primary my-3 black-button me-2 text-center text-sm-start"
-											href={t.aventura.featured.href}
+											href={featuredProgramaHref}
 										>
 											{t.aventura.featured.cta}
 										</a>

@@ -2,6 +2,7 @@
 import type { Lang } from '../i18n/ui';
 import { useTranslations, localizedPath } from '../i18n/utils';
 import type { ProgramCard, ProgramTab } from '../data/programas';
+import ProgramaGallery from './ProgramaGallery.astro';
 
 interface Props {
 	lang: Lang;
@@ -40,16 +41,14 @@ const overviewAnchor = `${programsBasePath}#${tab.id}`;
 				</a>
 			</div>
 
-			<div class="programa-detalle-thumb w-100 mt-7">
-				<img
-					width={card.imageWidth}
-					height={card.imageHeight}
-					src={card.image}
-					srcset={card.imageSrcset}
-					sizes={`(max-width: ${card.imageWidth}px) 100vw, ${card.imageWidth}px`}
-					class="programa-img"
-					alt={card.title}
-					decoding="async"
+			<div class="w-100 mt-7">
+				<ProgramaGallery
+					title={card.title}
+					image={card.image}
+					imageSrcset={card.imageSrcset}
+					imageWidth={card.imageWidth}
+					imageHeight={card.imageHeight}
+					gallery={card.gallery}
 				/>
 			</div>
 		</div>

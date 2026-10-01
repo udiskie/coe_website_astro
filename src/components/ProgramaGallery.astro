@@ -1,0 +1,147 @@
+---
+interface Props {
+	title: string;
+	image: string;
+	imageSrcset: string;
+	imageWidth: number;
+	imageHeight: number;
+	gallery?: string[];
+}
+
+const { title, image, imageSrcset, imageWidth, imageHeight, gallery = [] } = Astro.props;
+const slides = [image, ...gallery];
+const hasMultiple = slides.length > 1;
+---
+
+<div class="programa-gallery" data-programa-gallery>
+	<div class="programa-detalle-thumb">
+		{
+			slides.map((src, i) => (
+				<img
+					src={src}
+					srcset={i === 0 ? imageSrcset : undefined}
+					sizes={i === 0 ? `(max-width: ${imageWidth}px) 100vw, ${imageWidth}px` : undefined}
+					width={i === 0 ? imageWidth : undefined}
+					height={i === 0 ? imageHeight : undefined}
+					class:list={['programa-img', 'programa-gallery-slide', { active: i === 0 }]}
+					alt={title}
+					decoding="async"
+					loading={i === 0 ? 'eager' : 'lazy'}
+				/>
+			))
+		}
+
+		{
+			hasMultiple && (
+				<>
+					<button type="button" class="programa-gallery-arrow programa-gallery-prev" aria-label="Anterior">
+						‹
+					</button>
+					<button type="button" class="programa-gallery-arrow programa-gallery-next" aria-label="Siguiente">
+						›
+					</button>
+					<div class="programa-gallery-dots">
+						{slides.map((_, i) => (
+							<button
+								type="button"
+								class:list={['programa-gallery-dot', { active: i === 0 }]}
+								aria-label={`Ir a la imagen ${i + 1}`}
+							/>
+						))}
+					</div>
+				</>
+			)
+		}
+	</div>
+
+	{
+		hasMultiple && (
+			<div class="programa-gallery-thumbs">
+				{slides.map((src, i) => (
+					<button
+						type="button"
+						class:list={['programa-gallery-thumb-btn', { active: i === 0 }]}
+						aria-label={`Ver imagen ${i + 1}`}
+					>
+						<img src={src} alt="" loading="lazy" />
+					</button>
+				))}
+			</div>
+		)
+	}
+</div>
+
+<script>
+	function initProgramaGalleries() {
+		document.querySelectorAll<HTMLElement>('[data-programa-gallery]').forEach((gallery) => {
+			const slides = Array.from(gallery.querySelectorAll<HTMLElement>('.programa-gallery-slide'));
+			if (slides.length <= 1) return;
+
+			const dots = Array.from(gallery.querySelectorAll<HTMLElement>('.programa-gallery-dot'));
+			const thumbs = Array.from(gallery.querySelectorAll<HTMLElement>('.programa-gallery-thumb-btn'));
+			const prevBtn = gallery.querySelector<HTMLElement>('.programa-gallery-prev');
+			const nextBtn = gallery.querySelector<HTMLElement>('.programa-gallery-next');
+
+			let current = 0;
+			let timer: ReturnType<typeof setInterval> | undefined;
+
+			function goTo(index: number) {
+				current = (index + slides.length) % slides.length;
+				slides.forEach((el, i) => {
+					const isActive = i === current;
+					el.classList.toggle('active', isActive);
+					if (isActive) {
+						el.style.animation = 'none';
+						void el.offsetWidth;
+						el.style.animation = '';
+					}
+				});
+				dots.forEach((el, i) => el.classList.toggle('active', i === current));
+				thumbs.forEach((el, i) => el.classList.toggle('active', i === current));
+				thumbs[current]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+			}
+
+			function next() {
+				goTo(current + 1);
+			}
+			function prev() {
+				goTo(current - 1);
+			}
+			function startAutoplay() {
+				stopAutoplay();
+				timer = setInterval(next, 6000);
+			}
+			function stopAutoplay() {
+				if (timer) clearInterval(timer);
+			}
+
+			prevBtn?.addEventListener('click', () => {
+				prev();
+				startAutoplay();
+			});
+			nextBtn?.addEventListener('click', () => {
+				next();
+				startAutoplay();
+			});
+			dots.forEach((dot, i) =>
+				dot.addEventListener('click', () => {
+					goTo(i);
+					startAutoplay();
+				})
+			);
+			thumbs.forEach((thumb, i) =>
+				thumb.addEventListener('click', () => {
+					goTo(i);
+					startAutoplay();
+				})
+			);
+
+			gallery.addEventListener('mouseenter', stopAutoplay);
+			gallery.addEventListener('mouseleave', startAutoplay);
+
+			startAutoplay();
+		});
+	}
+
+	initProgramaGalleries();
+</script>
