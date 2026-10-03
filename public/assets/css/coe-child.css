@@ -140,7 +140,7 @@ a:not([href]):not([class]):hover {
 }
 
 .cielo-img {
-  background-image: url("/images/home_fondo_desktop.jpg");
+  background-image: url("../../images/home_fondo_desktop.jpg");
   background-size: cover;
   position: relative;
 }
@@ -439,7 +439,7 @@ a:not([href]):not([class]):hover {
 @media only screen and (min-width: 992px) {
   .flecha::after {
     position: absolute;
-    background-image: url("/images/flecha.svg");
+    background-image: url("../../images/flecha.svg");
     height: 100px;
     width: 100px;
     top: 115%;
@@ -455,7 +455,7 @@ a:not([href]):not([class]):hover {
 @media only screen and (max-width: 991px) {
   .flecha::after {
     position: relative;
-    background-image: url("/images/flecha.svg");
+    background-image: url("../../images/flecha.svg");
     height: 45px;
     width: 45px;
     top: initial;
@@ -607,7 +607,7 @@ footer {
 }
 
 .pg-programas {
-  background-image: url("/images/fondo-programas.png");
+  background-image: url("../../images/fondo-programas.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

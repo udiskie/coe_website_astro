@@ -1,3 +1,5 @@
+import { withBaseDeep } from '../utils/url';
+
 export interface TeamMember {
 	id: string;
 	image: string;
@@ -14,7 +16,7 @@ function srcset(name: string, sizes: [number, number, number]) {
 	return `/images/team/${name}.png ${full}w, /images/team/${name}-300x300.png ${w300}w, /images/team/${name}-150x150.png ${w150}w`;
 }
 
-export const team: TeamMember[] = [
+const rawTeam: TeamMember[] = [
 	{
 		id: 'felipe-sanhueza',
 		image: '/images/team/felipe.png',
@@ -194,3 +196,5 @@ export const team: TeamMember[] = [
 		},
 	},
 ];
+
+export const team = withBaseDeep(rawTeam);

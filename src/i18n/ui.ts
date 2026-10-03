@@ -1,3 +1,5 @@
+import { withBaseDeep } from '../utils/url';
+
 export const languages = {
 	es: 'Español',
 	en: 'English',
@@ -5,7 +7,7 @@ export const languages = {
 
 export const defaultLang = 'es';
 
-export const ui = {
+const rawUi = {
 	es: {
 		html_lang: 'es-CL',
 		meta: {
@@ -277,3 +279,5 @@ export const ui = {
 } as const;
 
 export type Lang = keyof typeof ui;
+
+export const ui = withBaseDeep(rawUi);

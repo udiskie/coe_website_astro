@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { withBase } from '../utils/url';
 
 export interface GalleryAlbum {
 	slug: string;
@@ -9,7 +10,7 @@ export interface GalleryAlbum {
 }
 
 const GALLERY_DIR = path.join(process.cwd(), 'public', 'images', 'galeria');
-const GALLERY_URL = '/images/galeria';
+const GALLERY_URL = withBase('/images/galeria');
 
 /** Accents and casing lost when the folders were slugified. */
 const titleOverrides: Record<string, string> = {

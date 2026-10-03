@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
+import { withBase } from '../utils/url';
 
 interface Props {
 	lang: Lang;
@@ -41,10 +42,10 @@ const pageDescription = description ?? t.meta.description;
 		<link rel="alternate" href={localizedPath('es', alternatePaths.es)} hreflang="es" />
 		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href={withBase('/favicon.ico')} />
 
-		<link rel="stylesheet" href="/assets/css/theme.css" />
-		<link rel="stylesheet" href="/assets/css/coe-child.css" />
+		<link rel="stylesheet" href={withBase('/assets/css/theme.css')} />
+		<link rel="stylesheet" href={withBase('/assets/css/coe-child.css')} />
 
 		<!-- Google tag (gtag.js) -->
 		<script async is:inline src="https://www.googletagmanager.com/gtag/js?id=G-L884EG6TK5"></script>
@@ -66,7 +67,7 @@ const pageDescription = description ?? t.meta.description;
 			<Footer lang={lang} />
 		</div>
 
-		<script is:inline src="/assets/js/main.bundle.js"></script>
-		<script is:inline src="/assets/js/my_scripts.js"></script>
+		<script is:inline src={withBase('/assets/js/main.bundle.js')}></script>
+		<script is:inline src={withBase('/assets/js/my_scripts.js')}></script>
 	</body>
 </html>

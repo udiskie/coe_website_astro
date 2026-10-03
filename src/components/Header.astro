@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 import { languages, type Lang } from '../i18n/ui';
 import { useTranslations, localizedPath } from '../i18n/utils';
 
@@ -27,8 +28,8 @@ const navItems = [
 	<nav id="header" class:list={['navbar navbar-expand-md navbar-light', { home: isHome }]}>
 		<div class="container">
 			<a class="navbar-brand" href={localizedPath(lang, '/')} title="COE" rel="home">
-				<img class="coe-blanco" alt="COE" src="/images/coe-logo.svg" />
-				<img class="coe-color" alt="COE" src="/images/coe-logo-color.svg" />
+				<img class="coe-blanco" alt="COE" src={withBase('/images/coe-logo.svg')} />
+				<img class="coe-color" alt="COE" src={withBase('/images/coe-logo-color.svg')} />
 			</a>
 
 			<button

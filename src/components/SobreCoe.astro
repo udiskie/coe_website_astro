@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 import { useTranslations } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import { team } from '../data/team';
@@ -35,21 +36,21 @@ function lines(text: string) {
 		<div class="row d-flex justify-content-center align-items-start espirales">
 			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
-					<img class="w-75" src="/images/logo-interior.svg" alt={s.metodologia.interior.alt} />
+					<img class="w-75" src={withBase('/images/logo-interior.svg')} alt={s.metodologia.interior.alt} />
 				</div>
 				<div class="w-75"><p class="text-center">{s.metodologia.interior.description}</p></div>
 			</div>
 
 			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
-					<img class="w-75" src="/images/logo-medio.svg" alt={s.metodologia.medio.alt} />
+					<img class="w-75" src={withBase('/images/logo-medio.svg')} alt={s.metodologia.medio.alt} />
 				</div>
 				<div class="w-75"><p class="text-center">{s.metodologia.medio.description}</p></div>
 			</div>
 
 			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
-					<img class="w-75" src="/images/logo-exterior.svg" alt={s.metodologia.exterior.alt} />
+					<img class="w-75" src={withBase('/images/logo-exterior.svg')} alt={s.metodologia.exterior.alt} />
 				</div>
 				<div class="w-75"><p class="text-center">{s.metodologia.exterior.description}</p></div>
 			</div>

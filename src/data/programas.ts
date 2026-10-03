@@ -1,4 +1,5 @@
 import type { Lang } from '../i18n/ui';
+import { withBaseDeep } from '../utils/url';
 
 export interface ProgramCard {
 	slug: string;
@@ -33,7 +34,7 @@ export interface ProgramasContent {
 	tabs: ProgramTab[];
 }
 
-export const programasContent: Record<Lang, ProgramasContent> = {
+const rawProgramasContent: Record<Lang, ProgramasContent> = {
 	es: {
 		heroTitle: 'Salgamos juntos',
 		heroImage: '/images/banner7.jpg',
@@ -348,6 +349,8 @@ export const programasContent: Record<Lang, ProgramasContent> = {
 		],
 	},
 };
+
+export const programasContent = withBaseDeep(rawProgramasContent);
 
 export interface ResolvedProgram {
 	tab: ProgramTab;
