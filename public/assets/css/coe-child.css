@@ -923,11 +923,7 @@ footer {
 }
 
 .page-hero-interna {
-  height: 55vh;
-  min-height: 340px;
-  position: sticky;
-  top: 0;
-  z-index: 0;
+  height: 75vh;
   background-color: var(--coe-beige);
 }
 
@@ -949,7 +945,6 @@ footer {
 
 .hero-overlap {
   position: relative;
-  z-index: 1;
   margin-top: -64px;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
