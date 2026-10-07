@@ -10,7 +10,7 @@ Template: coe
   --coe-cream: #f9f5eb;
   --coe-cream-soft: rgba(249, 245, 235, 0.5);
   --coe-beige: #ece7d9;
-  --coe-dark: #16231b;
+  --coe-dark: #171717;
   --coe-near-black: #171717;
   --coe-dark-60: rgba(22, 35, 27, 0.6);
   --coe-dark-16: rgba(22, 35, 27, 0.16);
@@ -148,6 +148,11 @@ a:not([href]):not([class]):hover {
   background-image: url("../../images/home_fondo_desktop.jpg");
   background-size: cover;
   position: relative;
+}
+
+/* The next section overlaps the hero by 64px, so extend it to keep a full viewport visible. */
+#home-hero-loading {
+  height: calc(100vh + 64px) !important;
 }
 
 .hero-video {
