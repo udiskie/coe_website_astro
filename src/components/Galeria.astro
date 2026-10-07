@@ -2,6 +2,7 @@
 import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import { getGalleryAlbums } from '../data/galeria';
+import ThumbnailCard from './ThumbnailCard.astro';
 
 interface Props {
 	lang: Lang;
@@ -36,22 +37,15 @@ const basePath = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery').re
 			{
 				albums.map((album) => (
 					<div class="col-md-6 col-lg-3">
-						<a href={`${basePath}/${album.slug}`} class="programa-card text-decoration-none d-block">
-							<div class="programa-thumb fade-0">
-								<img
-									src={album.images[0]}
-									class="programa-img"
-									alt={album.title}
-									width="1500"
-									height="1125"
-									decoding="async"
-									loading="lazy"
-								/>
-							</div>
-							<h6 class="programa-card-title p-3 mb-0">
-								{album.title}
-							</h6>
-						</a>
+						<ThumbnailCard
+							href={`${basePath}/${album.slug}`}
+							image={album.images[0]}
+							title={album.title}
+							alt={album.title}
+							width={1500}
+							height={1125}
+							lazy
+						/>
 					</div>
 				))
 			}

@@ -1,0 +1,32 @@
+---
+interface Props {
+	href: string;
+	image: string;
+	title: string;
+	alt?: string;
+	width?: number | string;
+	height?: number | string;
+	srcset?: string;
+	sizes?: string;
+	lazy?: boolean;
+}
+
+const { href, image, title, alt = '', width, height, srcset, sizes, lazy = false } = Astro.props;
+---
+
+<a href={href} class="programa-card programa-card-overlay text-decoration-none d-block">
+	<div class="programa-thumb fade-0">
+		<img
+			src={image}
+			class="programa-img"
+			alt={alt}
+			width={width}
+			height={height}
+			srcset={srcset}
+			sizes={sizes}
+			decoding="async"
+			loading={lazy ? 'lazy' : undefined}
+		/>
+	</div>
+	<h6 class="programa-card-title p-3 mb-0">{title}</h6>
+</a>

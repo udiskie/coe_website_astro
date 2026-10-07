@@ -40,6 +40,11 @@ body {
   background-color: var(--coe-cream);
 }
 
+body.page-sobre-coe,
+html:has(body.page-sobre-coe) {
+  background-color: var(--coe-white);
+}
+
 h1,
 h2,
 h3,
@@ -900,7 +905,7 @@ footer {
 }
 
 .miembro h6 {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .team-modal {
@@ -909,6 +914,29 @@ footer {
 
 .team-modal .modal-content {
   max-height: 85vh;
+}
+
+.team-modal .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+.team-modal .modal-body {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.team-modal .modal-body img {
+  max-width: 160px;
+  flex-shrink: 0;
+}
+
+.team-modal-bio {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .gallery-thumbnail {
