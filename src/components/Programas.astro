@@ -14,7 +14,7 @@ const basePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs')
 
 <section
 	id="page-hero"
-	class="page-hero pg-template page-hero-interna page-hero-parallax fade-0 position-relative overflow-hidden d-flex justify-content-center align-items-center"
+	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
 	style={`background-image: url('${content.heroImage}');`}
 >
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
@@ -42,7 +42,7 @@ const basePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs')
 					<div class="row g-4">
 						{tab.cards.map((card) => (
 							<div class="col-md-6 col-lg-3">
-								<a href={`${basePath}/${card.slug}`} class="programa-card text-decoration-none d-block">
+								<a href={`${basePath}/${card.slug}`} class="programa-card programa-card-overlay text-decoration-none d-block">
 									<div class="programa-thumb fade-0">
 										<img
 											width={card.imageWidth}

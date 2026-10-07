@@ -19,7 +19,7 @@ function lines(text: string) {
 
 <section
 	id="page-hero"
-	class="page-hero pg-template page-hero-interna page-hero-parallax fade-0 position-relative overflow-hidden d-flex justify-content-center align-items-center"
+	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
 	style={`background-image: url('${s.heroImage}');`}
 >
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
@@ -29,10 +29,10 @@ function lines(text: string) {
 
 <section
 	id="presentacion"
-	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid vh-lg-100 hero-overlap"
+	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid hero-overlap"
 >
 	<div class="container mt-5 pt-5 mt-lg-5 pt-lg-5 postion-relative">
-		<div class="reveal"><h2 class="text-center fw-bold mb-5 reveal">{s.metodologia.heading}</h2></div>
+		<div class="reveal"><h2 class="text-center fw-semibold mb-5 reveal">{s.metodologia.heading}</h2></div>
 		<div class="row d-flex justify-content-center align-items-start espirales">
 			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
@@ -66,7 +66,7 @@ function lines(text: string) {
 	</div>
 </section>
 
-<section id="equipo" class="container-fluid">
+<section id="equipo" class="container-fluid bg-white">
 	<div class="container my-5 pt-5">
 		<div class="row d-flex justify-content-center">
 			{
@@ -105,7 +105,7 @@ function lines(text: string) {
 							</div>
 
 							<div class="modal fade" id={modalId} tabindex="-1" aria-labelledby={`${modalId}Label`} aria-hidden="true">
-								<div class="modal-dialog">
+								<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered team-modal">
 									<div class="modal-content">
 										<div class="w-100 d-flex justify-content-end p-3 pb-0">
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />

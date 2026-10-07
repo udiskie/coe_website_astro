@@ -116,6 +116,7 @@ const rawUi = {
 			},
 			back: '‹ Volver',
 			viewAll: 'Ver todos los programas',
+			fullProgram: 'Ver programa completo',
 		},
 		galeria: {
 			meta: {
@@ -249,6 +250,7 @@ const rawUi = {
 			},
 			back: '‹ Back',
 			viewAll: 'View all programs',
+			fullProgram: 'View full program',
 		},
 		galeria: {
 			meta: {

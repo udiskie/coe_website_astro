@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
 
 <footer id="footer">
 	<div class="container">
-		<div class="footer-top d-flex flex-column flex-lg-row justify-content-between align-items-center gap-4 py-5">
+		<div class="footer-top d-flex flex-column flex-lg-row justify-content-between align-items-center align-items-lg-start gap-4 pt-3 pb-2">
 			<div class="footer-social d-flex align-items-center gap-3">
 				<a
 					aria-label="Facebook"
@@ -57,17 +57,16 @@ const year = new Date().getFullYear();
 				</a>
 			</div>
 
-			<div class="footer-contact d-flex flex-column flex-sm-row align-items-center gap-2 gap-sm-4">
+			<div class="footer-contact d-flex flex-column flex-sm-row flex-sm-wrap justify-content-center align-items-center gap-2 gap-sm-4">
 				<a class="footer-link" href="mailto:info@coe.cl">info@coe.cl</a>
 				<span>+56 9 9918 5049</span>
 				<span>+56 9 6575 3281</span>
+				<p class="footer-copy mb-0">&copy; COE® {year}, {t.footer.rights}</p>
 			</div>
 
 			<div class="footer-badge">
 				<img style="width:48px; height:auto;" alt="COE" src={withBase('/images/marca_chile.png')} />
 			</div>
 		</div>
-
-		<p class="footer-copy text-center mb-0 pb-4">&copy; COE® {year}, {t.footer.rights}</p>
 	</div>
 </footer>

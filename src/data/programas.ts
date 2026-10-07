@@ -14,6 +14,8 @@ export interface ProgramCard {
 	description?: string[];
 	/** Titled bullet lists shown under the description (itinerary, inclusions...). */
 	details?: { heading: string; items: string[] }[];
+	/** Link to the full program PDF; shows the "Programa completo" button when set. */
+	fullProgramUrl?: string;
 }
 
 export interface ProgramTab {
@@ -51,6 +53,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				cards: [
 					{
 						slug: 'travesia-tres-lagos',
+						fullProgramUrl: '#',
 						image: '/images/programas/Portada-tres-lagos.png',
 						imageSrcset:
 							'/images/programas/Portada-tres-lagos.png 1016w, /images/programas/Portada-tres-lagos-300x249.png 300w, /images/programas/Portada-tres-lagos-768x638.png 768w',
@@ -78,6 +81,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 					},
 					{
 						slug: 'maule-rio-abajo',
+						fullProgramUrl: '#',
 						image: '/images/maule_0_0.jpg',
 						imageSrcset:
 							'/images/maule_0_0.jpg 1016w, /images/maule_0_0-300x249.jpg 300w, /images/maule_0_0-768x638.jpg 768w',
@@ -97,7 +101,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				label: 'Programas educativos',
 				heading: 'Educativos',
 				description: ['Complementan el aula, fortalecen vínculos y desarrollan habilidades reales.'],
-				ctaLabel: 'Solicita este programa',
+				ctaLabel: 'Hablemos del programa',
 				cards: [
 					{
 						slug: 'actividades-de-aventura',
@@ -170,7 +174,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				label: 'Programas organizacionales',
 				heading: 'Organizacionales',
 				description: ['Desafía a los equipos afuera para que trabajen mejor adentro.'],
-				ctaLabel: 'Solicita este programa',
+				ctaLabel: 'Hablemos del programa',
 				cards: [
 					{
 						slug: 'educacion-y-proteccion-del-medio-ambiente',
@@ -226,6 +230,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				cards: [
 					{
 						slug: 'maule-river',
+						fullProgramUrl: '#',
 						image: '/images/programas/programas_maule.jpg',
 						imageSrcset:
 							'/images/programas/programas_maule.jpg 1016w, /images/programas/programas_maule-300x249.jpg 300w, /images/programas/programas_maule-768x638.jpg 768w',
@@ -240,7 +245,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				label: 'Educational programs',
 				heading: 'Educational',
 				description: ['Complements the classroom, strengthens bonds and builds real skills.'],
-				ctaLabel: 'Request this program',
+				ctaLabel: "Let's talk about the program",
 				cards: [
 					{
 						slug: 'adventure-activities',
@@ -308,7 +313,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				label: 'Organizational programs',
 				heading: 'Organizational',
 				description: ['Challenges teams outdoors so they work better indoors.'],
-				ctaLabel: 'Request this program',
+				ctaLabel: "Let's talk about the program",
 				cards: [
 					{
 						slug: 'organizational-development',

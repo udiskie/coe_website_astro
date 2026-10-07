@@ -36,12 +36,12 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 	const heroLoading = document.querySelector('#home-hero-loading');
 	setTimeout(() => {
 		heroLoading?.classList.add('fadein');
-	}, 800);
+	}, 200);
 
 	const introTexto = document.querySelector('.intro-texto');
 	setTimeout(() => {
 		introTexto?.classList.add('intro-texto-slide');
-	}, 1000);
+	}, 300);
 
 	window.addEventListener('scroll', () => {
 		if (!introTexto) return;
@@ -71,10 +71,10 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 
 <section
 	id="presentacion"
-	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid"
+	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid hero-overlap"
 >
 	<div class="container mt-5 pt-5">
-		<div><h2 class="text-center fw-bold mb-5 reveal">{t.presentacion.heading}</h2></div>
+		<div><h2 class="text-center fw-semibold mb-5 reveal">{t.presentacion.heading}</h2></div>
 		<div class="row d-flex justify-content-center align-items-start">
 			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
 				<div class="d-flex justify-content-center align-items-center">
