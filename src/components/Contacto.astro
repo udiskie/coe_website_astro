@@ -8,46 +8,164 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const f = t.contacto.form;
+const c = t.contacto;
+const f = c.form;
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgawnqzp';
+const phones = [
+	{ label: '+56 9 9918 5049', href: 'tel:+56999185049' },
+	{ label: '+56 9 6575 3281', href: 'tel:+56965753281' },
+];
 ---
 
-<section class="container-fluid d-flex align-items-center min-height">
-	<div class="container">
-		<div class="contacto">
-			<form class="wp-forms" method="POST" action={FORMSPREE_ENDPOINT}>
-				<input type="hidden" name="_subject" value="COE — new contact form submission" />
-				<div class="mb-3">
-					<label for="contact-name">{f.name} <span aria-hidden="true">*</span></label>
-					<div class="form-control">
-						<input type="text" id="contact-name" name="name" required />
+<section
+	id="page-hero"
+	class="page-hero pg-template page-hero-interna page-hero-parallax fade-0 position-relative overflow-hidden d-flex justify-content-center align-items-center"
+	style={`background-image: url('${c.heroImage}');`}
+>
+	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
+		<div><h1 class="fw-bolder page-hero-title">{c.heroTitle}</h1></div>
+	</div>
+</section>
+
+<section class="contacto-overview hero-overlap">
+	<div class="container programas-container py-5">
+		<span class="chip-badge text-uppercase mb-4">{c.badge}</span>
+
+		<div class="row g-4 align-items-start">
+			<div class="col-lg-6">
+				<div class="row g-3">
+					<div class="col-md-6">
+						<div class="contacto-card">
+							<h5 class="mb-2">{c.phoneTitle}</h5>
+							{phones.map((phone) => <a href={phone.href}>{phone.label}</a>)}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="contacto-card">
+							<h5 class="mb-2">{c.emailTitle}</h5>
+							<a href="mailto:info@coe.cl">info@coe.cl</a>
+						</div>
 					</div>
 				</div>
-				<div class="mb-3">
-					<label for="contact-email">{f.email} <span aria-hidden="true">*</span></label>
-					<div class="form-control">
-						<input type="email" id="contact-email" name="email" spellcheck="false" required />
+			</div>
+
+			<div class="col-lg-6">
+				<form class="contacto-form" method="POST" action={FORMSPREE_ENDPOINT}>
+					<input type="hidden" name="_subject" value="COE — new contact form submission" />
+					<div class="row g-3 mb-4">
+						<div class="col-sm-6">
+							<label for="contact-name">{f.name}</label>
+							<input type="text" id="contact-name" name="name" placeholder={f.namePlaceholder} required />
+						</div>
+						<div class="col-sm-6">
+							<label for="contact-lastname">{f.lastName}</label>
+							<input type="text" id="contact-lastname" name="lastname" placeholder={f.lastNamePlaceholder} />
+						</div>
 					</div>
-				</div>
-				<div class="mb-3">
-					<label for="contact-message">{f.message}</label>
-					<div class="form-control">
-						<textarea id="contact-message" name="message"></textarea>
+					<div class="mb-4">
+						<label for="contact-email">{f.email}</label>
+						<input
+							type="email"
+							id="contact-email"
+							name="email"
+							spellcheck="false"
+							placeholder={f.emailPlaceholder}
+							required
+						/>
 					</div>
-				</div>
-				<div>
-					<button type="submit" class="black-button">{f.submit}</button>
-				</div>
-			</form>
+					<div class="mb-4">
+						<label for="contact-phone">{f.phone}</label>
+						<input type="tel" id="contact-phone" name="phone" placeholder={f.phonePlaceholder} />
+					</div>
+					<div class="mb-4">
+						<label for="contact-message">{f.message}</label>
+						<textarea id="contact-message" name="message" rows="3" placeholder={f.messagePlaceholder}></textarea>
+					</div>
+					<button type="submit" class="btn black-button">{f.submit}</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.contacto label {
+	.contacto-overview {
+		background-color: #f8f8f8;
+	}
+
+	.contacto-card,
+	.contacto-form {
+		background: var(--coe-white);
+		border-radius: 12px;
+	}
+
+	.contacto-card {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 175px;
+		padding: 1.5rem;
+	}
+
+	.contacto-card h5 {
+		font-weight: 500;
+	}
+
+	.contacto-card a {
+		text-decoration: none;
+		font-size: 0.875rem;
+		line-height: 1.9;
+	}
+
+	.contacto-form {
+		padding: 1.5rem;
+	}
+
+	.contacto-form label {
 		display: block;
-		margin-bottom: 0.4rem;
-		font-weight: 600;
+		margin-bottom: 0.625rem;
+		font-size: 1rem;
+		font-weight: 400;
+		color: #5f5f5f;
+	}
+
+	.contacto-form input,
+	.contacto-form textarea {
+		display: block;
+		width: 100%;
+		height: 3rem;
+		padding: 0 0.875rem;
+		border: none;
+		border-radius: 6px;
+		background: #ededed;
+		color: var(--coe-dark);
+		font-size: 0.875rem;
+	}
+
+	.contacto-form input::placeholder,
+	.contacto-form textarea::placeholder {
+		color: #8c8c8c;
+		opacity: 1;
+	}
+
+	.contacto-form textarea {
+		height: auto;
+		min-height: 5rem;
+		padding: 0.875rem;
+		resize: vertical;
+	}
+
+	.contacto-form .black-button {
+		padding: 0.5rem 1rem !important;
+		border-color: #8a8a8a !important;
+		background-color: #8a8a8a !important;
+		color: var(--coe-white) !important;
+		font-size: 0.875rem;
+	}
+
+	.contacto-form .black-button:hover {
+		border-color: var(--coe-dark) !important;
+		background-color: var(--coe-dark) !important;
 	}
 </style>
