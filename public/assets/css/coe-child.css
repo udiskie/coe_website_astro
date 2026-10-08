@@ -958,6 +958,16 @@ footer {
 .page-hero-interna {
   height: 75vh;
   background-color: var(--coe-beige);
+  /* Stays pinned while the page content slides over it. */
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+/* Everything after a pinned hero must stack above it. */
+#page-hero ~ * {
+  position: relative;
+  z-index: 1;
 }
 
 .page-hero-parallax {
@@ -978,6 +988,7 @@ footer {
 
 .hero-overlap {
   position: relative;
+  z-index: 1;
   margin-top: -64px;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;

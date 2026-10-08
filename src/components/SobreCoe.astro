@@ -19,7 +19,7 @@ function lines(text: string) {
 
 <section
 	id="page-hero"
-	class="page-hero pg-template page-hero-interna page-hero-parallax fade-0 position-relative overflow-hidden d-flex justify-content-center align-items-center"
+	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
 	style={`background-image: url('${s.heroImage}');`}
 >
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
@@ -32,23 +32,23 @@ function lines(text: string) {
 	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid hero-overlap"
 >
 	<div class="container mt-5 pt-5 mt-lg-5 pt-lg-5 postion-relative">
-		<div class="reveal"><h2 class="text-center fw-semibold mb-5 reveal">{s.metodologia.heading}</h2></div>
-		<div class="row d-flex justify-content-center align-items-start espirales">
-			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
+		<div><h2 class="text-center fw-semibold mb-5">{s.metodologia.heading}</h2></div>
+		<div class="row d-flex justify-content-center align-items-start">
+			<div class="metodologia col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
 					<img class="w-75" src={withBase('/images/logo-interior.svg')} alt={s.metodologia.interior.alt} />
 				</div>
 				<div class="w-75"><p class="text-center">{s.metodologia.interior.description}</p></div>
 			</div>
 
-			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
+			<div class="metodologia col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
 					<img class="w-75" src={withBase('/images/logo-medio.svg')} alt={s.metodologia.medio.alt} />
 				</div>
 				<div class="w-75"><p class="text-center">{s.metodologia.medio.description}</p></div>
 			</div>
 
-			<div class="metodologia reveal col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
+			<div class="metodologia col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5">
 				<div class="d-flex justify-content-center align-items-center mb-4">
 					<img class="w-75" src={withBase('/images/logo-exterior.svg')} alt={s.metodologia.exterior.alt} />
 				</div>
@@ -67,7 +67,7 @@ function lines(text: string) {
 </section>
 
 <section id="equipo" class="container-fluid bg-white">
-	<div class="container my-5 pt-5">
+	<div class="container mb-5" style="padding-top: 6rem;">
 		<div class="row d-flex justify-content-center">
 			{
 				team.map((member) => {

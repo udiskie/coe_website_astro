@@ -6,9 +6,11 @@ function reveal(){
     
 
     if (document.querySelector('#page-hero') !== null){
-        let hero_height = document.querySelector('#page-hero').getBoundingClientRect().bottom;
+        // The hero stays pinned, so switch the header once the content slides up under it.
+        let content = document.querySelector('#page-hero').nextElementSibling;
+        let header_height = document.querySelector('header').offsetHeight;
 
-        if(scrollY > hero_height){
+        if(content && content.getBoundingClientRect().top <= header_height){
             document.querySelector('header').classList.add('menu-fix-scroll');
             //console.log(hero_height);
         }else{

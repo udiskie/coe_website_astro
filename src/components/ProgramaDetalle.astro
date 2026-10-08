@@ -18,6 +18,9 @@ const t = useTranslations(lang);
 const programsBasePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
 const contactoPath = localizedPath(lang, lang === 'es' ? '/contacto' : '/contact');
 const overviewAnchor = `${programsBasePath}#${tab.id}`;
+
+const coverOnlyThumb = card.thumbnailOnly && card.gallery?.length;
+const [carouselFirst, ...carouselRest] = coverOnlyThumb ? card.gallery! : [card.image, ...(card.gallery ?? [])];
 ---
 
 <section class="single-content container-fluid">
@@ -64,11 +67,11 @@ const overviewAnchor = `${programsBasePath}#${tab.id}`;
 			<div class="w-100 mt-7">
 				<ProgramaGallery
 					title={card.title}
-					image={card.image}
-					imageSrcset={card.imageSrcset}
-					imageWidth={card.imageWidth}
-					imageHeight={card.imageHeight}
-					gallery={card.gallery}
+					image={carouselFirst}
+					imageSrcset={coverOnlyThumb ? undefined : card.imageSrcset}
+					imageWidth={coverOnlyThumb ? undefined : card.imageWidth}
+					imageHeight={coverOnlyThumb ? undefined : card.imageHeight}
+					gallery={carouselRest}
 				/>
 			</div>
 		</div>
