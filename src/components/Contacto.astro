@@ -16,17 +16,20 @@ const phones = [
 	{ label: '+56 9 9918 5049', href: 'tel:+56999185049' },
 	{ label: '+56 9 6575 3281', href: 'tel:+56965753281' },
 ];
+import { heroImages } from '../data/heroes';
+import HeroRandomBg from './HeroRandomBg.astro';
 ---
 
 <section
 	id="page-hero"
 	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
-	style={`background-image: url('${c.heroImage}');`}
+	style={`background-image: url('${heroImages[0]}');`}
 >
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
 		<div><h1 class="fw-bolder page-hero-title">{c.heroTitle}</h1></div>
 	</div>
 </section>
+<HeroRandomBg />
 
 <section class="contacto-overview hero-overlap">
 	<div class="container programas-container py-5">

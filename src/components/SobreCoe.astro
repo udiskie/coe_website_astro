@@ -15,17 +15,20 @@ const s = t.sobreCoe;
 function lines(text: string) {
 	return text.split('\n');
 }
+import { heroImages } from '../data/heroes';
+import HeroRandomBg from './HeroRandomBg.astro';
 ---
 
 <section
 	id="page-hero"
 	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
-	style={`background-image: url('${s.heroImage}');`}
+	style={`background-image: url('${heroImages[0]}');`}
 >
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
 		<div><h1 class="fw-bolder page-hero-title">{s.heroTitle}</h1></div>
 	</div>
 </section>
+<HeroRandomBg />
 
 <section
 	id="presentacion"

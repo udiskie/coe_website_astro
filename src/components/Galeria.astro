@@ -13,17 +13,20 @@ const t = useTranslations(lang);
 const g = t.galeria;
 const albums = getGalleryAlbums();
 const basePath = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery').replace(/\/$/, '');
+import { heroImages } from '../data/heroes';
+import HeroRandomBg from './HeroRandomBg.astro';
 ---
 
 <section
 	id="page-hero"
 	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
-	style={`background-image: url('${g.heroImage}');`}
+	style={`background-image: url('${heroImages[0]}');`}
 >
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
 		<div><h1 class="fw-bolder page-hero-title">{g.heroTitle}</h1></div>
 	</div>
 </section>
+<HeroRandomBg />
 
 <section class="galeria-overview hero-overlap">
 	<div class="container programas-container">

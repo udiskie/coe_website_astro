@@ -1,0 +1,15 @@
+---
+import { heroImages } from '../data/heroes';
+---
+
+{/* Runs right after the hero so the random background is set before first paint. Add ?hero=N to force image N. */}
+<script is:inline define:vars={{ heroImages }}>
+	(function () {
+		var hero = document.getElementById('page-hero');
+		if (!hero || !heroImages.length) return;
+		var forced = parseInt(new URLSearchParams(location.search).get('hero'), 10);
+		var i = forced >= 1 && forced <= heroImages.length ? forced - 1 : Math.floor(Math.random() * heroImages.length);
+		hero.style.backgroundImage = "url('" + heroImages[i] + "')";
+		console.info('Hero image ' + (i + 1) + '/' + heroImages.length + ': ' + heroImages[i]);
+	})();
+</script>
