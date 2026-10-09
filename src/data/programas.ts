@@ -366,10 +366,8 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						gallery: [
 							'/images/programas/galeria/desarrollo-organizacional/02.jpg',
 							'/images/programas/galeria/desarrollo-organizacional/03.jpg',
-							'/images/programas/galeria/desarrollo-organizacional/04.jpg',
 							'/images/programas/galeria/desarrollo-organizacional/05.jpg',
 							'/images/programas/galeria/desarrollo-organizacional/06.jpg',
-							'/images/programas/galeria/desarrollo-organizacional/07.jpg',
 						],
 					},
 				],
@@ -597,10 +595,8 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						gallery: [
 							'/images/programas/galeria/desarrollo-organizacional/02.jpg',
 							'/images/programas/galeria/desarrollo-organizacional/03.jpg',
-							'/images/programas/galeria/desarrollo-organizacional/04.jpg',
 							'/images/programas/galeria/desarrollo-organizacional/05.jpg',
 							'/images/programas/galeria/desarrollo-organizacional/06.jpg',
-							'/images/programas/galeria/desarrollo-organizacional/07.jpg',
 						],
 					},
 					{
