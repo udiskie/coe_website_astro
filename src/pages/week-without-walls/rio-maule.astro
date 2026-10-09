@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { withBase } from '../../utils/url';
+import ProgramaGalleryPairs from '../../components/ProgramaGalleryPairs.astro';
+
+const lang = 'es';
+const heroImage = withBase('/images/hero/programas.jpg');
+const heroTitle = 'Week without walls';
+
+const title = 'Río Maule';
+const description =
+	'Nuestro programa se encuentra diseñado para fortalecer el desarrollo integral de los alumnos, se enfoca en generar experiencias prácticas y vivenciales, en un ambiente natural, donde los alumnos participan en actividades dinámicas y de reflexión, que aportan al crecimiento personal, fortalecimiento e integración de los grupos, destrezas al aire libre, sensibilización ambiental, liderazgo, la convivencia y el trabajo en equipo.';
+const details = [
+	'5 días y 4 noches',
+	'Santiago – Talca – Santiago (bus)',
+	'Recorrido en balsas y kayak',
+	'Campamento (4 noches)',
+	'Fogatas nocturnas',
+	'Trabajo en equipo',
+];
+const images = Array.from({ length: 12 }, (_, i) => `/images/week-without-walls/rio-maule/${String(i + 1).padStart(2, '0')}.jpg`);
+---
+
+<Layout
+	lang={lang}
+	title={`${title} | COE`}
+	description={description}
+	alternatePaths={{ es: '/week-without-walls/rio-maule', en: '/week-without-walls/rio-maule' }}
+>
+	<section
+		id="page-hero"
+		class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
+		style={`background-image: url('${heroImage}');`}
+	>
+		<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
+			<div><h1 class="fw-bolder page-hero-title">{heroTitle}</h1></div>
+		</div>
+	</section>
+
+	<section class="programas-overview hero-overlap">
+		<div class="container programas-container py-5">
+			<div class="d-flex flex-column align-items-center text-center mt-4 mb-4 programa-detalle-single">
+				<h4 class="fw-bold mb-5">{title}</h4>
+
+				<p class="programa-detalle-text mx-auto">{description}</p>
+
+				<div class="programa-detalle-text mx-auto mt-4 text-start w-100">
+					<ul class="mb-0">
+						{details.map((item) => <li>{item}</li>)}
+					</ul>
+				</div>
+
+				<div class="d-flex flex-row flex-wrap justify-content-center gap-3 mt-4">
+					<a
+						href="https://drive.google.com/file/d/1mDaG3tVv2veuIq4zjWwlHcV1mAOD7TK_/view?usp=sharing"
+						class="btn btn-outline-primary black-button programa-detalle-cta text-center"
+						target="_blank"
+						rel="noopener"
+					>
+						Ver programa
+					</a>
+					<a
+						href="https://drive.google.com/file/d/1qraTGUdRLuXHxkjZTfyESUGGfE6TgT-F/view?usp=sharing"
+						class="btn btn-outline-primary black-button programa-detalle-cta text-center"
+						target="_blank"
+						rel="noopener"
+					>
+						Equipamiento requerido
+					</a>
+				</div>
+
+				<div class="w-100 mt-7">
+					<ProgramaGalleryPairs title={title} images={images} />
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

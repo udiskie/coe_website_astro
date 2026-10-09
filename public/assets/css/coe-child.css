@@ -885,6 +885,42 @@ footer {
   background-color: var(--coe-cream);
 }
 
+/* Two-up carousel: two vertical images per page */
+.programa-pairs {
+  position: relative;
+  width: min(750px, 100%);
+  margin: 0 auto;
+}
+
+.programa-pairs-viewport {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.programa-pairs-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.programa-pairs-page {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.programa-pairs-img {
+  width: 100%;
+  aspect-ratio: 711 / 857;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.programa-pairs-dots {
+  bottom: 14px;
+}
+
 .programa-gallery-thumbs {
   display: flex;
   justify-content: safe center;
