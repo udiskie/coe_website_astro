@@ -2,7 +2,6 @@
 import { base, withBase } from '../utils/url';
 import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
-import { randomProgramImages } from '../data/presentacionImages';
 
 interface Props {
 	lang: Lang;
@@ -14,7 +13,11 @@ const t = useTranslations(lang);
 const programasHref = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
 const galeriaHref = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery');
 const presentacionCards = ['educativos', 'organizacional', 'aventura'] as const;
-const presentacionImages = randomProgramImages(presentacionCards.length);
+const presentacionImages = [
+	withBase('/images/programas/programas-de-aventura-1.jpg'),
+	withBase('/images/programas/galeria/incentivo-laboral/03.jpg'),
+	withBase('/images/programas/galeria/maule-rio-abajo/02.jpg'),
+];
 const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 ---
 
@@ -66,12 +69,33 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 		base + '/videos/hero/DJI_0909_1280x720.mp4',
 		base + '/videos/hero/DJI_0933_1280x720.mp4',
 	];
-	const heroVideoEl = document.querySelector('#hero-video');
-	if (heroVideoEl) {
-		const chosen = heroVideos[Math.floor(Math.random() * heroVideos.length)];
-		heroVideoEl.src = chosen;
-		heroVideoEl.play().catch(() => {});
+	// Shuffle once so the hero and the aventura background never show the same clip.
+	const shuffled = [...heroVideos];
+	for (let i = shuffled.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
 	}
+	// This script runs before the sections below are parsed, so wait for the DOM before looking them up.
+	const assignVideos = () => {
+		[document.querySelector('#hero-video'), document.querySelector('#aventura-video')].forEach((el, i) => {
+			if (!el) return;
+			el.src = shuffled[i];
+			el.play().catch(() => {});
+		});
+	};
+	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', assignVideos);
+	else assignVideos();
+
+	// The intro block is 1.5x as tall as its content needs; text stays vertically centered.
+	const scaleAventuraIntro = () => {
+		const intro = document.querySelector('.aventura-intro');
+		if (!intro) return;
+		intro.style.minHeight = '';
+		intro.style.minHeight = `${intro.offsetHeight * 1.5}px`;
+	};
+	document.addEventListener('DOMContentLoaded', scaleAventuraIntro);
+	addEventListener('load', scaleAventuraIntro);
+	addEventListener('resize', scaleAventuraIntro);
 </script>
 
 <section
@@ -125,8 +149,8 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-6 p-0 h-100">
-				<div id="carousel-servicios" class="carousel slide h-100" data-bs-ride="false">
+			<div class="col-lg-6 p-8 h-100">
+				<div id="carousel-servicios" class="carousel slide h-100" data-bs-ride="false" style="border-radius: 16px; overflow: hidden;">
 					<div class="carousel-indicators">
 						{
 							t.servicios.slides.map((_, i) => (
@@ -159,7 +183,8 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 </section>
 
 <section id="aventura" class="container-fluid d-flex p-0 flex-column align-items-center">
-	<div class="d-flex p-5 flex-column align-items-center aventura-intro w-100">
+	<div class="d-flex p-8 flex-column align-items-center justify-content-center aventura-intro w-100">
+		<video id="aventura-video" class="aventura-intro-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
 		<h2 class="text-center text-lg-start mt-5 mb-3">{t.aventura.heading}</h2>
 		<p class="text-center text-lg-start mb-5">{t.aventura.subheading}</p>
 	</div>
@@ -176,8 +201,8 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 				<div class="carousel-inner w-100">
 					<div class="carousel-item active">
 						<div class="row px-0">
-							<div class="col-lg-6 p-0 d-flex justify-content-center overflow-hidden">
-								<img
+							<div class="col-lg-6 p-8 d-flex justify-content-center overflow-hidden">
+								<img style="border-radius: 16px; aspect-ratio: 1200 / 844; object-fit: cover; object-position: center;"
 									width="1016"
 									height="844"
 									src={t.aventura.featured.image}

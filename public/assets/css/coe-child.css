@@ -9,6 +9,7 @@ Template: coe
   /* Color tokens (from coechile.framer.website brand refresh) */
   --coe-cream: #f9f5eb;
   --coe-cream-soft: rgba(249, 245, 235, 0.5);
+  --coe-cream-soft-solid: #fcfaf5; /* cream-soft flattened over white */
   --coe-beige: #ece7d9;
   --coe-dark: #171717;
   --coe-near-black: #171717;
@@ -22,6 +23,7 @@ Template: coe
   --coe-sky-blue-accent: #38708a;
   --coe-green-950: #052e16; /* Tailwind green-950 */
   --coe-yellow-100: #fef9c3; /* Tailwind yellow-100 */
+  --coe-red-950: #460809; /* Tailwind red-950 */
   --coe-warm-cream: #fdeccb;
 
   /* Typography tokens */
@@ -386,11 +388,36 @@ a:not([href]):not([class]):hover {
 }
 
 .aventura-intro {
-  background-color: var(--coe-near-black);
+  position: relative;
+  background-color: var(--coe-white);
+}
+
+/* Rounded card inset 2rem from the edges, like the photos above (p-8 + 16px radius) */
+.aventura-intro-video {
+  position: absolute;
+  inset: 2rem;
+  width: calc(100% - 4rem);
+  height: calc(100% - 4rem);
+  object-fit: cover;
+  border-radius: 16px;
+  background-color: var(--coe-near-black); /* shown until the video loads */
+  z-index: 0;
+}
+
+/* Near-black tint blended over the video so the cream text stays legible */
+.aventura-intro::after {
+  content: "";
+  position: absolute;
+  inset: 2rem;
+  border-radius: 16px;
+  background-color: rgba(23, 23, 23, 0.55);
+  z-index: 1;
 }
 
 .aventura-intro h2,
 .aventura-intro p {
+  position: relative;
+  z-index: 2;
   color: var(--coe-cream);
 }
 
@@ -502,7 +529,7 @@ a:not([href]):not([class]):hover {
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background-color: var(--coe-yellow-100);
+  background-color: var(--coe-cream-soft-solid);
   border-radius: 24px;
   overflow: hidden;
 }
@@ -545,7 +572,7 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion-card-body p {
-  color: var(--coe-green-950);
+  color: var(--coe-red-950);
   font-size: 2rem; /* 2x */
 }
 
@@ -575,7 +602,7 @@ a:not([href]):not([class]):hover {
 }
 
 .home .presentacion {
-  background-color: var(--coe-green-950);
+  background-color: var(--coe-cream);
 }
 
 .presentacion h2,
@@ -584,13 +611,13 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion .chip-badge {
-  border-color: var(--coe-yellow-100);
-  color: var(--coe-yellow-100);
+  border-color: var(--coe-red-950);
+  color: var(--coe-red-950);
 }
 
 /* 1.5x Bootstrap's responsive h2 size */
 .presentacion .presentacion-title h2 {
-  color: var(--coe-yellow-100);
+  color: var(--coe-red-950);
   font-size: calc((1.325rem + 0.9vw) * 1.5);
 }
 
@@ -601,13 +628,13 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion .brown-button {
-  background-color: var(--coe-yellow-100) !important;
-  border-color: var(--coe-yellow-100) !important;
-  color: var(--coe-green-950) !important;
+  background-color: var(--coe-red-950) !important;
+  border-color: var(--coe-red-950) !important;
+  color: var(--coe-cream) !important;
 }
 
 .presentacion h3 {
-  color: var(--coe-green-950);
+  color: var(--coe-red-950);
   font-size: 1.625rem;
   font-weight: 500;
 }
@@ -810,6 +837,10 @@ footer {
 .proximas-aventuras,
 .single-content {
   background-color: var(--coe-white);
+}
+
+.p-8 {
+  padding: 2rem !important; /* Tailwind-style spacing; Bootstrap stops at p-5 */
 }
 
 .programas-container {

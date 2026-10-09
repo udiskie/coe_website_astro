@@ -1,16 +1,21 @@
 window.addEventListener('scroll',reveal); 
+window.addEventListener('resize',reveal);
+window.addEventListener('pageshow',reveal);
+window.addEventListener('load',reveal);
 
 function reveal(){
     let reveals = document.querySelectorAll('.reveal');
     let window_height = window.innerHeight;
     
 
-    if (document.querySelector('#page-hero') !== null){
+    // Inner pages have #page-hero; the home hero lives inside #intro.
+    let hero = document.querySelector('#page-hero') || document.querySelector('#intro');
+    if (hero !== null){
         // The hero stays pinned, so switch the header once the content slides up under it.
-        let content = document.querySelector('#page-hero').nextElementSibling;
+        let content = hero.nextElementSibling;
         let header_height = document.querySelector('header').offsetHeight;
 
-        if(content && content.getBoundingClientRect().top <= header_height){
+        if(window.scrollY > 0 && content && content.getBoundingClientRect().top <= header_height){
             document.querySelector('header').classList.add('menu-fix-scroll');
             //console.log(hero_height);
         }else{
