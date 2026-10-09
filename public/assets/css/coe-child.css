@@ -477,6 +477,7 @@ a:not([href]):not([class]):hover {
   top: var(--header-offset);
   z-index: 3;
   padding: 12px 0 40px;
+  text-align: center;
 }
 
 /* Stacked cards: each one sticks near the top while the next slides over it */
@@ -580,6 +581,11 @@ a:not([href]):not([class]):hover {
 .presentacion h2,
 .presentacion p {
   color: var(--coe-dark);
+}
+
+.presentacion .chip-badge {
+  border-color: var(--coe-yellow-100);
+  color: var(--coe-yellow-100);
 }
 
 /* 1.5x Bootstrap's responsive h2 size */

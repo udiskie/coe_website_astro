@@ -29,6 +29,7 @@ const rawUi = {
 			cta: 'Ver nuestros programas',
 		},
 		presentacion: {
+			badge: 'Programas de aventura',
 			heading: 'En COE diseñamos para cada grupo una experiencia distinta',
 			educativos: {
 				title: 'Educativos',
@@ -178,6 +179,7 @@ const rawUi = {
 			cta: 'See our programs',
 		},
 		presentacion: {
+			badge: 'Adventure programs',
 			heading: 'At COE we design a distinct experience for every group',
 			educativos: {
 				title: 'Educative',
