@@ -85,6 +85,7 @@ const hasMultiple = slides.length > 1;
 
 			const dots = Array.from(gallery.querySelectorAll<HTMLElement>('.programa-gallery-dot'));
 			const thumbs = Array.from(gallery.querySelectorAll<HTMLElement>('.programa-gallery-thumb-btn'));
+			const thumbsEl = gallery.querySelector<HTMLElement>('.programa-gallery-thumbs');
 			const prevBtn = gallery.querySelector<HTMLElement>('.programa-gallery-prev');
 			const nextBtn = gallery.querySelector<HTMLElement>('.programa-gallery-next');
 
@@ -102,7 +103,16 @@ const hasMultiple = slides.length > 1;
 				});
 				dots.forEach((el, i) => el.classList.toggle('active', i === current));
 				thumbs.forEach((el, i) => el.classList.toggle('active', i === current));
-				thumbs[current]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+				const thumb = thumbs[current];
+				if (thumb && thumbsEl) {
+					// Scroll only the thumbnail strip; scrollIntoView would also move the page.
+					const strip = thumbsEl.getBoundingClientRect();
+					const box = thumb.getBoundingClientRect();
+					thumbsEl.scrollTo({
+						left: thumbsEl.scrollLeft + box.left - strip.left - (strip.width - box.width) / 2,
+						behavior: 'smooth',
+					});
+				}
 			}
 
 			function next() {
