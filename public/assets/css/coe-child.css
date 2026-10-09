@@ -20,6 +20,8 @@ Template: coe
   --coe-accent: #ff2244;
   --coe-sky-blue: #c9d9f0;
   --coe-sky-blue-accent: #38708a;
+  --coe-green-950: #052e16; /* Tailwind green-950 */
+  --coe-yellow-100: #fef9c3; /* Tailwind yellow-100 */
   --coe-warm-cream: #fdeccb;
 
   /* Typography tokens */
@@ -464,8 +466,113 @@ a:not([href]):not([class]):hover {
   background-color: var(--coe-warm-cream);
 }
 
+/* Title stays pinned while the cards stack beneath it */
+.presentacion-group {
+  --header-offset: 72px;
+  --title-h: 0px;
+}
+
+.presentacion-title {
+  position: sticky;
+  top: var(--header-offset);
+  z-index: 3;
+  padding: 12px 0 40px;
+}
+
+/* Stacked cards: each one sticks near the top while the next slides over it */
+.presentacion-stack {
+  --step: 64px; /* vertical offset between stuck cards */
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 3rem;
+}
+
+.presentacion-card-wrap {
+  position: sticky;
+  top: calc(var(--header-offset) + var(--title-h) + var(--i) * var(--step));
+  width: 100%;
+  /* Sticky boxes are clamped by the stack's bottom edge; this padding keeps the offsets between cards once released */
+  padding-bottom: calc((var(--n) - 1 - var(--i)) * var(--step));
+}
+
+.presentacion-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--coe-yellow-100);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.presentacion-card-media {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.presentacion .presentacion-card-media img {
+  position: absolute;
+  top: -56px;
+  left: 0;
+  width: 100% !important;
+  height: calc(100% + 112px) !important;
+  max-width: none;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.presentacion-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 8px 16px;
+  text-align: left;
+}
+
+.presentacion-card-body h3,
+.presentacion-card-body p {
+  margin: 0;
+}
+
+.presentacion .presentacion-card-body h3 {
+  font-size: 4.0625rem; /* 2.5x the regular 1.625rem */
+}
+
+.presentacion-card-body p {
+  color: var(--coe-green-950);
+  font-size: 2rem; /* 2x */
+}
+
+@media only screen and (min-width: 992px) {
+  .presentacion-group {
+    --header-offset: 100px;
+  }
+
+  .presentacion-card {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 64px;
+  }
+
+  .presentacion-card-media {
+    flex: 1 0 0;
+    height: auto;
+    min-height: 380px;
+  }
+
+  .presentacion-card-body {
+    flex: 1 0 0;
+    justify-content: flex-start;
+    padding: 48px 40px 48px 0;
+  }
+}
+
 .home .presentacion {
-  background-color: var(--coe-sky-blue);
+  background-color: var(--coe-green-950);
 }
 
 .presentacion h2,
@@ -473,8 +580,26 @@ a:not([href]):not([class]):hover {
   color: var(--coe-dark);
 }
 
+/* 1.5x Bootstrap's responsive h2 size */
+.presentacion .presentacion-title h2 {
+  color: var(--coe-yellow-100);
+  font-size: calc((1.325rem + 0.9vw) * 1.5);
+}
+
+@media (min-width: 1200px) {
+  .presentacion .presentacion-title h2 {
+    font-size: 3rem;
+  }
+}
+
+.presentacion .brown-button {
+  background-color: var(--coe-yellow-100) !important;
+  border-color: var(--coe-yellow-100) !important;
+  color: var(--coe-green-950) !important;
+}
+
 .presentacion h3 {
-  color: var(--coe-sky-blue-accent);
+  color: var(--coe-green-950);
   font-size: 1.625rem;
   font-weight: 500;
 }

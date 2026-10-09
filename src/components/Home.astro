@@ -2,6 +2,7 @@
 import { base, withBase } from '../utils/url';
 import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
+import { randomProgramImages } from '../data/presentacionImages';
 
 interface Props {
 	lang: Lang;
@@ -12,6 +13,8 @@ const t = useTranslations(lang);
 
 const programasHref = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
 const galeriaHref = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery');
+const presentacionCards = ['educativos', 'organizacional', 'aventura'] as const;
+const presentacionImages = randomProgramImages(presentacionCards.length);
 const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 ---
 
@@ -76,36 +79,30 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 	class="container-fluid d-flex py-5 align-items-center justify-content-start presentacion container-fluid hero-overlap"
 >
 	<div class="container mt-5 pt-5">
-		<div><h2 class="text-center fw-semibold mb-5 reveal">{t.presentacion.heading}</h2></div>
-		<div class="row d-flex justify-content-center align-items-start">
-			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
-				<div class="d-flex justify-content-center align-items-center">
-					<img class="w-50" src={withBase('/images/educativos.svg')} alt={t.presentacion.educativos.alt} />
-				</div>
-				<div><h3 class="text-center my-3">{t.presentacion.educativos.title}</h3></div>
-				<div><p class="text-center">{t.presentacion.educativos.description}</p></div>
-			</div>
-
-			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
-				<div class="d-flex justify-content-center align-items-center">
-					<img class="w-50" src={withBase('/images/organizacional.svg')} alt={t.presentacion.organizacional.alt} />
-				</div>
-				<div><h3 class="text-center my-3">{t.presentacion.organizacional.title}</h3></div>
-				<div><p class="text-center">{t.presentacion.organizacional.description}</p></div>
-			</div>
-
-			<div class="col-lg-4 d-flex flex-column align-items-center justify-content-center mb-5 reveal">
-				<div class="d-flex justify-content-center align-items-center">
-					<img class="w-50" src={withBase('/images/aventura.svg')} alt={t.presentacion.aventura.alt} />
-				</div>
-				<div><h3 class="text-center my-3">{t.presentacion.aventura.title}</h3></div>
-				<div><p class="text-center">{t.presentacion.aventura.description}</p></div>
-			</div>
+		<div class="presentacion-group" data-presentacion-group>
+		<div class="presentacion-title"><h2 class="text-center fw-semibold mb-0 reveal">{t.presentacion.heading}</h2></div>
+		<div class="presentacion-stack" data-presentacion-stack style={`--n: ${presentacionCards.length}`}>
+			{
+				presentacionCards.map((key, i) => (
+					<div class="presentacion-card-wrap" style={`--i: ${i}`}>
+						<article class="presentacion-card">
+							<div class="presentacion-card-media">
+								<img src={presentacionImages[i]} alt={t.presentacion[key].alt} loading="lazy" decoding="async" />
+							</div>
+							<div class="presentacion-card-body">
+								<h3>{t.presentacion[key].title}</h3>
+								<p>{t.presentacion[key].description}</p>
+							</div>
+						</article>
+					</div>
+				))
+			}
 		</div>
-		<div class="mb-5 d-flex justify-content-center reveal">
+		<div class="mb-5 d-flex justify-content-center reveal" data-presentacion-cta>
 			<a class="btn btn-outline-primary my-3 brown-button me-2 text-center" href={programasHref}>
 				{t.presentacion.cta}
 			</a>
+		</div>
 		</div>
 	</div>
 </section>
@@ -220,3 +217,80 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 </section>
 
 <script is:inline src={withBase('/assets/js/hero_home.js')}></script>
+
+<script>
+	// The title stays pinned above the stack, so the cards must stick below it.
+	const group = document.querySelector<HTMLElement>('[data-presentacion-group]');
+	const title = group?.querySelector<HTMLElement>('.presentacion-title');
+	if (group && title) {
+		const setTitleHeight = () => group.style.setProperty('--title-h', `${title.offsetHeight}px`);
+		setTitleHeight();
+		new ResizeObserver(setTitleHeight).observe(title);
+
+		// When the stack's end releases the cards, carry the title up with them so the final
+		// layout (title, cards at their offsets, button) scrolls away as a static block.
+		const firstWrap = group.querySelector<HTMLElement>('.presentacion-card-wrap');
+		if (firstWrap) {
+			let titleTicking = false;
+			const followStack = () => {
+				titleTicking = false;
+				title.style.transform = '';
+				// The title never sits lower than just above the first card, wherever the cards end up.
+				const target = firstWrap.getBoundingClientRect().top - title.offsetHeight;
+				const current = title.getBoundingClientRect().top;
+				if (target < current) title.style.transform = `translateY(${target - current}px)`;
+			};
+			const onTitleScroll = () => {
+				if (!titleTicking) {
+					titleTicking = true;
+					requestAnimationFrame(followStack);
+				}
+			};
+			addEventListener('scroll', onTitleScroll, { passive: true });
+			addEventListener('resize', onTitleScroll);
+			followStack();
+		}
+	}
+
+	const stack = document.querySelector<HTMLElement>('[data-presentacion-stack]');
+	if (stack && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const wraps = Array.from(stack.querySelectorAll<HTMLElement>('.presentacion-card-wrap'));
+		const images = wraps.map((w) => w.querySelector<HTMLElement>('.presentacion-card-media img')!);
+		const clamp = (n: number, min = 0, max = 1) => Math.min(max, Math.max(min, n));
+		const cta = document.querySelector('[data-presentacion-cta]');
+		let ticking = false;
+		let paused = false;
+
+		function update() {
+			ticking = false;
+			if (paused) return;
+			const vh = innerHeight;
+			wraps.forEach((_, i) => {
+				const rect = wraps[i].getBoundingClientRect();
+				const center = (rect.top + rect.height / 2) / vh;
+				images[i].style.transform = `translateY(${clamp((0.5 - center) * 80, -56, 56)}px)`;
+			});
+		}
+		function onScroll() {
+			if (!ticking) {
+				ticking = true;
+				requestAnimationFrame(update);
+			}
+		}
+		// Freeze the effects while the button below the stack is on screen; resume when it leaves.
+		if (cta) {
+			new IntersectionObserver(([entry]) => {
+				if (entry.isIntersecting && !paused) {
+					update();
+					paused = true;
+				} else if (!entry.isIntersecting && paused) {
+					paused = false;
+					update();
+				}
+			}).observe(cta);
+		}
+		addEventListener('scroll', onScroll, { passive: true });
+		addEventListener('resize', onScroll);
+		update();
+	}
+</script>
