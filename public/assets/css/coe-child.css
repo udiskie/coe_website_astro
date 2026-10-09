@@ -539,7 +539,8 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion .presentacion-card-body h3 {
-  font-size: 4.0625rem; /* 2.5x the regular 1.625rem */
+  /* Shrinks to half its size as the next card stacks over this one (--covered: 0 → 1) */
+  font-size: calc(4.0625rem * (1 - 0.5 * var(--covered, 0))); /* 2.5x the regular 1.625rem */
 }
 
 .presentacion-card-body p {
@@ -567,7 +568,8 @@ a:not([href]):not([class]):hover {
   .presentacion-card-body {
     flex: 1 0 0;
     justify-content: flex-start;
-    padding: 48px 40px 48px 0;
+    /* Top padding collapses so the title ends up at the top of the card */
+    padding: calc(48px * (1 - var(--covered, 0))) 40px 48px 0;
   }
 }
 

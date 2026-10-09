@@ -258,15 +258,24 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 		const images = wraps.map((w) => w.querySelector<HTMLElement>('.presentacion-card-media img')!);
 		const clamp = (n: number, min = 0, max = 1) => Math.min(max, Math.max(min, n));
 		const cta = document.querySelector('[data-presentacion-cta]');
+		const styles = getComputedStyle(stack);
+		const step = parseFloat(styles.getPropertyValue('--step')) || 64;
+		const gap = parseFloat(styles.rowGap) || 0;
 		let ticking = false;
 		let paused = false;
 
 		function update() {
 			ticking = false;
-			if (paused) return;
 			const vh = innerHeight;
 			wraps.forEach((_, i) => {
 				const rect = wraps[i].getBoundingClientRect();
+				// How far the next card has slid over this one (0 = not yet, 1 = fully stacked).
+				// Always tracked, even while the parallax is frozen, so the last card's stacking still finishes the effect.
+				const next = wraps[i + 1];
+				const full = rect.height + gap;
+				const covered = next ? clamp((full - (next.getBoundingClientRect().top - rect.top)) / (full - step)) : 0;
+				wraps[i].style.setProperty('--covered', covered.toFixed(3));
+				if (paused) return;
 				const center = (rect.top + rect.height / 2) / vh;
 				images[i].style.transform = `translateY(${clamp((0.5 - center) * 80, -56, 56)}px)`;
 			});
