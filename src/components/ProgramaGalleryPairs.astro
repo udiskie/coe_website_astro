@@ -4,11 +4,12 @@ import { withBase } from '../utils/url';
 interface Props {
 	title: string;
 	images: string[];
+	labels?: { prev: string; next: string; page: (n: number) => string };
 	/** Images shown per page. */
 	perPage?: number;
 }
 
-const { title, images, perPage = 2 } = Astro.props;
+const { title, images, perPage = 2, labels = { prev: 'Anterior', next: 'Siguiente', page: (n: number) => `Ir a la página ${n}` } } = Astro.props;
 const pages: string[][] = [];
 for (let i = 0; i < images.length; i += perPage) pages.push(images.slice(i, i + perPage));
 const hasMultiple = pages.length > 1;
@@ -39,10 +40,10 @@ const hasMultiple = pages.length > 1;
 		{
 			hasMultiple && (
 				<>
-					<button type="button" class="programa-gallery-arrow programa-gallery-prev" aria-label="Anterior">
+					<button type="button" class="programa-gallery-arrow programa-gallery-prev" aria-label={labels.prev}>
 						‹
 					</button>
-					<button type="button" class="programa-gallery-arrow programa-gallery-next" aria-label="Siguiente">
+					<button type="button" class="programa-gallery-arrow programa-gallery-next" aria-label={labels.next}>
 						›
 					</button>
 					<div class="programa-gallery-dots programa-pairs-dots">
@@ -50,7 +51,7 @@ const hasMultiple = pages.length > 1;
 							<button
 								type="button"
 								class:list={['programa-gallery-dot', { active: i === 0 }]}
-								aria-label={`Ir a la página ${i + 1}`}
+								aria-label={labels.page(i + 1)}
 							/>
 						))}
 					</div>

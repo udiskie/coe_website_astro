@@ -389,6 +389,54 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				ctaLabel: 'Build your adventure',
 				cards: [
 					{
+						slug: 'three-lakes-crossing',
+						fullProgramUrl: '#',
+						image: '/images/programas/Portada-tres-lagos.png',
+						imageSrcset:
+							'/images/programas/Portada-tres-lagos.png 1016w, /images/programas/Portada-tres-lagos-300x249.png 300w, /images/programas/Portada-tres-lagos-768x638.png 768w',
+						imageWidth: 1016,
+						imageHeight: 844,
+						title: 'Three Lakes Crossing',
+						description: ['Embark on a dream journey sailing across three crystal-clear lakes, surrounded by towering mountains and native forests.'],
+						gallery: [
+							'/images/programas/galeria/travesia-tres-lagos/01.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/02.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/03.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/04.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/05.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/06.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/07.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/08.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/09.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/10.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/11.jpg',
+						],
+					},
+					{
+						slug: 'discover-patagonia',
+						image: '/images/programas/Portada-descubre-la-patagonia.png',
+						imageSrcset:
+							'/images/programas/Portada-descubre-la-patagonia.png 1016w, /images/programas/Portada-descubre-la-patagonia-300x249.png 300w, /images/programas/Portada-descubre-la-patagonia-768x638.png 768w',
+						imageWidth: 1016,
+						imageHeight: 844,
+						title: 'Discover Patagonia',
+						description: ['Traveling to Patagonia is a way of connecting with the essentials: vast landscapes, pure air and simple moments. Every corner invites you to take your time and experience nature at your own pace.', 'Patagonia awaits you, you decide how to live it.'],
+						gallery: [
+							'/images/programas/galeria/descubre-la-patagonia/01.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/02.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/03.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/04.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/05.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/06.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/07.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/08.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/09.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/10.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/11.jpg',
+							'/images/programas/galeria/descubre-la-patagonia/12.jpg',
+						],
+					},
+					{
 						slug: 'maule-river',
 						fullProgramUrl: '#',
 						image: '/images/programas/programas_maule.jpg',
@@ -397,6 +445,11 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 1016,
 						imageHeight: 844,
 						title: 'Maule River',
+						description: ['On this journey we offer you the chance to navigate the Maule River and camp along its banks.'],
+						details: [
+							{ heading: 'Itinerary', items: ['Meeting point: Talca train station', 'Inflatable raft and kayak journey (2 days)', 'Camping (2 nights)'] },
+							{ heading: 'This program includes', items: ['Navigation on the Maule River', 'Train ticket (railbus)', 'Specialized rafting and kayaking guides', 'Rafts, kayaks and life jackets', 'Camping equipment', 'First aid equipment', 'Full meals'] },
+						],
 						gallery: [
 							'/images/programas/galeria/maule-rio-abajo/01.jpg',
 							'/images/programas/galeria/maule-rio-abajo/02.jpg',
@@ -428,6 +481,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Adventure Activities',
+						description: ['This type of activity gives students the chance to strengthen leadership, teamwork, human sensitivity, and the achievement of goals and personal limits. Participants must make their way in completely natural environments, carrying out different activities guided by certified instructors who facilitate the learning process.'],
 						gallery: [
 							'/images/programas/galeria/actividades-de-aventura/01.jpg',
 							'/images/programas/galeria/actividades-de-aventura/02.jpg',
@@ -444,6 +498,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Awareness Activities',
+						description: ['These activities create a magical connection between young people and nature. They are encouraged to use their senses to explore their surroundings and to express their feelings, ideas and opinions, becoming aware of their environment and of themselves.'],
 						thumbnailOnly: true,
 						gallery: [
 							'/images/programas/galeria/sensibilizacion-ambiental/01.jpg',
@@ -474,6 +529,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 768,
 						imageHeight: 576,
 						title: 'Community service',
+						description: ['This experience provides knowledge of and contact with the social and economic reality of communities, through a sensitization process that fosters the values and attitudes of solidarity, respect, social responsibility and commitment, contributing to the development and improvement of the quality of life of communities.'],
 						gallery: [
 							'/images/programas/galeria/servicio-comunitario/02.jpg',
 							'/images/programas/galeria/servicio-comunitario/03.jpg',
@@ -491,6 +547,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 768,
 						imageHeight: 576,
 						title: 'Exploration Workshops and Activities',
+						description: ['This type of activity enables experiential learning on specific topics such as flora, fauna, biodiversity, environmental impact, and the management and protection of natural resources, as well as others proposed by schools in line with their curriculum. The goal of these activities is to deepen the understanding of the concepts covered in the study programs.'],
 						gallery: [
 							'/images/programas/galeria/exploracion-y-descubrimiento-del-entorno/02.jpg',
 							'/images/programas/galeria/exploracion-y-descubrimiento-del-entorno/03.jpg',
@@ -565,6 +622,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageWidth: 447,
 						imageHeight: 371,
 						title: 'Teamwork and Leadership Workshops',
+						description: ['These activities allow students to develop and strengthen different skills related to communication, conflict resolution and the achievement of group challenges.'],
 						thumbnailOnly: true,
 						gallery: [
 							'/images/programas/galeria/liderazgo-y-trabajo-en-equipo/01.jpg',
@@ -682,6 +740,8 @@ export function getProgramBySlug(lang: Lang, slug: string): ResolvedProgram | nu
 
 /** Spanish program slug -> English program slug (programs missing from the English site are omitted). */
 const esToEnSlug: Record<string, string> = {
+	'travesia-tres-lagos': 'three-lakes-crossing',
+	'descubre-la-patagonia': 'discover-patagonia',
 	'maule-rio-abajo': 'maule-river',
 	'actividades-de-aventura': 'adventure-activities',
 	'sensibilizacion-ambiental': 'awareness-activities',

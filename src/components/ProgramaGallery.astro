@@ -1,4 +1,7 @@
 ---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
 interface Props {
 	title: string;
 	image: string;
@@ -6,9 +9,11 @@ interface Props {
 	imageWidth?: number;
 	imageHeight?: number;
 	gallery?: string[];
+	lang?: Lang;
 }
 
-const { title, image, imageSrcset, imageWidth, imageHeight, gallery = [] } = Astro.props;
+const { title, image, imageSrcset, imageWidth, imageHeight, gallery = [], lang = 'es' } = Astro.props;
+const labels = useTranslations(lang).programas.gallery;
 const slides = [image, ...gallery];
 const hasMultiple = slides.length > 1;
 ---
@@ -39,10 +44,10 @@ const hasMultiple = slides.length > 1;
 		{
 			hasMultiple && (
 				<>
-					<button type="button" class="programa-gallery-arrow programa-gallery-prev" aria-label="Anterior">
+					<button type="button" class="programa-gallery-arrow programa-gallery-prev" aria-label={labels.prev}>
 						‹
 					</button>
-					<button type="button" class="programa-gallery-arrow programa-gallery-next" aria-label="Siguiente">
+					<button type="button" class="programa-gallery-arrow programa-gallery-next" aria-label={labels.next}>
 						›
 					</button>
 					<div class="programa-gallery-dots">
@@ -50,7 +55,7 @@ const hasMultiple = slides.length > 1;
 							<button
 								type="button"
 								class:list={['programa-gallery-dot', { active: i === 0 }]}
-								aria-label={`Ir a la imagen ${i + 1}`}
+								aria-label={`${labels.goTo} ${i + 1}`}
 							/>
 						))}
 					</div>
@@ -66,7 +71,7 @@ const hasMultiple = slides.length > 1;
 					<button
 						type="button"
 						class:list={['programa-gallery-thumb-btn', { active: i === 0 }]}
-						aria-label={`Ver imagen ${i + 1}`}
+						aria-label={`${labels.view} ${i + 1}`}
 					>
 						<img src={src} alt="" loading="lazy" />
 					</button>
