@@ -855,6 +855,11 @@ footer {
   background-color: var(--coe-white);
 }
 
+/* Same breathing room below the carousel as between the intro card and the carousel */
+.proximas-aventuras {
+  margin-bottom: 5rem;
+}
+
 .p-8 {
   padding: 2rem !important; /* Tailwind-style spacing; Bootstrap stops at p-5 */
 }
