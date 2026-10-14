@@ -1,0 +1,16 @@
+---
+import type { HeroImage } from '../data/heroes';
+
+interface Props {
+	image: HeroImage;
+}
+
+const { image } = Astro.props;
+---
+
+<picture class="page-hero-media">
+	<source media="(max-width: 767.98px)" srcset={image.sm} type="image/webp" />
+	<source media="(max-width: 1199.98px)" srcset={image.md} type="image/webp" />
+	<source srcset={image.lg} type="image/webp" />
+	<img src={image.src} alt="" width="1920" height="1080" fetchpriority="high" decoding="async" />
+</picture>

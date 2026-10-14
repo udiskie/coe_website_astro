@@ -1,7 +1,8 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { rioMaule } from '../data/weekWithoutWalls';
-import { withBase } from '../utils/url';
+import { heroImages } from '../data/heroes';
+import HeroPicture from './HeroPicture.astro';
 import ProgramaGallery from './ProgramaGallery.astro';
 import { programasContent } from '../data/programas';
 
@@ -11,7 +12,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = rioMaule[lang];
-const heroImage = withBase('/images/hero/programas.jpg');
 // Same photos as the Maule River program page.
 const maule = programasContent.en.tabs.flatMap((tab) => tab.cards).find((card) => card.slug === 'maule-river')!;
 ---
@@ -19,8 +19,8 @@ const maule = programasContent.en.tabs.flatMap((tab) => tab.cards).find((card) =
 <section
 	id="page-hero"
 	class="page-hero pg-template page-hero-interna fade-0 overflow-hidden d-flex justify-content-center align-items-center"
-	style={`background-image: url('${heroImage}');`}
 >
+	<HeroPicture image={heroImages.weekRioMaule} />
 	<div class="d-flex justify-content-center align-items-center h-100 w-100 position-absolute">
 		<div><h1 class="fw-bolder page-hero-title">{content.heroTitle}</h1></div>
 	</div>

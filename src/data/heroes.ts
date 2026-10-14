@@ -1,12 +1,26 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { withBase } from '../utils/url';
 
-const HERO_DIR = path.join(process.cwd(), 'public', 'images', 'hero');
+export interface HeroImage {
+	/** 1920x1080 JPEG fallback. */
+	src: string;
+	/** WebP crops: portrait for phones, 16:10 for tablets / small laptops, 16:9 for desktops. */
+	sm: string;
+	md: string;
+	lg: string;
+}
 
-/** Public URLs of every inner-page hero background; one is picked at random per page view. */
-export const heroImages: string[] = fs
-	.readdirSync(HERO_DIR)
-	.filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
-	.sort()
-	.map((file) => withBase(`/images/hero/${file}`));
+const hero = (name: string): HeroImage => ({
+	src: withBase(`/images/portadas/${name}.jpg`),
+	sm: withBase(`/images/portadas/${name}-sm.webp`),
+	md: withBase(`/images/portadas/${name}-md.webp`),
+	lg: withBase(`/images/portadas/${name}-lg.webp`),
+});
+
+/** Cover image for each inner-page hero. */
+export const heroImages = {
+	contacto: hero('contacto'),
+	galeria: hero('galeria'),
+	programas: hero('programas'),
+	sobreCoe: hero('sobre-coe'),
+	weekRioMaule: hero('week-rio-maule'),
+};
