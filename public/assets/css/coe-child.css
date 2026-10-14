@@ -45,7 +45,9 @@ body {
 }
 
 body.page-sobre-coe,
-html:has(body.page-sobre-coe) {
+html:has(body.page-sobre-coe),
+body.home,
+html:has(body.home) {
   background-color: var(--coe-white);
 }
 
