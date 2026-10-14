@@ -855,9 +855,9 @@ footer {
   background-color: var(--coe-white);
 }
 
-/* Same breathing room below the carousel as between the intro card and the carousel */
+/* Breathing room below the carousel */
 .proximas-aventuras {
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
 }
 
 .p-8 {
