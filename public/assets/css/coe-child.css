@@ -537,7 +537,7 @@ a:not([href]):not([class]):hover {
 
 /* Cards 2 and 3 slide over the previous one, so they cast a soft shadow onto it */
 .presentacion-card-wrap:nth-child(n + 2) .presentacion-card {
-  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 -4px 14px rgba(208, 74, 8, 0.12);
 }
 
 .presentacion-card-media {
