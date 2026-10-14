@@ -530,13 +530,13 @@ a:not([href]):not([class]):hover {
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background-color: var(--coe-warm-cream);
+  background-color: #fff;
   border-radius: 24px;
   overflow: hidden;
 }
 
-/* Cards 2 and 3 slide over the previous one, so they cast a soft shadow onto it */
-.presentacion-card-wrap:nth-child(n + 2) .presentacion-card {
+/* Stacked cards slide over the previous one, so they cast a soft shadow onto it */
+.presentacion-card {
   box-shadow: 0 -4px 14px rgba(208, 74, 8, 0.12);
 }
 
