@@ -391,6 +391,8 @@ a:not([href]):not([class]):hover {
   position: relative;
   min-height: 310px;
   background-color: var(--coe-white);
+  /* Matches the white gap between the presentacion CTA and this card (9rem), minus the 4rem already below it */
+  margin-bottom: 5rem;
 }
 
 /* Rounded card inset 2rem from the edges, like the photos above (p-8 + 16px radius) */
