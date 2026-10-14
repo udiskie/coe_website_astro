@@ -18,7 +18,7 @@ const titleOverrides: Record<string, string> = {
 	'4-antofagasta-british-school': 'Antofagasta British School',
 	'colegio-aleman': 'Colegio Alemán',
 	'corporacion-de-educacion-antofagasta': 'Corporación de Educación Antofagasta',
-	'grennland-2005': 'Grennland 2005',
+	'greenland-2005': 'Greenland 2005',
 	'uss-antuco': 'USS Antuco',
 	'nido-de-aguilas-el-cani-pucon': 'Nido de Águilas · El Cañi, Pucón',
 	'nido-de-aguilas-cau-cao-lacampana': 'Nido de Águilas · Cau Cao, La Campana',

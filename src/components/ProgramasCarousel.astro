@@ -1,0 +1,166 @@
+---
+import type { Lang } from '../i18n/ui';
+import { programasContent } from '../data/programas';
+import { localizedPath } from '../i18n/utils';
+import { getGalleryAlbumBySlug } from '../data/galeria';
+import ThumbnailCard from './ThumbnailCard.astro';
+
+interface Props {
+	lang: Lang;
+	category: 'educational' | 'adventure' | 'gallery';
+	/** Gallery album slugs to show when category is 'gallery'. */
+	albums?: string[];
+	prevLabel: string;
+	nextLabel: string;
+}
+
+const { lang, category, albums = [], prevLabel, nextLabel } = Astro.props;
+const content = programasContent[lang];
+const basePath = localizedPath(lang, lang === 'es' ? '/programas' : '/programs').replace(/\/$/, '');
+const tabMatch = category === 'educational' ? /educ/i : /a?d?vent/i;
+const galleryBase = localizedPath(lang, lang === 'es' ? '/galeria' : '/gallery').replace(/\/$/, '');
+
+interface Slide {
+	href: string;
+	image: string;
+	title: string;
+	alt?: string;
+	width?: number;
+	height?: number;
+	srcset?: string;
+}
+
+const slides: Slide[] =
+	category === 'gallery'
+		? albums.flatMap((slug) => {
+				const album = getGalleryAlbumBySlug(slug)?.album;
+				return album
+					? [{ href: `${galleryBase}/${album.slug}`, image: album.images[0], title: album.title, alt: album.title, width: 1500, height: 1125 }]
+					: [];
+			})
+		: (content.tabs.find((t) => tabMatch.test(t.id)) ?? content.tabs[0]).cards.map((card) => ({
+				href: `${basePath}/${card.slug}`,
+				image: card.image,
+				title: card.title,
+				width: card.imageWidth,
+				height: card.imageHeight,
+				srcset: card.imageSrcset,
+			}));
+---
+
+<div class="programas-carousel" data-programas-carousel>
+	<div class="programas-carousel-viewport" data-programas-viewport>
+		{
+			slides.map((card) => (
+				<div class="programas-carousel-slide">
+					<ThumbnailCard
+						href={card.href}
+						image={card.image}
+						title={card.title}
+						alt={card.alt}
+						width={card.width}
+						height={card.height}
+						srcset={card.srcset}
+						sizes="(max-width: 575px) 50vw, (max-width: 991px) 30vw, 17vw"
+						lazy
+					/>
+				</div>
+			))
+		}
+	</div>
+	<button type="button" class="programas-carousel-btn is-prev" data-dir="-1" aria-label={prevLabel}>
+		<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+	</button>
+	<button type="button" class="programas-carousel-btn is-next" data-dir="1" aria-label={nextLabel}>
+		<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+	</button>
+</div>
+
+<style is:global>
+	.programas-carousel {
+		--visible: 3;
+		position: relative;
+		width: 100%;
+		min-width: 0;
+	}
+	@media (max-width: 575.98px) {
+		.programas-carousel {
+			--visible: 2;
+		}
+	}
+	.programas-carousel-viewport {
+		display: flex;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		overscroll-behavior-x: contain;
+	}
+	.programas-carousel-viewport::-webkit-scrollbar {
+		display: none;
+	}
+	.programas-carousel-slide {
+		flex: 0 0 calc(100% / var(--visible));
+		scroll-snap-align: start;
+		padding: 0 0.5rem;
+	}
+	.programas-carousel .programa-thumb {
+		height: auto;
+		aspect-ratio: 3 / 4;
+	}
+	.programas-carousel .programa-card-title {
+		font-size: 0.95rem;
+	}
+	.programas-carousel-btn {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 0;
+		border-radius: 50%;
+		background: var(--coe-white);
+		color: var(--coe-dark);
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+		transition: opacity 0.2s, background-color 0.2s;
+	}
+	.programas-carousel-btn:hover {
+		background: var(--coe-cream);
+	}
+	.programas-carousel-btn:disabled {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.programas-carousel-btn.is-prev {
+		left: 0.25rem;
+	}
+	.programas-carousel-btn.is-next {
+		right: 0.25rem;
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-programas-carousel]').forEach((root) => {
+		const viewport = root.querySelector<HTMLElement>('[data-programas-viewport]')!;
+		const prev = root.querySelector<HTMLButtonElement>('.is-prev')!;
+		const next = root.querySelector<HTMLButtonElement>('.is-next')!;
+		const sync = () => {
+			const max = viewport.scrollWidth - viewport.clientWidth;
+			prev.disabled = viewport.scrollLeft <= 1;
+			next.disabled = viewport.scrollLeft >= max - 1;
+		};
+		root.querySelectorAll<HTMLButtonElement>('.programas-carousel-btn').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const slide = viewport.firstElementChild as HTMLElement;
+				// One card per click.
+				viewport.scrollBy({ left: Number(btn.dataset.dir) * slide.offsetWidth, behavior: 'smooth' });
+			});
+		});
+		viewport.addEventListener('scroll', sync, { passive: true });
+		addEventListener('resize', sync);
+		sync();
+	});
+</script>

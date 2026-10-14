@@ -389,6 +389,7 @@ a:not([href]):not([class]):hover {
 
 .aventura-intro {
   position: relative;
+  min-height: 310px;
   background-color: var(--coe-white);
 }
 
@@ -529,7 +530,7 @@ a:not([href]):not([class]):hover {
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background-color: var(--coe-cream-soft-solid);
+  background-color: var(--coe-warm-cream);
   border-radius: 24px;
   overflow: hidden;
 }
@@ -572,7 +573,7 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion-card-body p {
-  color: var(--coe-red-950);
+  color: var(--coe-dark);
   font-size: 2rem; /* 2x */
 }
 
@@ -602,7 +603,7 @@ a:not([href]):not([class]):hover {
 }
 
 .home .presentacion {
-  background-color: var(--coe-cream);
+  background-color: var(--coe-white);
 }
 
 .presentacion h2,
@@ -611,20 +612,26 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion .chip-badge {
-  border-color: var(--coe-red-950);
-  color: var(--coe-red-950);
+  border-color: var(--coe-dark);
+  color: var(--coe-dark);
 }
 
 /* 1.5x Bootstrap's responsive h2 size */
-.presentacion .presentacion-title h2 {
-  color: var(--coe-red-950);
+.presentacion .presentacion-title h2,
+.section-title {
+  color: var(--coe-dark);
   font-size: calc((1.325rem + 0.9vw) * 1.5);
 }
 
 @media (min-width: 1200px) {
-  .presentacion .presentacion-title h2 {
+  .presentacion .presentacion-title h2,
+  .section-title {
     font-size: 3rem;
   }
+}
+
+.w-100vw {
+  width: 100vw;
 }
 
 .presentacion .brown-button {
@@ -634,7 +641,7 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion h3 {
-  color: var(--coe-red-950);
+  color: var(--coe-dark);
   font-size: 1.625rem;
   font-weight: 500;
 }
@@ -841,6 +848,10 @@ footer {
 
 .p-8 {
   padding: 2rem !important; /* Tailwind-style spacing; Bootstrap stops at p-5 */
+}
+
+.pb-10 {
+  padding-bottom: 6rem !important;
 }
 
 .programas-container {

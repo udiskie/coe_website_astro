@@ -2,6 +2,7 @@
 import { base, withBase } from '../utils/url';
 import { useTranslations, localizedPath } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
+import ProgramasCarousel from './ProgramasCarousel.astro';
 
 interface Props {
 	lang: Lang;
@@ -18,7 +19,15 @@ const presentacionImages = [
 	withBase('/images/programas/galeria/incentivo-laboral/03.jpg'),
 	withBase('/images/programas/galeria/maule-rio-abajo/02.jpg'),
 ];
-const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
+const featuredAlbums = [
+	'nido-de-aguilas-nido-de-aguilas-rio-maule',
+	'nido-de-aguilas-nido-life-in-patagonia',
+	'greenland-2005',
+	'nido-de-aguilas-el-cani-pucon',
+	'nido-de-aguilas-cau-cao-lacampana',
+	'santiago-college-rapel',
+	'santiago-college-rio-clarillo',
+];
 ---
 
 <div id="intro" class="cielo">
@@ -90,16 +99,6 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', assignVideos);
 	else assignVideos();
 
-	// The intro block is 1.5x as tall as its content needs; text stays vertically centered.
-	const scaleAventuraIntro = () => {
-		const intro = document.querySelector('.aventura-intro');
-		if (!intro) return;
-		intro.style.minHeight = '';
-		intro.style.minHeight = `${intro.offsetHeight * 1.5}px`;
-	};
-	document.addEventListener('DOMContentLoaded', scaleAventuraIntro);
-	addEventListener('load', scaleAventuraIntro);
-	addEventListener('resize', scaleAventuraIntro);
 </script>
 
 <section
@@ -137,9 +136,10 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 
 <section
 	id="programas"
-	class="container-fluid vh-lg-50 d-flex p-0 flex-column align-items-center justify-content-start programas"
+	class="container-fluid vh-lg-50 d-flex p-0 flex-column align-items-center justify-content-start programas pb-10"
 >
 	<div class="container-fluid reveal">
+		<h2 class="section-title text-center fw-semibold mt-5 mb-5">{t.servicios.title}</h2>
 		<div class="row p-0 h-100 d-flex flex-column-reverse flex-lg-row">
 			<div class="col-lg-6 p-0 d-flex flex-column align-items-center justify-content-center">
 				<div class="py-5 px-0 px-sm-5 d-flex flex-column align-items-center align-items-lg-start justify-content-center w-75">
@@ -154,33 +154,7 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 				</div>
 			</div>
 			<div class="col-lg-6 p-8 h-100">
-				<div id="carousel-servicios" class="carousel slide h-100" data-bs-ride="false" style="border-radius: 16px; overflow: hidden;">
-					<div class="carousel-indicators">
-						{
-							t.servicios.slides.map((_, i) => (
-								<button
-									type="button"
-									data-bs-target="#carousel-servicios"
-									data-bs-slide-to={i}
-									class:list={[{ active: i === 0 }]}
-									aria-current={i === 0 ? 'true' : undefined}
-									aria-label={`Slide ${i + 1}`}
-								/>
-							))
-						}
-					</div>
-					<div class="carousel-inner h-100">
-						{
-							t.servicios.slides.map((slide, i) => (
-								<div class:list={['carousel-item', { active: i === 0 }]} data-bs-interval="3000">
-									<div class="d-flex justify-content-center overflow-hidden">
-										<img src={slide.src} class="d-block w-100" alt={slide.alt} />
-									</div>
-								</div>
-							))
-						}
-					</div>
-				</div>
+				<ProgramasCarousel lang={lang} category="gallery" albums={featuredAlbums} prevLabel={t.servicios.prev} nextLabel={t.servicios.next} />
 			</div>
 		</div>
 	</div>
@@ -189,11 +163,10 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 <section id="aventura" class="container-fluid d-flex p-0 flex-column align-items-center">
 	<div class="d-flex p-8 flex-column align-items-center justify-content-center aventura-intro w-100">
 		<video id="aventura-video" class="aventura-intro-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-		<h2 class="text-center text-lg-start mt-5 mb-3">{t.aventura.heading}</h2>
-		<p class="text-center text-lg-start mb-5">{t.aventura.subheading}</p>
+		<h2 class="section-title text-center fw-semibold">{t.aventura.heading}</h2>
 	</div>
 	<div class="proximas-aventuras reveal">
-		<div>
+		<div class="w-100vw">
 			<div
 				id="carousel-aventuras"
 				class="carousel slide h-100 home-slider fade-0"
@@ -205,18 +178,8 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 				<div class="carousel-inner w-100">
 					<div class="carousel-item active">
 						<div class="row px-0">
-							<div class="col-lg-6 p-8 d-flex justify-content-center overflow-hidden">
-								<img style="border-radius: 16px; aspect-ratio: 1200 / 844; object-fit: cover; object-position: center;"
-									width="1016"
-									height="844"
-									src={t.aventura.featured.image}
-									class="d-block w-100 h-auto"
-									alt=""
-									decoding="async"
-									fetchpriority="high"
-									srcset={t.aventura.featured.imageSrcset}
-									sizes="(max-width: 1016px) 100vw, 1016px"
-								/>
+							<div class="col-lg-6 p-8 d-flex align-items-center overflow-hidden">
+								<ProgramasCarousel lang={lang} category="adventure" prevLabel={t.servicios.prev} nextLabel={t.servicios.next} />
 							</div>
 
 							<div class="col-lg-6 p-0 d-flex flex-column align-items-center justify-content-center">
@@ -230,7 +193,7 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 									<div>
 										<a
 											class="btn btn-primary my-3 black-button me-2 text-center text-sm-start"
-											href={featuredProgramaHref}
+											href={programasHref}
 										>
 											{t.aventura.featured.cta}
 										</a>

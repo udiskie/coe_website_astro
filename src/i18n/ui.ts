@@ -52,27 +52,23 @@ const rawUi = {
 			cta: 'Conocer más',
 		},
 		servicios: {
-			heading: 'Experiencias que ya han marcado la diferencia',
-			subheading: 'Revisa nuestra galería para conocer nuestro trabajo',
+			title: 'Momentos que quedan para siempre',
+			heading: 'Experiencias que vale la pena recordar',
+			subheading: 'Revisa algunos de los momentos que hemos creado',
 			cta: 'Ver nuestra galería',
-			slides: [
-				{ src: '/images/slider_home/santiago_college_2014_1.jpg', alt: 'santiago college coe' },
-				{ src: '/images/slider_home/rio_maule.jpg', alt: 'rio maule coe' },
-				{ src: '/images/slider_home/rio_maule_rafting.jpg', alt: 'rio maule travesia rafting' },
-			],
+			prev: 'Anterior',
+			next: 'Siguiente',
 		},
 		aventura: {
-			heading: '¡Escoge tu próxima aventura!',
-			subheading:
-				'Conoce los siguientes programas de aventura que tenemos disponibles para ti',
+			heading: 'Descubre todo lo que te espera afuera',
 			featured: {
 				image: '/images/maule_0_0.jpg',
 				imageSrcset:
 					'/images/maule_0_0.jpg 1016w, /images/maule_0_0-300x249.jpg 300w, /images/maule_0_0-768x638.jpg 768w',
-				title: 'Maule río abajo',
+				title: 'Tu próxima aventura comienza aquí',
 				description:
-					'Navega el Río Maule, acampa bajo las estrellas y descubre de lo que eres capaz. Una travesía diseñada para desafiarte y reconectarte con la naturaleza.',
-				cta: 'Ver más',
+					'Explora nuestros programas de aventura y encuentra nuevas formas de descubrir la naturaleza.',
+				cta: 'Ver nuestros programas',
 				slug: 'maule-rio-abajo',
 			},
 		},
@@ -202,26 +198,23 @@ const rawUi = {
 			cta: 'Learn more',
 		},
 		servicios: {
-			heading: 'Experiences that have already made a difference',
-			subheading: 'Browse our gallery to see our work.',
+			title: 'Moments that last forever',
+			heading: 'Experiences worth remembering',
+			subheading: 'Take a look at some of the moments we have created',
 			cta: 'See our gallery',
-			slides: [
-				{ src: '/images/slider_home/santiago_college_2014_1.jpg', alt: 'santiago college coe' },
-				{ src: '/images/slider_home/rio_maule.jpg', alt: 'rio maule coe' },
-				{ src: '/images/slider_home/rio_maule_rafting.jpg', alt: 'rio maule travesia rafting' },
-			],
+			prev: 'Previous',
+			next: 'Next',
 		},
 		aventura: {
-			heading: 'Find your next adventure!',
-			subheading: 'Get to know the upcoming adventure programs we have available for you.',
+			heading: 'Discover everything that awaits you outside',
 			featured: {
 				image: '/images/maule_0_0.jpg',
 				imageSrcset:
 					'/images/maule_0_0.jpg 1016w, /images/maule_0_0-300x249.jpg 300w, /images/maule_0_0-768x638.jpg 768w',
-				title: 'Maule River',
+				title: 'Your next adventure starts here',
 				description:
-					'Navigate the Maule River, camp under the stars and discover what you are capable of. A journey designed to challenge you and reconnect you with nature.',
-				cta: 'See more',
+					'Explore our adventure programs and find new ways to discover nature.',
+				cta: 'See our programs',
 				slug: 'maule-rio-abajo',
 			},
 		},
