@@ -82,7 +82,7 @@ const featuredAlbums = [
 		'6506301_Hiking_Woman',
 	];
 	// Aventura clips are pre-cropped to the card's shape: portrait on phones, wide strip elsewhere.
-	const aventuraSize = () => (innerWidth < 576 ? '360x480' : innerWidth < 1200 ? '960x226' : '1280x300');
+	const aventuraSize = () => (innerWidth < 576 ? '540x720' : innerWidth < 1200 ? '960x226' : '1280x300');
 	const aventuraVideos = aventuraClips.map((clip) => base + `/videos/hero/${clip}_${aventuraSize()}.mp4`);
 	const pick = (list) => list[Math.floor(Math.random() * list.length)];
 	// This script runs before the sections below are parsed, so wait for the DOM before looking them up.
