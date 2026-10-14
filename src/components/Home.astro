@@ -58,28 +58,32 @@ const featuredProgramaHref = `${programasHref}/${t.aventura.featured.slug}`;
 		}
 	});
 
-	const heroVideos = [
-		base + '/videos/hero/0_Durmitor_Montenegro_1280x720.mp4',
-		base + '/videos/hero/0_Hiking_Forest_1280x720.mp4',
-		base + '/videos/hero/1335373_Man_Boy_1280x720.mp4',
-		base + '/videos/hero/5069123_Hiker_Caucasian_1280x720.mp4',
-		base + '/videos/hero/5367223_Coll_wavebreak_Couple_1280x720.mp4',
-		base + '/videos/hero/613715_Drone_Landscape_Drone_Mountains_1280x720.mp4',
-		base + '/videos/hero/6506301_Hiking_Woman_1280x720.mp4',
-		base + '/videos/hero/DJI_0909_1280x720.mp4',
-		base + '/videos/hero/DJI_0933_1280x720.mp4',
+	// Hero uses only the DJI drone clips; the aventura background picks at random from the rest.
+	const heroClips = ['DJI_0909', 'DJI_0933'];
+	// Each hero clip ships in three sizes; pick the one that matches the viewport width.
+	const heroSize = () => (innerWidth < 768 ? '640x360' : innerWidth < 1200 ? '960x540' : '1280x720');
+	const heroVideos = heroClips.map((clip) => base + `/videos/hero/${clip}_${heroSize()}.mp4`);
+	const aventuraClips = [
+		'0_Durmitor_Montenegro',
+		'0_Hiking_Forest',
+		'1335373_Man_Boy',
+		'5069123_Hiker_Caucasian',
+		'5367223_Coll_wavebreak_Couple',
+		'613715_Drone_Landscape_Drone_Mountains',
+		'6506301_Hiking_Woman',
 	];
-	// Shuffle once so the hero and the aventura background never show the same clip.
-	const shuffled = [...heroVideos];
-	for (let i = shuffled.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-	}
+	// Aventura clips are pre-cropped to the card's shape: portrait on phones, wide strip elsewhere.
+	const aventuraSize = () => (innerWidth < 576 ? '360x480' : innerWidth < 1200 ? '960x226' : '1280x300');
+	const aventuraVideos = aventuraClips.map((clip) => base + `/videos/hero/${clip}_${aventuraSize()}.mp4`);
+	const pick = (list) => list[Math.floor(Math.random() * list.length)];
 	// This script runs before the sections below are parsed, so wait for the DOM before looking them up.
 	const assignVideos = () => {
-		[document.querySelector('#hero-video'), document.querySelector('#aventura-video')].forEach((el, i) => {
+		[
+			[document.querySelector('#hero-video'), heroVideos],
+			[document.querySelector('#aventura-video'), aventuraVideos],
+		].forEach(([el, list]) => {
 			if (!el) return;
-			el.src = shuffled[i];
+			el.src = pick(list);
 			el.play().catch(() => {});
 		});
 	};
