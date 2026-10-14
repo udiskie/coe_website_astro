@@ -577,13 +577,13 @@ a:not([href]):not([class]):hover {
 }
 
 .presentacion .presentacion-card-body h3 {
-  /* Shrinks to half its size as the next card stacks over this one (--covered: 0 → 1) */
-  font-size: calc(4.0625rem * (1 - 0.5 * var(--covered, 0))); /* 2.5x the regular 1.625rem */
+  /* Shrinks to 80% of its size as the next card stacks over this one (--covered: 0 → 1) */
+  font-size: calc(1.875rem * (1 - 0.2 * var(--covered, 0))); /* 30px */
 }
 
 .presentacion-card-body p {
   color: var(--coe-dark);
-  font-size: 2rem; /* 2x */
+  font-size: 1.25rem; /* 20px */
 }
 
 @media only screen and (min-width: 992px) {
