@@ -69,8 +69,10 @@ const featuredAlbums = [
 
 	// Hero uses only the DJI drone clips; the aventura background picks at random from the rest.
 	const heroClips = ['DJI_0909', 'DJI_0933'];
-	// Each hero clip ships in three sizes; pick the one that matches the viewport width.
-	const heroSize = () => (innerWidth < 768 ? '640x360' : innerWidth < 1200 ? '960x540' : '1280x720');
+	// Portrait viewports get a 9:16 crop (the 16:9 clips would be upscaled ~2.5x to fill the height);
+	// landscape ones pick the 16:9 size that matches the viewport width.
+	const heroSize = () =>
+		innerHeight > innerWidth ? '720x1280' : innerWidth < 768 ? '640x360' : innerWidth < 1200 ? '960x540' : '1280x720';
 	const heroVideos = heroClips.map((clip) => base + `/videos/hero/${clip}_${heroSize()}.mp4`);
 	const aventuraClips = [
 		'0_Durmitor_Montenegro',
