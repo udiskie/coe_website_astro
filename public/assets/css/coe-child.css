@@ -389,43 +389,6 @@ a:not([href]):not([class]):hover {
   background-color: var(--coe-cream);
 }
 
-.aventura-intro {
-  position: relative;
-  min-height: 310px;
-  background-color: var(--coe-white);
-  /* Matches the white gap between the presentacion CTA and this card (9rem), minus the 4rem already below it */
-  margin-bottom: 5rem;
-}
-
-/* Rounded card inset 2rem from the edges, like the photos above (p-8 + 16px radius) */
-.aventura-intro-video {
-  position: absolute;
-  inset: 2rem;
-  width: calc(100% - 4rem);
-  height: calc(100% - 4rem);
-  object-fit: cover;
-  border-radius: 16px;
-  background-color: var(--coe-near-black); /* shown until the video loads */
-  z-index: 0;
-}
-
-/* Near-black tint blended over the video so the cream text stays legible */
-.aventura-intro::after {
-  content: "";
-  position: absolute;
-  inset: 2rem;
-  border-radius: 16px;
-  background-color: rgba(23, 23, 23, 0.55);
-  z-index: 1;
-}
-
-.aventura-intro h2,
-.aventura-intro p {
-  position: relative;
-  z-index: 2;
-  color: var(--coe-cream);
-}
-
 .equipo-intro {
   background-color: var(--coe-near-black);
 }
@@ -578,12 +541,12 @@ a:not([href]):not([class]):hover {
 
 .presentacion .presentacion-card-body h3 {
   /* Shrinks to 80% of its size as the next card stacks over this one (--covered: 0 → 1) */
-  font-size: calc(1.875rem * (1 - 0.2 * var(--covered, 0))); /* 30px */
+  font-size: calc(1.25rem * (1 - 0.2 * var(--covered, 0))); /* h5, as on /programas */
 }
 
 .presentacion-card-body p {
   color: var(--coe-dark);
-  font-size: 1.25rem; /* 20px */
+  font-size: 1rem;
 }
 
 @media only screen and (min-width: 992px) {
@@ -625,18 +588,10 @@ a:not([href]):not([class]):hover {
   color: var(--coe-dark);
 }
 
-/* 1.5x Bootstrap's responsive h2 size */
 .presentacion .presentacion-title h2,
 .section-title {
   color: var(--coe-dark);
-  font-size: calc((1.325rem + 0.9vw) * 1.5);
-}
-
-@media (min-width: 1200px) {
-  .presentacion .presentacion-title h2,
-  .section-title {
-    font-size: 3rem;
-  }
+  font-size: 1.5rem; /* h4, as the /programas heading */
 }
 
 .w-100vw {
@@ -651,7 +606,7 @@ a:not([href]):not([class]):hover {
 
 .presentacion h3 {
   color: var(--coe-dark);
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -1306,3 +1261,17 @@ footer {
   padding-right: 1.5rem !important;
 }
 
+
+/* Home section headings/subheads match the /programas scale: h4 1.5rem, h5 1.25rem, body 1rem */
+.home h2:not(.section-title) {
+  font-size: 1.5rem;
+}
+
+.home h3 {
+  font-size: 1.25rem;
+}
+
+/* "Momentos que quedan para siempre" section */
+.home #programas {
+  background-color: var(--coe-cream); /* #f9f5eb */
+}

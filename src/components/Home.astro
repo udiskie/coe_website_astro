@@ -67,31 +67,18 @@ const featuredAlbums = [
 		}
 	});
 
-	// Hero uses only the DJI drone clips; the aventura background picks at random from the rest.
+	// Hero uses only the DJI drone clips.
 	const heroClips = ['DJI_0909', 'DJI_0933'];
 	// Portrait viewports get a 9:16 crop (the 16:9 clips would be upscaled ~2.5x to fill the height);
 	// landscape ones pick the 16:9 size that matches the viewport width.
 	const heroSize = () =>
 		innerHeight > innerWidth ? '720x1280' : innerWidth < 768 ? '640x360' : innerWidth < 1200 ? '960x540' : '1280x720';
 	const heroVideos = heroClips.map((clip) => base + `/videos/hero/${clip}_${heroSize()}.mp4`);
-	const aventuraClips = [
-		'0_Durmitor_Montenegro',
-		'0_Hiking_Forest',
-		'1335373_Man_Boy',
-		'5069123_Hiker_Caucasian',
-		'5367223_Coll_wavebreak_Couple',
-		'613715_Drone_Landscape_Drone_Mountains',
-		'6506301_Hiking_Woman',
-	];
-	// Aventura clips are pre-cropped to the card's shape: portrait on phones, wide strip elsewhere.
-	const aventuraSize = () => (innerWidth < 576 ? '540x720' : innerWidth < 1200 ? '960x226' : '1280x300');
-	const aventuraVideos = aventuraClips.map((clip) => base + `/videos/hero/${clip}_${aventuraSize()}.mp4`);
 	const pick = (list) => list[Math.floor(Math.random() * list.length)];
 	// This script runs before the sections below are parsed, so wait for the DOM before looking them up.
 	const assignVideos = () => {
 		[
 			[document.querySelector('#hero-video'), heroVideos],
-			[document.querySelector('#aventura-video'), aventuraVideos],
 		].forEach(([el, list]) => {
 			if (!el) return;
 			el.src = pick(list);
@@ -141,7 +128,7 @@ const featuredAlbums = [
 	class="container-fluid vh-lg-50 d-flex p-0 flex-column align-items-center justify-content-start programas pb-10"
 >
 	<div class="container-fluid reveal">
-		<h2 class="section-title text-center fw-semibold mt-5 mb-5">{t.servicios.title}</h2>
+		<h2 class="section-title text-center fw-semibold mt-5">{t.servicios.title}</h2>
 		<div class="row p-0 h-100 d-flex flex-column-reverse flex-lg-row">
 			<div class="col-lg-6 p-0 d-flex flex-column align-items-center justify-content-center">
 				<div class="py-5 px-0 px-sm-5 d-flex flex-column align-items-center align-items-lg-start justify-content-center w-75">
@@ -163,10 +150,7 @@ const featuredAlbums = [
 </section>
 
 <section id="aventura" class="container-fluid d-flex p-0 flex-column align-items-center">
-	<div class="d-flex p-8 flex-column align-items-center justify-content-center aventura-intro w-100">
-		<video id="aventura-video" class="aventura-intro-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-		<h2 class="section-title text-center fw-semibold">{t.aventura.heading}</h2>
-	</div>
+	<h2 class="section-title text-center fw-semibold mt-5">{t.aventura.heading}</h2>
 	<div class="proximas-aventuras">
 		<div class="w-100vw">
 			<div
