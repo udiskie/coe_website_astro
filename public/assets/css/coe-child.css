@@ -471,7 +471,7 @@ a:not([href]):not([class]):hover {
   position: sticky;
   top: var(--header-offset);
   z-index: 3;
-  padding: 12px 0 40px;
+  padding: 12px 0 80px;
   text-align: center;
 }
 

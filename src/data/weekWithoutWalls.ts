@@ -43,9 +43,9 @@ export const rioMaule: Record<Lang, WeekProgram> = {
 			'Night campfires',
 			'Teamwork',
 		],
-		programLabel: 'View program',
-		programUrl: 'https://drive.google.com/file/d/1mDaG3tVv2veuIq4zjWwlHcV1mAOD7TK_/view?usp=sharing',
-		equipmentLabel: 'Required equipment',
-		equipmentUrl: 'https://drive.google.com/file/d/1qraTGUdRLuXHxkjZTfyESUGGfE6TgT-F/view?usp=sharing',
+		programLabel: 'Full itinerary',
+		programUrl: 'https://drive.google.com/file/d/1vZQTq2QDvPsdaM67DjvpLfMDClcnenpo/view?usp=sharing',
+		equipmentLabel: 'Required Equipment',
+		equipmentUrl: 'https://drive.google.com/file/d/1Z9gLSD8ixycOhPIS_FVK5rBWa6oIX-63/view?usp=sharing',
 	},
 };
