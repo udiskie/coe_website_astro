@@ -813,6 +813,7 @@ footer {
 /* Breathing room below the carousel */
 .proximas-aventuras {
   margin-bottom: 7rem;
+  margin-top: 7rem;
 }
 
 .p-8 {
@@ -820,7 +821,8 @@ footer {
 }
 
 .pb-10 {
-  padding-bottom: 6rem !important;
+  padding-bottom: 5rem !important;
+  padding-top: 6rem !important;
 }
 
 .programas-container {
