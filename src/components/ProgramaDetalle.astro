@@ -59,7 +59,12 @@ const [carouselFirst, ...carouselRest] = coverOnlyThumb ? card.gallery! : [card.
 						</a>
 					)
 				}
-				<a href={contactoPath} class="btn black-button programa-detalle-cta text-center">
+				<a
+					href={card.formUrl ?? contactoPath}
+					class="btn black-button programa-detalle-cta text-center"
+					target={card.formUrl ? '_blank' : undefined}
+					rel={card.formUrl ? 'noopener' : undefined}
+				>
 					{tab.ctaLabel}
 				</a>
 			</div>

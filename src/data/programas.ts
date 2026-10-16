@@ -18,6 +18,8 @@ export interface ProgramCard {
 	details?: { heading: string; items: string[] }[];
 	/** Link to the full program PDF; shows the "Programa completo" button when set. */
 	fullProgramUrl?: string;
+	/** Program-specific form for the CTA button; falls back to the contact page when unset. */
+	formUrl?: string;
 }
 
 export interface ProgramTab {
@@ -55,7 +57,8 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				cards: [
 					{
 						slug: 'travesia-tres-lagos',
-						fullProgramUrl: '#',
+						fullProgramUrl: 'https://drive.google.com/file/d/1_Da4UbvczgTCqQb3fscrSFIzpMQaiq3D/view?usp=drive_link',
+						formUrl: 'https://forms.gle/VHx5GqRFYVbrYd7z7',
 						image: '/images/programas/Portada-tres-lagos.png',
 						imageSrcset:
 							'/images/programas/Portada-tres-lagos.png 1016w, /images/programas/Portada-tres-lagos-300x249.png 300w, /images/programas/Portada-tres-lagos-768x638.png 768w',
@@ -66,8 +69,6 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						gallery: [
 							'/images/programas/galeria/travesia-tres-lagos/01.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/02.jpg',
-							'/images/programas/galeria/travesia-tres-lagos/03.jpg',
-							'/images/programas/galeria/travesia-tres-lagos/04.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/05.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/06.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/07.jpg',
@@ -79,6 +80,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 					},
 					{
 						slug: 'descubre-la-patagonia',
+						formUrl: 'https://forms.gle/nTyfvyEx9Q6Dbutz8',
 						image: '/images/programas/Portada-descubre-la-patagonia.png',
 						imageSrcset:
 							'/images/programas/Portada-descubre-la-patagonia.png 1016w, /images/programas/Portada-descubre-la-patagonia-300x249.png 300w, /images/programas/Portada-descubre-la-patagonia-768x638.png 768w',
@@ -87,7 +89,6 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						title: 'Descubre la Patagonia',
 						description: ['Viajar a la patagonia es una forma de conectar con lo esencial: paisajes inmensos, aire puro y momentos simples, cada rincón invita a tomarse el tiempo y vivir la naturaleza a tu ritmo.', 'La patagonia te espera, tu decides como vivirla.'],
 						gallery: [
-							'/images/programas/galeria/descubre-la-patagonia/01.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/02.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/03.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/04.jpg',
@@ -103,7 +104,8 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 					},
 					{
 						slug: 'maule-rio-abajo',
-						fullProgramUrl: '#',
+						fullProgramUrl: 'https://drive.google.com/file/d/1gQCd4cqKFjHc-amgbgGqxuS2rMQbhaCv/view?usp=drive_link',
+						formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdUJt416yg5nkylum1DSj5a-ii7Z2-4R1eZnvnORkEWCNN3Fg/viewform?usp=header',
 						image: '/images/maule_0_0.jpg',
 						imageSrcset:
 							'/images/maule_0_0.jpg 1016w, /images/maule_0_0-300x249.jpg 300w, /images/maule_0_0-768x638.jpg 768w',
@@ -390,7 +392,8 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 				cards: [
 					{
 						slug: 'three-lakes-crossing',
-						fullProgramUrl: '#',
+						fullProgramUrl: 'https://drive.google.com/file/d/1_Da4UbvczgTCqQb3fscrSFIzpMQaiq3D/view?usp=drive_link',
+						formUrl: 'https://forms.gle/VHx5GqRFYVbrYd7z7',
 						image: '/images/programas/Portada-tres-lagos.png',
 						imageSrcset:
 							'/images/programas/Portada-tres-lagos.png 1016w, /images/programas/Portada-tres-lagos-300x249.png 300w, /images/programas/Portada-tres-lagos-768x638.png 768w',
@@ -401,8 +404,6 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						gallery: [
 							'/images/programas/galeria/travesia-tres-lagos/01.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/02.jpg',
-							'/images/programas/galeria/travesia-tres-lagos/03.jpg',
-							'/images/programas/galeria/travesia-tres-lagos/04.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/05.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/06.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/07.jpg',
@@ -414,6 +415,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 					},
 					{
 						slug: 'discover-patagonia',
+						formUrl: 'https://forms.gle/nTyfvyEx9Q6Dbutz8',
 						image: '/images/programas/Portada-descubre-la-patagonia.png',
 						imageSrcset:
 							'/images/programas/Portada-descubre-la-patagonia.png 1016w, /images/programas/Portada-descubre-la-patagonia-300x249.png 300w, /images/programas/Portada-descubre-la-patagonia-768x638.png 768w',
@@ -422,7 +424,6 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						title: 'Discover Patagonia',
 						description: ['Traveling to Patagonia is a way of connecting with the essentials: vast landscapes, pure air and simple moments. Every corner invites you to take your time and experience nature at your own pace.', 'Patagonia awaits you, you decide how to live it.'],
 						gallery: [
-							'/images/programas/galeria/descubre-la-patagonia/01.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/02.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/03.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/04.jpg',
@@ -438,7 +439,8 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 					},
 					{
 						slug: 'maule-river',
-						fullProgramUrl: '#',
+						fullProgramUrl: 'https://drive.google.com/file/d/1gQCd4cqKFjHc-amgbgGqxuS2rMQbhaCv/view?usp=drive_link',
+						formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdUJt416yg5nkylum1DSj5a-ii7Z2-4R1eZnvnORkEWCNN3Fg/viewform?usp=header',
 						image: '/images/programas/programas_maule.jpg',
 						imageSrcset:
 							'/images/programas/programas_maule.jpg 1016w, /images/programas/programas_maule-300x249.jpg 300w, /images/programas/programas_maule-768x638.jpg 768w',
