@@ -162,3 +162,12 @@ import HeroPicture from './HeroPicture.astro';
 		</div>
 	</div>
 </section>
+
+<script>
+	// Team modals live inside stacking contexts (cards, reveal animations), which traps their z-index below
+	// Bootstrap's body-level backdrop. Re-parent them to <body> so the order is: content < backdrop < modal.
+	document.querySelectorAll<HTMLElement>('.team-modal').forEach((dialog) => {
+		const modal = dialog.closest<HTMLElement>('.modal');
+		if (modal) document.body.appendChild(modal);
+	});
+</script>

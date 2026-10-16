@@ -497,7 +497,7 @@ a:not([href]):not([class]):hover {
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background-color: #fff;
+  background-color: var(--coe-cream);
   border-radius: 24px;
   overflow: hidden;
 }
