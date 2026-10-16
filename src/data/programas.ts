@@ -68,7 +68,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						description: ['Embárcate en un viaje de ensueño navegando por tres lagos de aguas cristalinas, rodeados de imponentes montañas y bosques nativos.'],
 						gallery: [
 							'/images/programas/galeria/travesia-tres-lagos/01.jpg',
-							'/images/programas/galeria/travesia-tres-lagos/02.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/04.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/05.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/06.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/07.jpg',
@@ -88,7 +88,9 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageHeight: 844,
 						title: 'Descubre la Patagonia',
 						description: ['Viajar a la patagonia es una forma de conectar con lo esencial: paisajes inmensos, aire puro y momentos simples, cada rincón invita a tomarse el tiempo y vivir la naturaleza a tu ritmo.', 'La patagonia te espera, tu decides como vivirla.'],
+						thumbnailOnly: true,
 						gallery: [
+							'/images/programas/galeria/descubre-la-patagonia/01.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/02.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/03.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/04.jpg',
@@ -403,7 +405,7 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						description: ['Embark on a dream journey sailing across three crystal-clear lakes, surrounded by towering mountains and native forests.'],
 						gallery: [
 							'/images/programas/galeria/travesia-tres-lagos/01.jpg',
-							'/images/programas/galeria/travesia-tres-lagos/02.jpg',
+							'/images/programas/galeria/travesia-tres-lagos/04.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/05.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/06.jpg',
 							'/images/programas/galeria/travesia-tres-lagos/07.jpg',
@@ -423,7 +425,9 @@ const rawProgramasContent: Record<Lang, ProgramasContent> = {
 						imageHeight: 844,
 						title: 'Discover Patagonia',
 						description: ['Traveling to Patagonia is a way of connecting with the essentials: vast landscapes, pure air and simple moments. Every corner invites you to take your time and experience nature at your own pace.', 'Patagonia awaits you, you decide how to live it.'],
+						thumbnailOnly: true,
 						gallery: [
+							'/images/programas/galeria/descubre-la-patagonia/01.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/02.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/03.jpg',
 							'/images/programas/galeria/descubre-la-patagonia/04.jpg',
