@@ -35,7 +35,16 @@ const featuredAlbums = [
 		id="home-hero-loading"
 		class="fade-0 page-hero container-fluid vh-100 d-flex justify-content-end flex-column m-0 p-0 cielo-img"
 	>
-		<video id="hero-video" class="hero-video" autoplay muted loop playsinline preload="auto"></video>
+		<video
+			id="hero-video"
+			class="hero-video"
+			poster={withBase('/videos/hero/DJI_0909_960x540.webp')}
+			autoplay
+			muted
+			loop
+			playsinline
+			preload="auto"
+		></video>
 
 		<div class="intro-texto text-center text-lg-start">
 			<h1 class="yellow-text fw-bold text-center text-lg-start">{t.hero.headline}</h1>
