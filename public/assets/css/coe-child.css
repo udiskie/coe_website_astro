@@ -151,8 +151,6 @@ a:not([href]):not([class]):hover {
 }
 
 .cielo-img {
-  background-image: url("../../images/home_fondo_desktop.jpg");
-  background-size: cover;
   position: relative;
 }
 
@@ -169,6 +167,13 @@ a:not([href]):not([class]):hover {
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  /* Fades in once the first frame is ready, over the dark .cielo background. */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-video.is-ready {
+  opacity: 1;
 }
 
 /* Dark-transparent-dark vertical gradient (near-black green), keeping hero text and menu legible over the media. */
@@ -1142,7 +1147,7 @@ footer {
 
 .page-hero-interna {
   height: 75vh;
-  background-color: var(--coe-beige);
+  background-color: var(--coe-dark);
   /* Stays pinned while the page content slides over it. */
   position: sticky;
   top: 0;
@@ -1164,6 +1169,16 @@ footer {
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+/* Hero photos fade in when they finish loading (see HeroPicture.astro). */
+.page-hero-media img {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.page-hero-media img.is-loaded {
+  opacity: 1;
 }
 
 .page-hero-parallax {

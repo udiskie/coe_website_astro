@@ -14,3 +14,11 @@ const { image } = Astro.props;
 	<source srcset={image.lg} type="image/webp" />
 	<img src={image.src} alt="" width="1920" height="1080" fetchpriority="high" decoding="async" />
 </picture>
+
+<script is:inline>
+	document.querySelectorAll('.page-hero-media img').forEach((img) => {
+		const show = () => img.classList.add('is-loaded');
+		if (img.complete && img.naturalWidth) show();
+		else img.addEventListener('load', show, { once: true });
+	});
+</script>

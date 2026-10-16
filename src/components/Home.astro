@@ -81,6 +81,7 @@ const featuredAlbums = [
 			[document.querySelector('#hero-video'), heroVideos],
 		].forEach(([el, list]) => {
 			if (!el) return;
+			el.addEventListener('loadeddata', () => el.classList.add('is-ready'), { once: true });
 			el.src = pick(list);
 			el.play().catch(() => {});
 		});
