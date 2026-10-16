@@ -81,8 +81,10 @@ const featuredAlbums = [
 			[document.querySelector('#hero-video'), heroVideos],
 		].forEach(([el, list]) => {
 			if (!el) return;
-			el.addEventListener('loadeddata', () => el.classList.add('is-ready'), { once: true });
-			el.src = pick(list);
+			const src = pick(list);
+			// The clip's first frame (same name, .webp) shows as the poster until the video has loaded.
+			el.poster = src.replace(/\.mp4$/, '.webp');
+			el.src = src;
 			el.play().catch(() => {});
 		});
 	};

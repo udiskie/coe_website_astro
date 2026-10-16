@@ -167,13 +167,6 @@ a:not([href]):not([class]):hover {
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  /* Fades in once the first frame is ready, over the dark .cielo background. */
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-video.is-ready {
-  opacity: 1;
 }
 
 /* Dark-transparent-dark vertical gradient (near-black green), keeping hero text and menu legible over the media. */
